@@ -4,7 +4,7 @@ import com.gigeroa.vtv.entities.Estado;
 import com.gigeroa.vtv.repositories.*;
 import java.util.Iterator;
 
-public abstract class ControlServices {
+public abstract class ControlService {
 	
 	// Método para analizar caso por caso el estado de los controles y devolver un estado en String
 	public static String getEstado(IControl control) {

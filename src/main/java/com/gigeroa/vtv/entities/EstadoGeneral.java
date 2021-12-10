@@ -1,6 +1,6 @@
 package com.gigeroa.vtv.entities;
 
-import com.gigeroa.vtv.services.EstadosServices;
+import com.gigeroa.vtv.services.EstadosService;
 
 public class EstadoGeneral  {
 	private int tipoEstado;
@@ -66,6 +66,6 @@ public class EstadoGeneral  {
 	}
 
 	private int identificarEstado() {
-		return EstadosServices.numeroEstado(toString());
+		return EstadosService.numeroEstado(toString());
 	}
 }

@@ -2,7 +2,7 @@ package com.gigeroa.vtv.entities;
 
 import java.util.ArrayList;
 import com.gigeroa.vtv.repositories.*;
-import com.gigeroa.vtv.services.ControlServices;
+import com.gigeroa.vtv.services.ControlService;
 
 public class Observacion implements IControl {
 	private Estado luces;
@@ -110,7 +110,7 @@ public class Observacion implements IControl {
 
 	@Override
 	public String toString() {
-		return ControlServices.getEstado(this);
+		return ControlService.getEstado(this);
 	}
 	
 //	Método que retorna un ArrayList de los estados de la observación

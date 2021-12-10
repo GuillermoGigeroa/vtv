@@ -19,26 +19,26 @@ public class TestServices extends TestCase {
 	}
 	
 //	Prueba del método getEstado de ControlServices con un IControl del tipo Medicion
-	public void testControlServices1 () {
+	public void testControlService1 () {
 		escenarioControlMedicion();
-		assertTrue(ControlServices.getEstado(medicion).compareTo(IEstado.apto) == 0);
+		assertTrue(ControlService.getEstado(medicion).compareTo(IEstado.apto) == 0);
 	}
 
 //	Prueba del método getEstado de ControlServices con un IControl del tipo Observacion
-	public void testControlServices2 () {
+	public void testControlService2 () {
 		escenarioControlObservacion();
-		assertTrue(ControlServices.getEstado(observacion).compareTo(IEstado.apto) == 0);
+		assertTrue(ControlService.getEstado(observacion).compareTo(IEstado.apto) == 0);
 	}
 
 //	Prueba del método numeroEstado de EstadosServices con un IControl del tipo Observacion
-	public void testEstadosServices1 () {
+	public void testEstadosService1 () {
 		escenarioControlObservacion();
-		assertTrue(EstadosServices.numeroEstado(observacion.toString()) == 1);
+		assertTrue(EstadosService.numeroEstado(observacion.toString()) == 1);
 	}
 	
 //	Prueba del método numeroEstado de EstadosServices con un IControl del tipo Medicion
-	public void testEstadosServices2 () {
+	public void testEstadosService2 () {
 		escenarioControlMedicion();
-		assertTrue(EstadosServices.numeroEstado(medicion.toString()) == 1);
+		assertTrue(EstadosService.numeroEstado(medicion.toString()) == 1);
 	}
 }

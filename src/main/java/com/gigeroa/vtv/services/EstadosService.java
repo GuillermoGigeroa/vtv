@@ -2,7 +2,7 @@ package com.gigeroa.vtv.services;
 
 import com.gigeroa.vtv.entities.Estado;
 
-public abstract class EstadosServices {
+public abstract class EstadosService {
 	// Método que compara un String con los estados y retorna un int con el estado
 	public static int numeroEstado(String estado) {
 		if (estado.equalsIgnoreCase(Estado.apto)) {
