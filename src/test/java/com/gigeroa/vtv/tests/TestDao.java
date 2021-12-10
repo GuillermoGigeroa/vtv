@@ -1,7 +1,6 @@
 package com.gigeroa.vtv.tests;
 
 import com.gigeroa.vtv.dao.*;
-
 import junit.framework.TestCase;
 
 public class TestDao extends TestCase{
