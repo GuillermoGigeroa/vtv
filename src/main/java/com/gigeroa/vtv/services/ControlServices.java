@@ -38,17 +38,4 @@ public abstract class ControlServices {
 			return "Error";
 		}
 	}
-	
-	// Método que compara un String con los estados y retorna un int con el estado
-	private static int numeroEstado(String estado) {
-		if (estado.equalsIgnoreCase(Estado.apto)) {
-			return 1;
-		} else if (estado.equalsIgnoreCase(Estado.condicional)) {
-			return 2;
-		} else if (estado.equalsIgnoreCase(Estado.rechazado)) {
-			return 3;
-		} else {
-			return 0;
-		}
-	}
 }
