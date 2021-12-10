@@ -65,12 +65,12 @@ public class Medicion implements IControl {
 		this.contaminacion = contaminacion;
 	}
 
-//	Metodos
 	@Override
 	public String toString() {
 		return Util.getEstado(this);
 	}
 
+//	Método que retorna un ArrayList de los estados de la medición
 	public ArrayList<Estado> getListaEstados() {
 		ArrayList<Estado> listaEstados = new ArrayList<Estado>();
 		listaEstados.add(suspension);

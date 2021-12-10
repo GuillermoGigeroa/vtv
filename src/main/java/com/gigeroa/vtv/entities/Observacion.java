@@ -107,12 +107,12 @@ public class Observacion implements IControl {
 		this.emergencia = emergencia;
 	}
 
-//	Metodos
 	@Override
 	public String toString() {
 		return Util.getEstado(this);
 	}
 	
+//	Método que retorna un ArrayList de los estados de la observación
 	public ArrayList<Estado> getListaEstados() {
 		ArrayList<Estado> listaEstados = new ArrayList<Estado>();
 		listaEstados.add(luces);
