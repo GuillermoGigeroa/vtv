@@ -79,12 +79,4 @@ public class Medicion implements IControl {
 		listaEstados.add(contaminacion);
 		return listaEstados;
 	}
-
-	public String formatoExportacion() {
-		return suspension.toString()
-				+ "," + direccion.toString()
-				+ "," + frenos.toString()
-				+ "," + contaminacion.toString();
-	}
-	
 }

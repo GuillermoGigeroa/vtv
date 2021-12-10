@@ -124,15 +124,4 @@ public class Observacion implements IControl {
 		listaEstados.add(emergencia);
 		return listaEstados;
 	}
-
-	public String formatoExportacion() {
-		return luces.toString()
-				+ "," + patente.toString()
-				+ "," + espejos.toString()
-				+ "," + chasis.toString()
-				+ "," + vidrios.toString()
-				+ "," + seguridad.toString()
-				+ "," + emergencia.toString();
-	}
-	
 }
