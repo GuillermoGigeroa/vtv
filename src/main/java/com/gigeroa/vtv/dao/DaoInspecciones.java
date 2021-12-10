@@ -6,12 +6,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import com.gigeroa.vtv.entities.*;
 
-public class DaoInspeccion {
+public class DaoInspecciones {
 
 	private ConexionMySQL conectar;
 
 //	Constructor
-	public DaoInspeccion() {
+	public DaoInspecciones() {
 		conectar = new ConexionMySQL();
 	}
 

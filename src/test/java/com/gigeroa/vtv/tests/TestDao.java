@@ -5,14 +5,14 @@ import com.gigeroa.vtv.dao.*;
 import junit.framework.TestCase;
 
 public class TestDao extends TestCase{
-	private DaoInspeccion daoInspeccion;
+	private DaoInspecciones daoInspeccion;
 	private DaoInspectores daoInspectores;
 	private DaoPropietarios daoPropietarios;
 	private DaoVehiculos daoVehiculos;
 	
 //	Se generan escenarios previos a la ejecución de la prueba del DAO
 	public void escenarioInspeccion () {
-		daoInspeccion = new DaoInspeccion();
+		daoInspeccion = new DaoInspecciones();
 	}
 	
 	public void escenarioInspectores () {

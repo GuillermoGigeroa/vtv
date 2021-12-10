@@ -1,16 +1,16 @@
 package com.gigeroa.vtv.dto;
 
-import com.gigeroa.vtv.dao.DaoInspeccion;
+import com.gigeroa.vtv.dao.DaoInspecciones;
 import com.gigeroa.vtv.entities.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class DtoInspecciones {
-	private DaoInspeccion dao;
+	private DaoInspecciones dao;
 	
 //	Constructor
 	public DtoInspecciones() {
-		dao = new DaoInspeccion();
+		dao = new DaoInspecciones();
 	}
 
 //	Método para agregar una inspección
