@@ -2,6 +2,7 @@ package com.gigeroa.vtv.entities;
 
 import java.util.ArrayList;
 import com.gigeroa.vtv.repositories.*;
+import com.gigeroa.vtv.services.ControlServices;
 
 public class Medicion implements IControl {
 	private Estado suspension;
@@ -67,7 +68,7 @@ public class Medicion implements IControl {
 
 	@Override
 	public String toString() {
-		return Util.getEstado(this);
+		return ControlServices.getEstado(this);
 	}
 
 //	Método que retorna un ArrayList de los estados de la medición
