@@ -5,6 +5,10 @@
 	<version>0.0.1</version>
 	<name>ProyectoVTV</name>
 	<description>VTV - Proyecto de software a medida </description>
+	<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
