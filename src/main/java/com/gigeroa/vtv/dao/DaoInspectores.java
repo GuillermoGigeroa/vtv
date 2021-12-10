@@ -3,7 +3,6 @@ package com.gigeroa.vtv.dao;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-
 import com.gigeroa.vtv.entities.*;
 
 public class DaoInspectores {
