@@ -1,10 +1,13 @@
 package com.gigeroa.vtv.tests;
 
-import com.gigeroa.vtv.dao.*;
+import com.gigeroa.vtv.dao.DaoInspeccion;
+import com.gigeroa.vtv.dao.DaoInspectores;
+import com.gigeroa.vtv.dao.DaoPropietarios;
+import com.gigeroa.vtv.dao.DaoVehiculos;
 
 import junit.framework.TestCase;
 
-public class TestDao extends TestCase{
+public class TestDto extends TestCase{
 	private DaoInspeccion daoInspeccion;
 	private DaoInspectores daoInspectores;
 	private DaoPropietarios daoPropietarios;
