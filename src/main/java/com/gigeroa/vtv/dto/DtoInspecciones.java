@@ -1,6 +1,6 @@
 package com.gigeroa.vtv.dto;
 
-import com.gigeroa.vtv.dao.*;
+import com.gigeroa.vtv.dao.DaoInspeccion;
 import com.gigeroa.vtv.entities.*;
 import java.time.LocalDate;
 import java.util.ArrayList;

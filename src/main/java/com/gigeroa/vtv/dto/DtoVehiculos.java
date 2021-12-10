@@ -1,6 +1,6 @@
 package com.gigeroa.vtv.dto;
 
-import com.gigeroa.vtv.dao.*;
+import com.gigeroa.vtv.dao.DaoVehiculos;
 import com.gigeroa.vtv.entities.*;
 import java.util.ArrayList;
 
