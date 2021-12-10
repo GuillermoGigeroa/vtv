@@ -1,48 +1,52 @@
 package com.gigeroa.vtv.tests;
 
-import com.gigeroa.vtv.dao.DaoInspeccion;
-import com.gigeroa.vtv.dao.DaoInspectores;
-import com.gigeroa.vtv.dao.DaoPropietarios;
-import com.gigeroa.vtv.dao.DaoVehiculos;
-
+import com.gigeroa.vtv.dto.*;
 import junit.framework.TestCase;
 
 public class TestDto extends TestCase{
-	private DaoInspeccion daoInspeccion;
-	private DaoInspectores daoInspectores;
-	private DaoPropietarios daoPropietarios;
-	private DaoVehiculos daoVehiculos;
+	private DtoInspecciones dtoInspeccion;
+	private DtoInspectores dtoInspectores;
+	private DtoPropietarios dtoPropietarios;
+	private DtoVehiculos dtoVehiculos;
 	
+//	Se generan escenarios previos a la ejecución de la prueba del DTO
 	public void escenarioInspeccion () {
-		daoInspeccion = new DaoInspeccion();
-	}
-	public void escenarioInspectores () {
-		daoInspectores = new DaoInspectores();
-	}
-	public void escenarioPropietarios () {
-		daoPropietarios = new DaoPropietarios();
-	}
-	public void escenarioVehiculos () {
-		daoVehiculos = new DaoVehiculos();
+		dtoInspeccion = new DtoInspecciones();
 	}
 	
+	public void escenarioInspectores () {
+		dtoInspectores = new DtoInspectores();
+	}
+	
+	public void escenarioPropietarios () {
+		dtoPropietarios = new DtoPropietarios();
+	}
+	
+	public void escenarioVehiculos () {
+		dtoVehiculos = new DtoVehiculos();
+	}
+	
+//	Se prueba el listar inspecciones del dto
 	public void testListarInspecciones () {
 		escenarioInspeccion();
-		assertNotNull(daoInspeccion.listarInspecciones());
+		assertNotNull(dtoInspeccion.listarInspecciones());
 	}
-	
+
+//	Se prueba el listar propietarios del dto
 	public void testListarPropietarios () {
 		escenarioPropietarios();
-		assertNotNull(daoPropietarios.listarPropietarios());
+		assertNotNull(dtoPropietarios.listarPropietarios());
 	}
 	
+//	Se prueba el listar inspectores del dto
 	public void testListarInspectores () {
 		escenarioInspectores();
-		assertNotNull(daoInspectores.listarInspectores());
+		assertNotNull(dtoInspectores.listarInspectores());
 	}
 	
+//	Se prueba el listar vehículos del dto
 	public void testListarVehiculos () {
 		escenarioVehiculos();
-		assertNotNull(daoVehiculos.listarVehiculos());
+		assertNotNull(dtoVehiculos.listarVehiculos());
 	}
 }
