@@ -10,14 +10,6 @@ public class Vehiculo implements IContieneID {
 	private Propietario propietario;
 	
 //	Constructores
-	public Vehiculo() {
-		this.id = -1;
-		this.dominio = "Dominio";
-		this.marca = "Marca";
-		this.modelo = "Modelo";
-		this.propietario = new Propietario();
-	}
-	
 	public Vehiculo(String dominio, String marca, String modelo, Propietario propietario) {
 		this.id = -1;
 		this.dominio = dominio;

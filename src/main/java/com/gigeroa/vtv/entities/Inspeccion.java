@@ -12,16 +12,14 @@ public class Inspeccion implements IContieneID {
 	private EstadoGeneral estadoGeneral;
 	
 //	Constructores
-	public Inspeccion() {
-		this.numero = -1;
-		this.fecha = LocalDate.now();
-		this.inspector = new Inspector();
-		this.vehiculo = new Vehiculo();
-		this.estadoGeneral = new EstadoGeneral();
-	}
-	
-	public Inspeccion(int numero, LocalDate fecha, Inspector inspector, Vehiculo vehiculo,
-			EstadoGeneral estadoGeneral) {
+	public Inspeccion(
+			int numero,
+			LocalDate fecha,
+			Inspector inspector,
+			Vehiculo vehiculo,
+			EstadoGeneral estadoGeneral
+			)
+	{
 		this.numero = numero;
 		this.fecha = fecha;
 		this.fechaVencimiento = fecha.plusYears(1);
