@@ -5,7 +5,8 @@ import com.gigeroa.vtv.repositories.*;
 public class Inspector implements IPersona, IContieneID {
 	private int id;
 	private String nombre;
-
+	// TODO Implementar DNI dentro de la clase.
+	
 //	Constructores
 	public Inspector() {
 		id = -1;

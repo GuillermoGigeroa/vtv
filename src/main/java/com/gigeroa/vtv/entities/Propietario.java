@@ -6,6 +6,7 @@ public class Propietario implements IPersona, IContieneID{
 	private int id;
 	private String nombre;
 	private boolean exento;
+	// TODO Implementar DNI dentro de la clase.
 	
 //	Constructores
 	public Propietario() {
