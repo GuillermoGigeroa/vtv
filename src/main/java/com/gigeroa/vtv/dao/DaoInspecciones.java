@@ -117,10 +117,10 @@ public class DaoInspecciones {
 			ResultSet resultado = st.executeQuery(query);
 			while (resultado.next()) {
 				inspectorActual = new Inspector(
-						resultado.getInt("IDInspector"),
+						resultado.getInt("DNIInspector"),
 						resultado.getString("Inspector"));
 				propietario = new Propietario(
-						resultado.getInt("IDPropietario"),
+						resultado.getInt("DNIPropietario"),
 						resultado.getString("NombrePropietario"),
 						resultado.getBoolean("Exento"));
 				vehiculoActual = new Vehiculo(
@@ -164,10 +164,10 @@ public class DaoInspecciones {
 			ResultSet resultado = st.executeQuery(query);
 			while (resultado.next()) {
 				inspectorActual = new Inspector(
-						resultado.getInt("IDInspector"),
+						resultado.getInt("DNIInspector"),
 						resultado.getString("Inspector"));
 				propietario = new Propietario(
-						resultado.getInt("IDPropietario"),
+						resultado.getInt("DNIPropietario"),
 						resultado.getString("NombrePropietario"),
 						resultado.getBoolean("Exento"));
 				vehiculoActual = new Vehiculo(
@@ -211,10 +211,10 @@ public class DaoInspecciones {
 			ResultSet resultado = st.executeQuery(query);
 			while (resultado.next()) {
 				inspectorActual = new Inspector(
-						resultado.getInt("IDInspector"),
+						resultado.getInt("DNIInspector"),
 						resultado.getString("Inspector"));
 				propietario = new Propietario(
-						resultado.getInt("IDPropietario"),
+						resultado.getInt("DNIPropietario"),
 						resultado.getString("NombrePropietario"),
 						resultado.getBoolean("Exento"));
 				vehiculoActual = new Vehiculo(
@@ -259,10 +259,10 @@ public class DaoInspecciones {
 			ResultSet resultado = st.executeQuery(query);
 			while (resultado.next()) {
 				inspectorActual = new Inspector(
-						resultado.getInt("IDInspector"), 
+						resultado.getInt("DNIInspector"), 
 						resultado.getString("Inspector"));
 				propietarioSistema = new Propietario(
-						resultado.getInt("IDPropietario"),
+						resultado.getInt("DNIPropietario"),
 						resultado.getString("NombrePropietario"), 
 						resultado.getBoolean("Exento"));
 				vehiculoActual = new Vehiculo(

@@ -16,7 +16,7 @@ public class DaoPropietarios {
 
 //	Método para agregar un propietario
 	public int agregarPropietario(Propietario propietario) {
-		String query = "CALL SP_AgregarPropietario('" + propietario.getNombre()
+		String query = "CALL SP_AgregarPropietario(" + propietario.getID() + ",'" + propietario.getNombre()
 						+ "'," + propietario.isExento() + ")";
 		int filas = 0;
 		try {
@@ -60,7 +60,8 @@ public class DaoPropietarios {
 //	Método para modificar un propietario
 	public int modificarPropietario(int id, String nuevoNombre, Boolean nuevoExento) {
 		String query = "CALL SP_ModificarPropietario(" + id
-						+ ",'" + nuevoNombre + "'," + nuevoExento + ")";
+						+ ",'" + nuevoNombre
+						+ "'," + nuevoExento + ")";
 		int filas = 0;
 		try {
 			Statement st = conectar.conexion().createStatement();
@@ -76,8 +77,8 @@ public class DaoPropietarios {
 //	propietario
 	public int modificarPropietario(int id, Propietario propietario) {
 		String query = "CALL SP_ModificarPropietario(" + id
-						+ ",'" + propietario.getNombre() + "',"
-						+ propietario.isExento() + ")";
+						+ ",'" + propietario.getNombre()
+						+ "'," + propietario.isExento() + ")";
 		int filas = 0;
 		try {
 			Statement st = conectar.conexion().createStatement();
@@ -99,7 +100,7 @@ public class DaoPropietarios {
 			ResultSet resultado = st.executeQuery(query);
 			while (resultado.next()) {
 				propietarioActual = new Propietario(
-						resultado.getInt("ID"),
+						resultado.getInt("DNI"),
 						resultado.getString("Nombre"),
 						resultado.getBoolean("Exento"));
 				lista.add(propietarioActual);

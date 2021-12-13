@@ -104,7 +104,7 @@ public class DaoVehiculos {
 			ResultSet resultado = st.executeQuery(query);
 			while (resultado.next()) {
 				propietarioActual = new Propietario(
-						resultado.getInt("IDPropietario"),
+						resultado.getInt("DNIPropietario"),
 						resultado.getString("NombrePropietario"),
 						resultado.getBoolean("Exento"));
 				vehiculoActual = new Vehiculo(

@@ -16,7 +16,7 @@ public class DaoInspectores {
 
 //	Método para agregar un inspector
 	public int agregarInspector(Inspector inspector) {
-		String query = "CALL SP_AgregarInspector('" + inspector.getNombre() + "')";
+		String query = "CALL SP_AgregarInspector(" + inspector.getID() + ",'" + inspector.getNombre() + "')";
 		int filas = 0;
 		try {
 			Statement st = conectar.conexion().createStatement();
@@ -95,7 +95,7 @@ public class DaoInspectores {
 			ResultSet resultado = st.executeQuery(query);
 			while (resultado.next()) {
 				inspectorActual = new Inspector(
-						resultado.getInt("ID"),
+						resultado.getInt("DNI"),
 						resultado.getString("Nombre"));
 				lista.add(inspectorActual);
 			}
