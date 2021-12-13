@@ -15,6 +15,12 @@ public class Propietario implements IPersona{
 		this.exento = exento;
 	}
 
+	public Propietario(int dni, String nombre, boolean exento) throws DniInvalido {
+		this.dni = new Dni(dni);
+		this.nombre = nombre;
+		this.exento = exento;
+	}
+
 //	Métodos
 	public String getNombre() {
 		return nombre;
@@ -32,8 +38,8 @@ public class Propietario implements IPersona{
 		this.exento = exento;
 	}
 	
-	public String getDni() {
-		return dni.getNumero();
+	public Dni getDni() {
+		return dni;
 	}
 	
 	public void setDni(String dni) throws DniInvalido {

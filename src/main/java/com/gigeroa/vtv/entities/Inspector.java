@@ -12,6 +12,11 @@ public class Inspector implements IPersona {
 		setDni(dni);
 		this.nombre = nombre;
 	}
+
+	public Inspector(int dni, String nombre) throws DniInvalido {
+		this.dni = new Dni(dni);
+		this.nombre = nombre;
+	}
 	
 //	Métodos
 	public String getNombre() {
@@ -28,8 +33,8 @@ public class Inspector implements IPersona {
 	}
 
 	@Override
-	public String getDni() {
-		return dni.getNumero();
+	public Dni getDni() {
+		return dni;
 	}
 	
 	@Override

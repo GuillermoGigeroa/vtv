@@ -5,7 +5,7 @@ import com.gigeroa.vtv.repositories.IDni;
 import com.gigeroa.vtv.services.DniService;
 
 public class Dni implements IDni {
-	private String numero;
+	private int numero;
 	
 //	Constructores
 	public Dni() {
@@ -16,15 +16,24 @@ public class Dni implements IDni {
 		setNumero(numero);
 	}
 	
+	public Dni (int numero) {
+		this.numero = numero;
+	}
+	
 //	Métodos
-	public String getNumero() {
+	public int getNumero() {
 		return numero;
 	}
 
-//	En el setter, se verifica si el número es válido para continuar.
-	public void setNumero(String numero) throws DniInvalido {
-		if (DniService.verificarDniInvalido(this.numero)) {
-			this.numero = numero;
+	@Override
+	public String toString() {
+		return String.valueOf(numero);
+	}
+
+//	En el setter se verifica si el número es válido para continuar.
+	public void setNumero(String numeroIngresado) throws DniInvalido {
+		if (DniService.verificarDniInvalido(numeroIngresado)) {
+			numero = Integer.parseInt(numeroIngresado);
 		}
 		else {
 			throw new DniInvalido();

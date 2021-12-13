@@ -8,7 +8,7 @@ public abstract class DniService {
 			// Se verifica si el valor ingresado es numérico usando la excepción de Java
 			Integer.valueOf(dni);
 			
-			// Luego si la longitud del dni ingresado es correcta, continúa.
+			// Luego si la longitud del dni ingresado es correcta.
 			if (dni.length() == 7 || dni.length() == 8) {
 				return true;
 			}
