@@ -6,7 +6,7 @@ public class DniInvalido extends Exception {
 
 	@Override
 	public String getMessage() {
-		return "El numero de DNI posee letras";
+		return "El dni ingresado no es válido, ingrese números por favor.";
 	}
 
 }
