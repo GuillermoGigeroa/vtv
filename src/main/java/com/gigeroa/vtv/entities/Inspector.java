@@ -1,24 +1,15 @@
 package com.gigeroa.vtv.entities;
 
+import com.gigeroa.vtv.exceptions.DniInvalido;
 import com.gigeroa.vtv.repositories.*;
 
-public class Inspector implements IPersona, IContieneID {
-	private int id;
+public class Inspector implements IPersona {
+	private Dni dni;
 	private String nombre;
 	
 //	Constructores
-	public Inspector() {
-		id = -1;
-		this.nombre = sinNombre;
-	}
-	
-	public Inspector(String nombre) {
-		id = -1;
-		this.nombre = nombre;
-	}
-
-	public Inspector(int id, String nombre) {
-		this.id = id;
+	public Inspector(String dni, String nombre) throws DniInvalido {
+		setDni(dni);
 		this.nombre = nombre;
 	}
 	
@@ -31,28 +22,18 @@ public class Inspector implements IPersona, IContieneID {
 		this.nombre = nombre;
 	}
 	
-	public int getID() {
-		return id;
+	@Override
+	public void setDni(String dni) throws DniInvalido {
+		this.dni = new Dni(dni);
+	}
+
+	@Override
+	public String getDni() {
+		return dni.getNumero();
 	}
 	
-	public void setID(int id) {
-		this.id = id;
-	}
-
 	@Override
 	public String toString() {
-		return nombre;
+		return nombre + " - Dni:" + getDni();
 	}
-
-	@Override
-	public void setDni(Dni dni) {
-		// TODO Implementar DNI dentro de la clase.
-	}
-
-	@Override
-	public Dni getDni() {
-		// TODO Implementar DNI dentro de la clase.
-		return null;
-	}
-
 }

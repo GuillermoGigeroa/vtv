@@ -1,27 +1,16 @@
 package com.gigeroa.vtv.entities;
 
+import com.gigeroa.vtv.exceptions.DniInvalido;
 import com.gigeroa.vtv.repositories.*;
 
-public class Propietario implements IPersona, IContieneID{
-	private int id;
+public class Propietario implements IPersona{
+	private Dni dni;
 	private String nombre;
 	private boolean exento;
 	
 //	Constructores
-	public Propietario() {
-		this.id = -1;
-		this.nombre = sinNombre;
-		this.exento = false;
-	}
-	
-	public Propietario(String nombre, boolean exento) {
-		this.id = -1;
-		this.nombre = nombre;
-		this.exento = exento;
-	}
-
-	public Propietario(int id, String nombre, boolean exento) {
-		this.id = id;
+	public Propietario(String dni, String nombre, boolean exento) throws DniInvalido {
+		setDni(dni);
 		this.nombre = nombre;
 		this.exento = exento;
 	}
@@ -43,28 +32,17 @@ public class Propietario implements IPersona, IContieneID{
 		this.exento = exento;
 	}
 	
-	public int getID() {
-		return id;
+	public String getDni() {
+		return dni.getNumero();
 	}
 	
-	public void setID(int id) {
-		this.id = id;
+	public void setDni(String dni) throws DniInvalido {
+		this.dni = new Dni(dni);
 	}
 
 	@Override
 	public String toString() {
-		return nombre;
-	}
-
-	@Override
-	public void setDni(Dni dni) {
-		// TODO Implementar DNI dentro de la clase.		
-	}
-
-	@Override
-	public Dni getDni() {
-		// TODO Implementar DNI dentro de la clase.
-		return null;
+		return nombre + " - Dni: "+ getDni();
 	}
 
 }
