@@ -16,7 +16,7 @@ public class DaoPropietarios {
 
 //	Método para agregar un propietario
 	public int agregarPropietario(Propietario propietario) {
-		String query = "CALL SP_AgregarPropietario(" + propietario.getID() + ",'" + propietario.getNombre()
+		String query = "CALL SP_AgregarPropietario(" + propietario.getDni().getNumero() + ",'" + propietario.getNombre()
 						+ "'," + propietario.isExento() + ")";
 		int filas = 0;
 		try {
@@ -31,7 +31,7 @@ public class DaoPropietarios {
 
 //	Método para dar de baja un propietario
 	public int bajaPropietario(Propietario propietario) {
-		String query = "CALL SP_BajaLogicaPropietario(" + propietario.getID() + ",1)";
+		String query = "CALL SP_BajaLogicaPropietario(" + propietario.getDni().getNumero() + ",1)";
 		int filas = 0;
 		try {
 			Statement st = conectar.conexion().createStatement();
@@ -44,8 +44,8 @@ public class DaoPropietarios {
 	}
 
 //	Método sobrecargado para dar de baja un propietario con el id
-	public int bajaPropietario(int idPropietario) {
-		String query = "CALL SP_BajaLogicaPropietario(" + idPropietario + ",1)";
+	public int bajaPropietario(int dniPropietario) {
+		String query = "CALL SP_BajaLogicaPropietario(" + dniPropietario + ",1)";
 		int filas = 0;
 		try {
 			Statement st = conectar.conexion().createStatement();
@@ -58,8 +58,8 @@ public class DaoPropietarios {
 	}
 
 //	Método para modificar un propietario
-	public int modificarPropietario(int id, String nuevoNombre, Boolean nuevoExento) {
-		String query = "CALL SP_ModificarPropietario(" + id
+	public int modificarPropietario(int dni, String nuevoNombre, Boolean nuevoExento) {
+		String query = "CALL SP_ModificarPropietario(" + dni
 						+ ",'" + nuevoNombre
 						+ "'," + nuevoExento + ")";
 		int filas = 0;
@@ -75,8 +75,8 @@ public class DaoPropietarios {
 
 //	Método sobrecargado para modificar un propietario insertando otro
 //	propietario
-	public int modificarPropietario(int id, Propietario propietario) {
-		String query = "CALL SP_ModificarPropietario(" + id
+	public int modificarPropietario(int dni, Propietario propietario) {
+		String query = "CALL SP_ModificarPropietario(" + dni
 						+ ",'" + propietario.getNombre()
 						+ "'," + propietario.isExento() + ")";
 		int filas = 0;

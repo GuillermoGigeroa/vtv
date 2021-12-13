@@ -19,7 +19,7 @@ public class DaoVehiculos {
 		String query = "CALL SP_AgregarVehiculo('" + vehiculo.getDominio()
 						+ "','" + vehiculo.getMarca()
 						+ "','" + vehiculo.getModelo()
-						+ "'," + vehiculo.getPropietario().getID() + ")";
+						+ "'," + vehiculo.getPropietario().getDni().getNumero() + ")";
 		int filas = 0;
 		try {
 			Statement st = conectar.conexion().createStatement();
@@ -125,7 +125,7 @@ public class DaoVehiculos {
 //	Método sobrecargado para listar vehiculos ingresando un propietario
 	public ArrayList<Vehiculo> listarVehiculosPorPropietario(Propietario propietario) {
 		ArrayList<Vehiculo> lista = new ArrayList<Vehiculo>();
-		String query = "CALL SP_ListarVehiculosPorPropietario(" + propietario.getID() + ")";
+		String query = "CALL SP_ListarVehiculosPorPropietario(" + propietario.getDni().getNumero() + ")";
 		Vehiculo vehiculoActual;
 		Propietario propietarioActual;
 		try {
@@ -152,9 +152,9 @@ public class DaoVehiculos {
 	}
 
 //	Método sobrecargado para listar vehiculos por id de propietario
-	public ArrayList<Vehiculo> listarVehiculosPorPropietario(int IDPropietario) {
+	public ArrayList<Vehiculo> listarVehiculosPorPropietario(int dniPropietario) {
 		ArrayList<Vehiculo> lista = new ArrayList<Vehiculo>();
-		String query = "CALL SP_ListarVehiculosPorPropietario(" + IDPropietario + ")";
+		String query = "CALL SP_ListarVehiculosPorPropietario(" + dniPropietario + ")";
 		Vehiculo vehiculoActual;
 		Propietario propietarioActual;
 		try {

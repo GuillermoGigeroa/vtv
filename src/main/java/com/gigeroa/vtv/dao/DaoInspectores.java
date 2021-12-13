@@ -16,7 +16,7 @@ public class DaoInspectores {
 
 //	Método para agregar un inspector
 	public int agregarInspector(Inspector inspector) {
-		String query = "CALL SP_AgregarInspector(" + inspector.getID() + ",'" + inspector.getNombre() + "')";
+		String query = "CALL SP_AgregarInspector(" + inspector.getDni().getNumero() + ",'" + inspector.getNombre() + "')";
 		int filas = 0;
 		try {
 			Statement st = conectar.conexion().createStatement();
@@ -30,7 +30,7 @@ public class DaoInspectores {
 
 //	Método para dar de baja un inspector
 	public int bajaInspector(Inspector inspector) {
-		String query = "CALL SP_BajaLogicaInspector(" + inspector.getID() + ",1)";
+		String query = "CALL SP_BajaLogicaInspector(" + inspector.getDni().getNumero() + ",1)";
 		int filas = 0;
 		try {
 			Statement st = conectar.conexion().createStatement();
@@ -43,8 +43,8 @@ public class DaoInspectores {
 	}
 
 //	Método sobrecargado para dar de baja un inspector solo con el id
-	public int bajaInspector(int idInspector) {
-		String query = "CALL SP_BajaLogicaInspector(" + idInspector + ",1)";
+	public int bajaInspector(int dniInspector) {
+		String query = "CALL SP_BajaLogicaInspector(" + dniInspector + ",1)";
 		int filas = 0;
 		try {
 			Statement st = conectar.conexion().createStatement();
@@ -57,8 +57,8 @@ public class DaoInspectores {
 	}
 
 //	Método para modificar un inspector
-	public int modificarInspector(int id, String nuevoNombre) {
-		String query = "CALL SP_ModificarInspector(" + id + ",'" + nuevoNombre + "')";
+	public int modificarInspector(int dni, String nuevoNombre) {
+		String query = "CALL SP_ModificarInspector(" + dni + ",'" + nuevoNombre + "')";
 		int filas = 0;
 		try {
 			Statement st = conectar.conexion().createStatement();
@@ -71,8 +71,8 @@ public class DaoInspectores {
 	}
 
 //	Método sobrecargado para modificar un inspector insertando otro inspector
-	public int modificarInspector(int id, Inspector inspector) {
-		String query = "CALL SP_ModificarInspector(" + id
+	public int modificarInspector(int dni, Inspector inspector) {
+		String query = "CALL SP_ModificarInspector(" + dni
 				+ ",'" + inspector.getNombre() + "')";
 		int filas = 0;
 		try {

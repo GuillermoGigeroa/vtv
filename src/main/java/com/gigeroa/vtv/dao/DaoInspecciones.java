@@ -20,7 +20,7 @@ public class DaoInspecciones {
 		String query = "CALL SP_AgregarInspeccion('"
 				+ inspeccion.getFecha().toString()
 				+ "','" + inspeccion.getFechaVencimiento().toString()
-				+ "'," + inspeccion.getInspector().getID()
+				+ "'," + inspeccion.getInspector().getDni().getNumero()
 				+ "," + inspeccion.getEstadoGeneral().getTipoEstado()
 				+ "," + inspeccion.getVehiculo().getID() + ")";
 		int filas = 0;
@@ -63,12 +63,12 @@ public class DaoInspecciones {
 	}
 
 //	Método para modificar una inspección
-	public int modificarInspeccion(int id, LocalDate fecha, int idNuevoInspector, int idNuevoEstado,
+	public int modificarInspeccion(int id, LocalDate fecha, int dniNuevoInspector, int idNuevoEstado,
 			int idNuevoVehiculo) {
 		String query = "CALL SP_ModificarInspeccion(" + id
 				+ ",'" + fecha.toString()
 				+ "','" + fecha.plusYears(1).toString()
-				+ "'," + idNuevoInspector
+				+ "'," + dniNuevoInspector
 				+ "," + idNuevoEstado
 				+ "," + idNuevoVehiculo + ")";
 		int filas = 0;
@@ -87,7 +87,7 @@ public class DaoInspecciones {
 		String query = "CALL SP_ModificarInspeccion(" + id
 				+ ",'" + inspeccion.getFecha().toString()
 				+ "','" + inspeccion.getFechaVencimiento().toString()
-				+ "'," + inspeccion.getInspector().getID()
+				+ "'," + inspeccion.getInspector().getDni().getNumero()
 				+ "," + inspeccion.getEstadoGeneral().getTipoEstado()
 				+ "," + inspeccion.getVehiculo().getID() + ")";
 		int filas = 0;
@@ -246,7 +246,7 @@ public class DaoInspecciones {
 //	un objeto propietario
 	public ArrayList<Inspeccion> listarInspeccionesPorPropietario(Propietario propietario) {
 		ArrayList<Inspeccion> lista = new ArrayList<Inspeccion>();
-		String query = "CALL SP_ListarInspeccionesPorPropietario(" + propietario.getID() + ")";
+		String query = "CALL SP_ListarInspeccionesPorPropietario(" + propietario.getDni().getNumero() + ")";
 		Propietario propietarioSistema;
 		Vehiculo vehiculoActual;
 		Inspector inspectorActual;
