@@ -1,4 +1,4 @@
-package com.gigeroa.vtv.tests;
+package com.gigeroa.vtv.tests.java;
 
 import com.gigeroa.vtv.services.MatriculasService;
 import junit.framework.TestCase;

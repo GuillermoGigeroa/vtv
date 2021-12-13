@@ -1,4 +1,4 @@
-package com.gigeroa.vtv.tests;
+package com.gigeroa.vtv.tests.java;
 
 import com.gigeroa.vtv.dto.*;
 import junit.framework.TestCase;
