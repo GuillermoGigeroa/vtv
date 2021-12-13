@@ -1,6 +1,7 @@
 package com.gigeroa.vtv.services;
 
 import com.gigeroa.vtv.entities.Matricula;
+import com.gigeroa.vtv.exceptions.MatriculaInvalida;
 import com.gigeroa.vtv.repositories.IMatricula;
 
 /*
@@ -23,7 +24,11 @@ public abstract class MatriculasService {
 		
 		// Se verifica que el formato de las matrículas sea válido.
 		if (esNueva(matriculaActual) || esAntigua(matriculaActual)) {
-			resultado = new Matricula(matriculaActual);
+			try {
+				resultado = new Matricula(matriculaActual);
+			} catch (MatriculaInvalida e) {
+				return null;
+			}
 		}
 		
 		// Si todo es válido, entonces el resultado tiene que ser diferente de null.
