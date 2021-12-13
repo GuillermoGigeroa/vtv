@@ -10,12 +10,13 @@ import com.gigeroa.vtv.entities.Vehiculo;
 @Controller
 public class HomeController {
 	
+//	Se prueba cargar un dato que se trae desde el application.properties
 	@Value ("${index.titulo}")
 	private String titulo;
 	
 	@GetMapping ("/")
 	public String inicio(Model model) {
-//		Se prueba cargar un dato que se trae desde el application.properties
+//		Se prueba usar el dato que se trae desde el application.properties
 		model.addAttribute("titulo", titulo);
 
 //		Se prueba cargar un dato desde la base de datos
