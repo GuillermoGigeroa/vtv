@@ -6,7 +6,6 @@ public class Propietario implements IPersona, IContieneID{
 	private int id;
 	private String nombre;
 	private boolean exento;
-	// TODO Implementar DNI dentro de la clase.
 	
 //	Constructores
 	public Propietario() {
@@ -55,6 +54,17 @@ public class Propietario implements IPersona, IContieneID{
 	@Override
 	public String toString() {
 		return nombre;
+	}
+
+	@Override
+	public void setDni(Dni dni) {
+		// TODO Implementar DNI dentro de la clase.		
+	}
+
+	@Override
+	public Dni getDni() {
+		// TODO Implementar DNI dentro de la clase.
+		return null;
 	}
 
 }

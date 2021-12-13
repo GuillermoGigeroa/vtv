@@ -5,7 +5,6 @@ import com.gigeroa.vtv.repositories.*;
 public class Inspector implements IPersona, IContieneID {
 	private int id;
 	private String nombre;
-	// TODO Implementar DNI dentro de la clase.
 	
 //	Constructores
 	public Inspector() {
@@ -43,6 +42,17 @@ public class Inspector implements IPersona, IContieneID {
 	@Override
 	public String toString() {
 		return nombre;
+	}
+
+	@Override
+	public void setDni(Dni dni) {
+		// TODO Implementar DNI dentro de la clase.
+	}
+
+	@Override
+	public Dni getDni() {
+		// TODO Implementar DNI dentro de la clase.
+		return null;
 	}
 
 }
