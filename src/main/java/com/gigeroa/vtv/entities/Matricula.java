@@ -21,7 +21,7 @@ public class Matricula implements IMatricula {
 	@Override
 	public void setMatricula(String matricula) throws MatriculaInvalida {
 		if (MatriculasService.procesarMatricula(matricula) != null) {
-			this.matricula = matricula;
+			this.matricula = MatriculasService.procesarMatricula(matricula);
 		}
 		else {
 			throw new MatriculaInvalida();

@@ -1,38 +1,27 @@
 package com.gigeroa.vtv.services;
 
-import com.gigeroa.vtv.entities.Matricula;
-import com.gigeroa.vtv.exceptions.MatriculaInvalida;
-import com.gigeroa.vtv.repositories.IMatricula;
-
 /*
- * Servicio creado para poder administrar las validaciones.
+ * Servicio creado para poder administrar las validaciones de matrícula.
  */
 
 public abstract class MatriculasService {
 
 //	Método para procesar el texto ingresado y verificar si es válido
-	public static IMatricula procesarMatricula(String matricula) {
-		IMatricula resultado = null;
-		
+	public static String procesarMatricula(String matricula) {
+
 		// Se trabaja con los caracteres en mayúsculas.
 		String matriculaActual = matricula.toUpperCase().trim();
 		
 		// Se verifica que la longitud de la matrícula sea la correcta.
-		if (!(matriculaActual.length() >= 6 && matriculaActual.length() <= 7)) {
-			return null;
-		}
-		
-		// Se verifica que el formato de las matrículas sea válido.
-		if (esNueva(matriculaActual) || esAntigua(matriculaActual)) {
-			try {
-				resultado = new Matricula(matriculaActual);
-			} catch (MatriculaInvalida e) {
-				return null;
+		if (matriculaActual.length() >= 6 && matriculaActual.length() <= 7) {
+			
+			// Se verifica que el formato de las matrículas sea válido.
+			if (esNueva(matriculaActual) || esAntigua(matriculaActual)) {
+				return matriculaActual;
 			}
 		}
-		
 		// Si todo es válido, entonces el resultado tiene que ser diferente de null.
-		return resultado;
+		return null;
 	}
 
 //	Método para identificar si la matrícula ingresada tiene formato nuevo
