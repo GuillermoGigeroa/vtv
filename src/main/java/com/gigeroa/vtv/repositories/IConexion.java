@@ -1,8 +1,8 @@
 package com.gigeroa.vtv.repositories;
 
 /*
- *	Interfaz creada para poder cargar los datos de la
- *	BBDD que necesitamos conectar al proyecto.
+ *	Interfaz creada para poder cargar los datos de
+ *	la BBDD que necesitamos conectar al proyecto.
  */
 
 public interface IConexion {
