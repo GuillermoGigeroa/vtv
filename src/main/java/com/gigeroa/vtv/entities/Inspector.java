@@ -39,6 +39,6 @@ public class Inspector implements IPersona {
 	
 	@Override
 	public String toString() {
-		return nombre + " - Dni:" + getDni();
+		return nombre + " - Dni: " + getDni();
 	}
 }

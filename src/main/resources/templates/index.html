@@ -47,8 +47,18 @@
 				<b>Vehiculos</b>
 				<div th:if="${listaVehiculos != null or listaVehiculos.isEmpty}">
 					<select class="form-select" style="text-align: center;">
+						<option value="" selected>Seleccionar Vehículo</option>	
 			  			<span th:each="vehiculo : ${listaVehiculos}">
-						  	<option value="3" th:text="${vehiculo}">[vehiculo]</option>
+					  	<option value="3" th:text="${vehiculo}">[vehiculo]</option>
+			  			</span>
+					</select>
+				</div>
+				<b>Inspectores</b>
+				<div th:if="${listaInspectores != null or listaInspectores.isEmpty}">
+					<select class="form-select" style="text-align: center;">
+						<option value="" selected>Seleccionar Inspector</option>	
+			  			<span th:each="inspector : ${listaInspectores}">
+					  	<option value="3" th:text="${inspector}">[inspector]</option>
 			  			</span>
 					</select>
 				</div>
