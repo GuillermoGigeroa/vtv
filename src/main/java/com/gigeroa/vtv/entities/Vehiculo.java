@@ -70,6 +70,6 @@ public class Vehiculo implements IContieneID {
 	
 	@Override
 	public String toString() {
-		return marca + " - " + modelo + " - " + matricula;
+		return marca + " - " + modelo + " - " + matricula.getMatricula();
 	}
 }
