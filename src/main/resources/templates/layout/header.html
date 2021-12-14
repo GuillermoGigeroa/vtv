@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html	xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:th="https://www.thymeleaf.org">
+<head>
+	<title>Plantilla</title>
+	<meta charset="UTF-8">
+</head>
+<body>
+	<header th:fragment="header">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="/"><b>Proyecto VTV</b></a>
+				<div class="collapse navbar-collapse" id="navbarScroll">
+					<ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll"
+						style="-bs-scroll-height: 100px;">
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#" id="menuInspecciones"
+							role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								Inspecciones </a>
+							<ul class="dropdown-menu" aria-labelledby="menuInspecciones">
+								<li>
+								<a class="dropdown-item" href="/agregarInspeccion">Agregar</a>
+								</li>
+								<li>
+								<a class="dropdown-item" href="/listarInspecciones">Listar</a>
+								</li>
+							</ul>
+						</li>
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#" id="menuInspectores"
+							role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								Inspectores </a>
+							<ul class="dropdown-menu" aria-labelledby="menuInspectores">
+								<li>
+									<a class="dropdown-item" href="/agregarInspector">Agregar</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="/listarInspectores">Listar</a>
+								</li>
+							</ul>
+						</li>
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#" id="menuVehiculos"
+							role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								Vehículos </a>
+							<ul class="dropdown-menu" aria-labelledby="menuVehiculos">
+								<li>
+									<a class="dropdown-item" href="/agregarVehiculo">Agregar</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="/listarVehiculos">Listar</a>
+								</li>
+							</ul>
+						</li>
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#" id="menuPropietarios"
+							role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								Propietarios </a>
+							<ul class="dropdown-menu" aria-labelledby="menuPropietarios">
+								<li>
+									<a class="dropdown-item" href="/agregarPropietario">Agregar</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="/listarPropietarios">Listar</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>	
+</body>
+</html>
