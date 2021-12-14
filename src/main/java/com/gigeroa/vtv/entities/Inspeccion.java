@@ -85,7 +85,7 @@ public class Inspeccion implements IContieneID {
 	@Override
 	public String toString() {
 		return "Número de inspección: " + numero
-				+ "\n" + "Fecha de inspecci�n: " + fecha.toString()
+				+ "\n" + "Fecha de inspección: " + fecha.toString()
 				+ "\n" + "Estado: " + estadoGeneral
 				+ "\n" + "Propietario: " + vehiculo.getPropietario().getNombre()
 				+ "\n" + "Es excento: " + (vehiculo.getPropietario().isExento() ? "Si": "No")

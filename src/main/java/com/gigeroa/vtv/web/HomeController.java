@@ -5,10 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.gigeroa.vtv.dto.DtoInspectores;
-import com.gigeroa.vtv.dto.DtoVehiculos;
-import com.gigeroa.vtv.entities.Inspector;
-import com.gigeroa.vtv.entities.Vehiculo;
+import com.gigeroa.vtv.dto.*;
+import com.gigeroa.vtv.entities.*;
 
 @Controller
 public class HomeController {
@@ -18,11 +16,7 @@ public class HomeController {
 	public String inicio(Model model) {
 //		Se agrega un título para mostrar.
 		model.addAttribute("titulo", titulo);
-
-//		Se agrega un mensaje para mostrar.
-		String mensaje = "Hola, este es un mensaje de prueba.";
-		model.addAttribute("mensaje", mensaje);
-
+		
 //		Se prueba cargar datos desde la base de datos a una lista - Vehiculos
 		ArrayList<Vehiculo> listaVehiculos = (new DtoVehiculos()).listarVehiculos();
 		model.addAttribute("listaVehiculos", listaVehiculos);
@@ -31,7 +25,13 @@ public class HomeController {
 		ArrayList<Inspector> listaInspectores = (new DtoInspectores()).listarInspectores();
 		model.addAttribute("listaInspectores", listaInspectores);
 		
+//		Se prueba cargar datos desde la base de datos a una lista - Propietarios
+		ArrayList<Propietario> listaPropietarios = (new DtoPropietarios()).listarPropietarios();
+		model.addAttribute("listaPropietarios", listaPropietarios);
 		
+//		Se prueba cargar datos desde la base de datos a una lista - Inspecciones
+		ArrayList<Inspeccion> listaInspecciones = (new DtoInspecciones()).listarInspecciones();
+		model.addAttribute("listaInspecciones", listaInspecciones);
 		
 		return "index";
 	}
