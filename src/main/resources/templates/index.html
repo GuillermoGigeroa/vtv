@@ -44,13 +44,13 @@
 		</div>
 		<div class="col">
 			<div class="row" style="text-align: center;">
-				<div class="alert alert-warning alert-dismissible fade show">
-					<strong>Datos del vehiculo: </strong><span th:text="${vehiculo}">[datos_vehiculo]</span>
-					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-				</div>
-				<div class="alert alert-dark alert-dismissible fade show">
-					<strong>Datos del propietario: </strong><span th:text="${propietario}">[datos_propietario]</span>
-					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				<b>Vehiculos</b>
+				<div th:if="${listaVehiculos != null or listaVehiculos.isEmpty}">
+					<select class="form-select" style="text-align: center;">
+			  			<span th:each="vehiculo : ${listaVehiculos}">
+						  	<option value="3" th:text="${vehiculo}">[vehiculo]</option>
+			  			</span>
+					</select>
 				</div>
 			</div>
 		</div>

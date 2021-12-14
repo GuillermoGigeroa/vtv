@@ -16,7 +16,7 @@ public class DaoVehiculos {
 
 //	Método para agregar un vehiculo
 	public int agregarVehiculo(Vehiculo vehiculo) {
-		String query = "CALL SP_AgregarVehiculo('" + vehiculo.getDominio()
+		String query = "CALL SP_AgregarVehiculo('" + vehiculo.getMatricula()
 						+ "','" + vehiculo.getMarca()
 						+ "','" + vehiculo.getModelo()
 						+ "'," + vehiculo.getPropietario().getDni().getNumero() + ")";
@@ -79,7 +79,7 @@ public class DaoVehiculos {
 //	Método sobrecargado para modificar un vehiculo insertando otro vehiculo
 	public int modificarVehiculo(int id, Vehiculo vehiculo) {
 		String query = "CALL SP_ModificarVehiculo(" + id
-						+ ",'" + vehiculo.getDominio()
+						+ ",'" + vehiculo.getMatricula()
 						+ "','" + vehiculo.getMarca()
 						+ "','" + vehiculo.getModelo() + "')";
 		int filas = 0;
