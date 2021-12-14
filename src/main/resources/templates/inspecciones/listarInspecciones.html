@@ -4,13 +4,15 @@
 	<body>
 		<header th:replace="layout/header"></header>
 		<div th:replace="layout/titulo"></div>
+		<hr/>
 		<div class="container pt-5">
 			<div class="col-md-12">
 				<div class="row d-flex justify-content-center">
 					<div class="col-md-8">
-						Inspecciones
+						<b>Inspecciones</b>
 						<div class="input-group mb-3">
-							<div th:if="${listaInspecciones != null or listaInspecciones.isEmpty}">
+							<div
+								th:if="${listaInspecciones != null or listaInspecciones.isEmpty}">
 								<select class="form-select">
 									<option value="" selected>Seleccionar Inspeccion</option>
 									<span th:each="inspeccion : ${listaInspecciones}">
@@ -28,6 +30,7 @@
 				</div>		
 			</div>
 		</div>
-	<script	th:replace="layout/scripts"></script>
-</body>
+		<hr/>
+		<script	th:replace="layout/scripts"></script>
+	</body>
 </html>

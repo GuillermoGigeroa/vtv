@@ -3,7 +3,34 @@
 	<head th:replace="layout/head"></head>
 	<body>
 		<header th:replace="layout/header"></header>
-		<div th:replace="layout/desarrollo"></div>
+		<div th:replace="layout/titulo"></div>
+		<hr/>
+		<div class="container pt-5">
+			<div class="col-md-12">
+				<div class="row d-flex justify-content-center">
+					<div class="col-md-8">
+						<b>Inspectores</b>
+						<div class="input-group mb-3">
+							<div
+								th:if="${listaInspectores != null or listaInspectores.isEmpty}">
+								<select class="form-select">
+									<option value="" selected>Seleccionar Inspector</option>
+									<span th:each="inspector : ${listaInspectores}">
+										<option value="3" th:text="${inspector}">[inspector]</option>
+									</span>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col d-flex justify-content-center">
+						<a class="btn btn-success" style="width: auto;" href="/">Volver a inicio</a>
+					</div>
+				</div>		
+			</div>
+		</div>
+		<hr/>
+		<script	th:replace="layout/scripts"></script>
 	</body>
-	<script	th:replace="layout/scripts"></script>
 </html>

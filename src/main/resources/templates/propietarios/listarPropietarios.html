@@ -3,7 +3,34 @@
 	<head th:replace="layout/head"></head>
 	<body>
 		<header th:replace="layout/header"></header>
-		<div th:replace="layout/desarrollo"></div>
-	</body>
+		<div th:replace="layout/titulo"></div>
+		<hr/>
+		<div class="container pt-5">
+			<div class="col-md-12">
+				<div class="row d-flex justify-content-center">
+					<div class="col-md-6">
+						Propietarios
+						<div class="input-group mb-3 d-flex">
+							<div
+								th:if="${listaPropietarios != null or listaPropietarios.isEmpty}">
+								<select class="form-select">
+									<option value="" selected>Seleccionar Propietario</option>
+									<span th:each="propietario : ${listaPropietarios}">
+										<option value="3" th:text="${propietario}">[propietario]</option>
+								</span>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col d-flex justify-content-center">
+						<a class="btn btn-success" style="width: auto;" href="/">Volver a inicio</a>
+					</div>
+				</div>		
+			</div>
+		</div>
+		<hr/>
+</body>
 	<script	th:replace="layout/scripts"></script>
 </html>
