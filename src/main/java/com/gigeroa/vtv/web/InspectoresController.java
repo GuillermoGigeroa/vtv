@@ -12,13 +12,13 @@ public class InspectoresController {
 	public String listarInspectores (Model model) {
 		titulo = "Listar inspectores";
 		model.addAttribute("titulo",titulo);
-		return "listarInspectores";
+		return "inspectores/listarInspectores";
 	}
 	
 	@GetMapping("/agregarInspector")
 	public String agregarInspector (Model model) {
 		titulo = "Agregar inspector";
 		model.addAttribute("titulo",titulo);
-		return "agregarInspector";
+		return "inspectores/agregarInspector";
 	}
 }

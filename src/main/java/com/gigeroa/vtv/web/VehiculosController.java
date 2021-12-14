@@ -12,13 +12,13 @@ public class VehiculosController {
 	public String listarVehiculos (Model model) {
 		titulo = "Listar vehículos";
 		model.addAttribute("titulo",titulo);
-		return "listarVehiculos";
+		return "vehiculos/listarVehiculos";
 	}
 	
 	@GetMapping("/agregarVehiculo")
 	public String agregarVehiculo (Model model) {
 		titulo = "Agregar vehículo";
 		model.addAttribute("titulo",titulo);
-		return "agregarVehiculo";
+		return "vehiculos/agregarVehiculo";
 	}
 }

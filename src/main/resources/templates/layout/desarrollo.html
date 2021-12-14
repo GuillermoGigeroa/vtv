@@ -4,24 +4,24 @@
 <head>
 </head>
 <body>
+	<div th:replace="layout/titulo"></div>
+	<hr/>
 	<div th:fragment="enDesarrollo" class="container">
 		<div class="col" style="text-align: center;">
-			<hr />
-			<div class="row pt-5">
+			<div class="row pt-2">
 				<h4>
-					<span th:text="${titulo}">[titulo]</span>
-					<span> - en desarrollo</span>
+					<span><b>En desarrollo</b></span>
 				</h4>
 			</div>
-			<div class="row spinner-border m-5" role="status">
+			<div class="row spinner-border m-4" role="status">
 				<span class="visually-hidden">Loading...</span>
 			</div>
-			<hr />
-			<div class="row d-flex justify-content-center">
-				<a class="btn btn-warning" style="width: auto;"
-					href="http://localhost:8080">Volver a inicio</a>
-			</div>
 		</div>
+	</div>
+	<hr/>
+	<div class="row d-flex justify-content-center">
+		<a class="btn btn-warning" style="width: auto;"
+			href="/">Volver a inicio</a>
 	</div>
 </body>
 </html>

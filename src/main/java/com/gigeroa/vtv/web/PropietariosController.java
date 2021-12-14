@@ -12,13 +12,13 @@ public class PropietariosController {
 	public String listarPropietarios (Model model) {
 		titulo = "Listar propietarios";
 		model.addAttribute("titulo",titulo);
-		return "listarPropietarios";
+		return "propietarios/listarPropietarios";
 	}
 	
 	@GetMapping("/agregarPropietario")
 	public String agregarPropietarios (Model model) {
 		titulo = "Agregar propietario";
 		model.addAttribute("titulo",titulo);
-		return "agregarPropietario";
+		return "propietarios/agregarPropietario";
 	}
 }
