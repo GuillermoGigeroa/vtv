@@ -1,7 +1,5 @@
 package com.gigeroa.vtv.web;
 
-import java.sql.SQLException;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +7,7 @@ import com.gigeroa.vtv.dto.DtoVehiculos;
 import com.gigeroa.vtv.entities.Propietario;
 import com.gigeroa.vtv.entities.Vehiculo;
 import com.gigeroa.vtv.exceptions.DniInvalido;
+import com.gigeroa.vtv.exceptions.MatriculaInvalida;
 
 @Controller
 public class HomeController {
@@ -25,18 +24,21 @@ public class HomeController {
 
 //		Se prueba cargar un dato desde la base de datos
 		Vehiculo vehiculo = null;
+		Propietario propietario = null;
 		try {
-			vehiculo = ((new DtoVehiculos()).listarVehiculos()).get(0);			
+			vehiculo = ((new DtoVehiculos()).listarVehiculos()).get(0);
+			propietario = vehiculo.getPropietario();
 		}
 		catch (Exception error){
 			try {
-				vehiculo = new Vehiculo("AA123AA", "Marca", "Modelo", new Propietario(11222333, "Nombre", false));
-			} catch (DniInvalido dniInvalido) {
-				dniInvalido.printStackTrace();
+				propietario = new Propietario(11222333, "Nombre", false);
+				vehiculo = new Vehiculo("AA123AA", "Marca", "Modelo", propietario);
+			} catch (DniInvalido | MatriculaInvalida e) {
+				e.printStackTrace();
 			}
 		}
 		model.addAttribute("vehiculo", vehiculo);
-		model.addAttribute("propietario", vehiculo.getPropietario());
+		model.addAttribute("propietario", propietario);
 
 		return "index";
 	}

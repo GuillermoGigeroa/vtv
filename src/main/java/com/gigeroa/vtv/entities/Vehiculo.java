@@ -1,38 +1,39 @@
 package com.gigeroa.vtv.entities;
 
+import com.gigeroa.vtv.exceptions.MatriculaInvalida;
 import com.gigeroa.vtv.repositories.*;
 
 public class Vehiculo implements IContieneID {
 	private int id;
-	private String dominio;
+	private IMatricula matricula;
 	private String marca;
 	private String modelo;
 	private Propietario propietario;
 	
 //	Constructores
-	public Vehiculo(String dominio, String marca, String modelo, Propietario propietario) {
+	public Vehiculo(String matricula, String marca, String modelo, Propietario propietario) throws MatriculaInvalida {
 		this.id = -1;
-		this.dominio = dominio;
+		setMatricula(matricula);
 		this.marca = marca;
 		this.modelo = modelo;
 		this.propietario = propietario;
 	}
 	
-	public Vehiculo(int id, String dominio, String marca, String modelo, Propietario propietario) {
+	public Vehiculo(int id, String matricula, String marca, String modelo, Propietario propietario) throws MatriculaInvalida {
 		this.id = id;
-		this.dominio = dominio;
+		setMatricula(matricula);
 		this.marca = marca;
 		this.modelo = modelo;
 		this.propietario = propietario;
 	}
 
 //	Métodos
-	public String getDominio() {
-		return dominio;
+	public String getMatricula() {
+		return matricula.getMatricula();
 	}
 
-	public void setDominio(String dominio) {
-		this.dominio = dominio;
+	public void setMatricula(String matricula) throws MatriculaInvalida {
+		this.matricula = new Matricula(matricula);
 	}
 
 	public String getMarca() {
@@ -69,6 +70,6 @@ public class Vehiculo implements IContieneID {
 	
 	@Override
 	public String toString() {
-		return marca + " - " + modelo + " - " + dominio;
+		return marca + " - " + modelo + " - " + matricula;
 	}
 }
