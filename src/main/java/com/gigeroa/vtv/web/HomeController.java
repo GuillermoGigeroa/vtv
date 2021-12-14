@@ -33,7 +33,7 @@ public class HomeController {
 		ArrayList<Inspeccion> listaInspecciones = (new DtoInspecciones()).listarInspecciones();
 		model.addAttribute("listaInspecciones", listaInspecciones);
 		
-		return "index";
+		return "home/index";
 	}
 
 }
