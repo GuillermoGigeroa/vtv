@@ -44,18 +44,21 @@ CREATE TABLE `Propietarios`  (
   PRIMARY KEY (`DNI`)
 );
 
+DROP TABLE IF EXISTS `Marcas`;
 CREATE TABLE `Marcas`  (
-  `ID` int NOT NULL,
+  `ID` int NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(255) NOT NULL,
   PRIMARY KEY (`ID`)
 );
 
+DROP TABLE IF EXISTS `Modelos`;
 CREATE TABLE `Modelos`  (
-  `ID` int NOT NULL,
+  `ID` int NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(255) NOT NULL,
   PRIMARY KEY (`ID`)
 );
 
+DROP TABLE IF EXISTS `Modelos_x_Marca`;
 CREATE TABLE `Modelos_x_Marca`  (
   `ID_Marca` int NOT NULL,
   `ID_Modelo` int NOT NULL,
