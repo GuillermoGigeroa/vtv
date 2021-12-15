@@ -1,10 +1,11 @@
 package com.gigeroa.vtv.services;
 
 import com.gigeroa.vtv.entities.Estado;
-import com.gigeroa.vtv.repositories.*;
+import com.gigeroa.vtv.repositories.IControl;
+import com.gigeroa.vtv.repositories.IEstado;
 import java.util.Iterator;
 
-public abstract class ControlService {
+public abstract class ControlService implements IEstado{
 	
 	// Método para analizar caso por caso el estado de los controles y devolver un estado en String
 	public static String getEstado(IControl control) {
@@ -15,27 +16,27 @@ public abstract class ControlService {
 		Estado estadoActual;
 		while(lista.hasNext()) {
 			estadoActual = lista.next();
-			if(estadoActual.toString() == Estado.apto) {
+			if(estadoActual.toString().equalsIgnoreCase(apto)) {
 				contadorApto++;
 			}
-			if(estadoActual.toString() == Estado.condicional) {
+			if(estadoActual.toString().equalsIgnoreCase(condicional)) {
 				contadorCondicional++;
 			}
-			if(estadoActual.toString() == Estado.rechazado) {
+			if(estadoActual.toString().equalsIgnoreCase(rechazado)) {
 				contadorRechazado++;
 			}
 		}
 		if (contadorRechazado > 0) {
-			return Estado.rechazado;
+			return rechazado;
 		}
 		else if (contadorCondicional > 0) {
-			return Estado.condicional;
+			return condicional;
 		}
 		else if (contadorApto > 0){
-			return Estado.apto;
+			return apto;
 		}
 		else {
-			return "Error";
+			return error;
 		}
 	}
 }
