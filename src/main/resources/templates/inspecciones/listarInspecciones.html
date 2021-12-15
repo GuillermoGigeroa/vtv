@@ -7,22 +7,30 @@
 		<hr/>
 		<div class="container pt-5">
 			<div class="col-md-12">
-				<div class="row d-flex justify-content-center">
-					<div class="col-md-8">
-						<b>Inspecciones</b>
-						<div class="input-group mb-3">
-							<div
-								th:if="${listaInspecciones != null or listaInspecciones.isEmpty}">
-								<select class="form-select">
-									<option value="" selected>Seleccionar Inspeccion</option>
-									<span th:each="inspeccion : ${listaInspecciones}">
-										<option value="3" th:text="${inspeccion}">[propietario]</option>
-									</span>
-								</select>
-							</div>
-						</div>
-					</div>
-				</div>
+				<div class="row">
+					<table id="tablaInspecciones" class="table table-striped table-bordered table-sm table-responsive">
+						<thead>
+							<tr>
+								<th>Número</th>
+								<th>Fecha de realización</th>
+								<th>Inspector</th>
+								<th>Vehículo</th>
+								<th>Estado</th>
+								<th>Acción</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="inspeccion : ${listaInspecciones}">
+								<td th:text="${inspeccion.getNumero}">[Número]</td>
+								<td th:text="${inspeccion.getFecha}">[Fecha de realización]</td>
+								<td th:text="${inspeccion.getInspector}">[Inspector]</td>
+								<td th:text="${inspeccion.getVehiculo}">[Vehículo]</td>
+								<td th:text="${inspeccion.getEstadoGeneral}">[Estado]</td>
+								<td><i class="bi bi-pencil-square"></i></td>
+							</tr>
+						</tbody>
+					</table>
+			</div>
 				<div class="row">
 					<div class="col d-flex justify-content-center">
 						<a class="btn btn-success" style="width: auto;" href="/">Volver a inicio</a>
