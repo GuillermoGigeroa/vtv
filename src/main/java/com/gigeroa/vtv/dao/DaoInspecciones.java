@@ -21,7 +21,7 @@ public class DaoInspecciones {
 				+ inspeccion.getFecha().toString()
 				+ "','" + inspeccion.getFechaVencimiento().toString()
 				+ "'," + inspeccion.getInspector().getDni().getNumero()
-				+ "," + inspeccion.getEstadoGeneral().getTipoEstado()
+				+ "," + inspeccion.getEstado().getTipoEstado()
 				+ "," + inspeccion.getVehiculo().getID() + ")";
 		int filas = 0;
 		try {
@@ -88,7 +88,7 @@ public class DaoInspecciones {
 				+ ",'" + inspeccion.getFecha().toString()
 				+ "','" + inspeccion.getFechaVencimiento().toString()
 				+ "'," + inspeccion.getInspector().getDni().getNumero()
-				+ "," + inspeccion.getEstadoGeneral().getTipoEstado()
+				+ "," + inspeccion.getEstado().getTipoEstado()
 				+ "," + inspeccion.getVehiculo().getID() + ")";
 		int filas = 0;
 		try {
@@ -110,7 +110,7 @@ public class DaoInspecciones {
 		Inspector inspectorActual;
 		LocalDate fecha;
 		int numeroInspeccion;
-		EstadoGeneral estado;
+		Estado estado;
 		Inspeccion inspeccionActual;
 		try {
 			Statement st = conectar.conexion().createStatement();
@@ -131,7 +131,7 @@ public class DaoInspecciones {
 						propietario);
 				numeroInspeccion = resultado.getInt("NumeroInspeccion");
 				fecha = LocalDate.parse(resultado.getString("Fecha"));
-				estado = new EstadoGeneral(resultado.getInt("Estado"));
+				estado = new Estado(resultado.getInt("Estado"));
 				
 				inspeccionActual = new Inspeccion(
 						numeroInspeccion,
@@ -157,7 +157,7 @@ public class DaoInspecciones {
 		Inspector inspectorActual;
 		LocalDate fecha;
 		int numeroInspeccion;
-		EstadoGeneral estado;
+		Estado estado;
 		Inspeccion inspeccionActual;
 		try {
 			Statement st = conectar.conexion().createStatement();
@@ -178,7 +178,7 @@ public class DaoInspecciones {
 						propietario);
 				numeroInspeccion = resultado.getInt("NumeroInspeccion");
 				fecha = LocalDate.parse(resultado.getString("Fecha"));
-				estado = new EstadoGeneral(resultado.getInt("Estado"));
+				estado = new Estado(resultado.getInt("Estado"));
 				
 				inspeccionActual = new Inspeccion(
 						numeroInspeccion, 
@@ -204,7 +204,7 @@ public class DaoInspecciones {
 		Inspector inspectorActual;
 		LocalDate fecha;
 		int numeroInspeccion;
-		EstadoGeneral estado;
+		Estado estado;
 		Inspeccion inspeccionActual;
 		try {
 			Statement st = conectar.conexion().createStatement();
@@ -225,7 +225,7 @@ public class DaoInspecciones {
 						propietario);
 				numeroInspeccion = resultado.getInt("NumeroInspeccion");
 				fecha = LocalDate.parse(resultado.getString("Fecha"));
-				estado = new EstadoGeneral(resultado.getInt("Estado"));
+				estado = new Estado (resultado.getInt("Estado"));
 				
 				inspeccionActual = new Inspeccion(
 						numeroInspeccion, 
@@ -252,7 +252,7 @@ public class DaoInspecciones {
 		Inspector inspectorActual;
 		LocalDate fecha;
 		int numeroInspeccion;
-		EstadoGeneral estado;
+		Estado estado;
 		Inspeccion inspeccionActual;
 		try {
 			Statement st = conectar.conexion().createStatement();
@@ -273,7 +273,7 @@ public class DaoInspecciones {
 						propietarioSistema);
 				numeroInspeccion = resultado.getInt("NumeroInspeccion");
 				fecha = LocalDate.parse(resultado.getString("Fecha"));
-				estado = new EstadoGeneral(resultado.getInt("Estado"));
+				estado = new Estado(resultado.getInt("Estado"));
 				
 				inspeccionActual = new Inspeccion(
 						numeroInspeccion, 

@@ -9,7 +9,7 @@ public class Inspeccion implements IContieneID {
 	private LocalDate fechaVencimiento;
 	private Inspector inspector;
 	private Vehiculo vehiculo;
-	private EstadoGeneral estadoGeneral;
+	private Estado estado;
 	
 //	Constructores
 	public Inspeccion(
@@ -17,7 +17,7 @@ public class Inspeccion implements IContieneID {
 			LocalDate fecha,
 			Inspector inspector,
 			Vehiculo vehiculo,
-			EstadoGeneral estadoGeneral
+			Estado estado
 			)
 	{
 		this.numero = numero;
@@ -25,7 +25,7 @@ public class Inspeccion implements IContieneID {
 		this.fechaVencimiento = fecha.plusYears(1);
 		this.inspector = inspector;
 		this.vehiculo = vehiculo;
-		this.estadoGeneral = estadoGeneral;
+		this.estado = estado;
 	}
 
 //	Métodos
@@ -66,12 +66,12 @@ public class Inspeccion implements IContieneID {
 		this.vehiculo = vehiculo;
 	}
 
-	public EstadoGeneral getEstadoGeneral() {
-		return estadoGeneral;
+	public Estado getEstado() {
+		return estado;
 	}
 
-	public void setEstadoGeneral(EstadoGeneral estadoGeneral) {
-		this.estadoGeneral = estadoGeneral;
+	public void setEstadoGeneral(Estado estado) {
+		this.estado = estado;
 	}
 	
 	public int getID() {
@@ -86,7 +86,7 @@ public class Inspeccion implements IContieneID {
 	public String toString() {
 		return "Número de inspección: " + numero
 				+ "\n" + "Fecha de inspección: " + fecha.toString()
-				+ "\n" + "Estado: " + estadoGeneral
+				+ "\n" + "Estado: " + estado
 				+ "\n" + "Propietario: " + vehiculo.getPropietario().getNombre()
 				+ "\n" + "Es excento: " + (vehiculo.getPropietario().isExento() ? "Si": "No")
 				+ "\n" + "Inspector a cargo: " + inspector
