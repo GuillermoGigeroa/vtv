@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-	<head th:replace="layout/head"></head>
+	<head th:replace="layout/estructura :: head"></head>
 	<body>
-		<header th:replace="layout/header"></header>
-		<div th:replace="layout/titulo"></div>
-		<div th:replace="layout/desarrollo"></div>
+		<header th:replace="layout/estructura :: header"></header>
+		<div th:replace="layout/estructura :: titulo"></div>
+		<div th:replace="layout/estructura :: desarrollo"></div>
 	</body>
-	<script	th:replace="layout/scripts"></script>
+	<script	th:replace="layout/estructura :: scripts"></script>
 </html>

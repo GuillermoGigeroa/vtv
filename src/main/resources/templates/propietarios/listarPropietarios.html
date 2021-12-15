@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
-	<head th:replace="layout/head"></head>
+	<head th:replace="layout/estructura :: head"></head>
 	<body>
-		<header th:replace="layout/header"></header>
-		<div th:replace="layout/titulo"></div>
+		<header th:replace="layout/estructura :: header"></header>
+		<div th:replace="layout/estructura :: titulo"></div>
 		<hr/>
 		<div class="container pt-1">
 			<div class="col-md-12 d-flex justify-content-center">
@@ -46,5 +46,5 @@
 		</div>
 		<hr/>
 </body>
-	<script	th:replace="layout/scripts"></script>
+	<script	th:replace="layout/estructura :: scripts"></script>
 </html>

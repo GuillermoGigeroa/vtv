@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
-	<head th:replace="layout/head"></head>
+	<head th:replace="layout/estructura :: head"></head>
 	<body>
-		<header th:replace="layout/header"></header>
-		<div th:replace="layout/titulo"></div>
+		<header th:replace="layout/estructura :: header"></header>
+		<div th:replace="layout/estructura :: titulo"></div>
 		<form class="container d-flex justify-content-center" action="/agregarInspeccion" method="GET">
 			<div class="col-md-6">
 				<div class="form-control mb-3">
@@ -12,25 +12,25 @@
 						<div class="input-group mb-3">
 							<label class="input-group-text" for="estadoSuspension" style="width:40%;">Estado de suspensión</label>
 							<select class="form-select" id="estadoSuspension" required>
-								<div th:replace="layout/estados"></div>
+								<div th:replace="layout/estructura :: estados"></div>
 							</select>
 						</div>
 						<div class="input-group mb-3">
 							<label class="input-group-text" for="estadoDireccion" style="width:40%;">Estado de dirección</label>
 							<select class="form-select" id="estadoDireccion" required>
-								<div th:replace="layout/estados"></div>
+								<div th:replace="layout/estructura :: estados"></div>
 							</select>
 						</div>
 						<div class="input-group mb-3">
 							<label class="input-group-text" for="estadoFrenos" style="width:40%;">Estado de frenos</label>
 							<select class="form-select" id="estadoFrenos" required>
-								<div th:replace="layout/estados"></div>
+								<div th:replace="layout/estructura :: estados"></div>
 							</select>
 						</div>
 						<div class="input-group mb-3">
 							<label class="input-group-text" for="estadoContaminacion" style="width:40%;">Estado de contaminación</label>
 							<select class="form-select" id="estadoContaminacion"  required>
-								<div th:replace="layout/estados"></div>
+								<div th:replace="layout/estructura :: estados"></div>
 							</select>
 						</div>
 					</div>
@@ -41,43 +41,43 @@
 						<div class="input-group mb-3">
 							<label class="input-group-text" for="estadoLuces" style="width:40%;">Estado de luces</label>
 							<select class="form-select" id="estadoLuces" required>
-								<div th:replace="layout/estados"></div>
+								<div th:replace="layout/estructura :: estados"></div>
 							</select>
 						</div>
 						<div class="input-group mb-3">
 							<label class="input-group-text" for="estadoPatente" style="width:40%;">Estado de patente</label>
 							<select class="form-select" id="estadoPatente" required>
-								<div th:replace="layout/estados"></div>
+								<div th:replace="layout/estructura :: estados"></div>
 							</select>
 						</div>
 						<div class="input-group mb-3">
 							<label class="input-group-text" for="estadoEspejos" style="width:40%;">Estado de espejos</label>
 							<select class="form-select" id="estadoEspejos" required>
-								<div th:replace="layout/estados"></div>
+								<div th:replace="layout/estructura :: estados"></div>
 							</select>
 						</div>
 						<div class="input-group mb-3">
 							<label class="input-group-text" for="estadoChasis" style="width:40%;">Estado de chasis</label>
 							<select class="form-select" id="estadoChasis" required>
-								<div th:replace="layout/estados"></div>
+								<div th:replace="layout/estructura :: estados"></div>
 							</select>
 						</div>
 						<div class="input-group mb-3">
 							<label class="input-group-text" for="estadoVidrios" style="width:40%;">Estado de vidrios</label>
 							<select class="form-select" id="estadoVidrios" required>
-								<div th:replace="layout/estados"></div>
+								<div th:replace="layout/estructura :: estados"></div>
 							</select>
 						</div>
 						<div class="input-group mb-3">
 							<label class="input-group-text" for="estadoSeguridad" style="width:40%;">Estado de seguridad</label>
 							<select class="form-select" id="estadoSeguridad" required>
-								<div th:replace="layout/estados"></div>
+								<div th:replace="layout/estructura :: estados"></div>
 							</select>
 						</div>
 						<div class="input-group mb-3">
 							<label class="input-group-text" for="estadoEmergencia" style="width:40%;">Estado de emergencia</label>
 							<select class="form-select" id="estadoEmergencia" required>
-								<div th:replace="layout/estados"></div>
+								<div th:replace="layout/estructura :: estados"></div>
 							</select>
 						</div>
 					</div>
@@ -87,7 +87,7 @@
 				</div>
 			</div>
 		</form>
-	<div th:replace="layout/desarrollo"></div>
-	<script	th:replace="layout/scripts"></script>
+	<div th:replace="layout/estructura :: desarrollo"></div>
+	<script	th:replace="layout/estructura :: scripts"></script>
 </body>
 </html>
