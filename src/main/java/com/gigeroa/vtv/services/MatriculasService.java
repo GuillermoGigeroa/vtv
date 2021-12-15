@@ -1,5 +1,7 @@
 package com.gigeroa.vtv.services;
 
+import com.gigeroa.vtv.dto.DtoVehiculos;
+import com.gigeroa.vtv.entities.Vehiculo;
 import com.gigeroa.vtv.repositories.IMatricula;
 
 /*
@@ -83,7 +85,26 @@ public abstract class MatriculasService {
 		return true;
 	}
 	
-//	TODO Hacer un método que permita identificar en BBDD si existe la matrícula antes de ingresarla
-	public void verificarMatricula (IMatricula matricula) {}
+//	Método que permite identificar si ya existe la matrícula en BBDD
+	public static boolean existeMatricula (IMatricula matricula) {
+		DtoVehiculos dto = new DtoVehiculos();
+		for (Vehiculo vehiculo : dto.listarVehiculos()) {
+			if (vehiculo.getMatricula().equalsIgnoreCase(matricula.getMatricula())){
+				return true;
+			}
+		}
+		return false;
+	}
+
+//	Método sobrecargado que permite identificar si ya existe la matrícula en BBDD a partir de un String
+	public static boolean existeMatricula (String matricula) {
+		DtoVehiculos dto = new DtoVehiculos();
+		for (Vehiculo vehiculo : dto.listarVehiculos()) {
+			if (vehiculo.getMatricula().equalsIgnoreCase(matricula)){
+				return true;
+			}
+		}
+		return false;
+	}
 	
 }
