@@ -256,4 +256,23 @@ public class DaoVehiculos {
 		conectar.cerrar();
 		return lista;
 	}
+
+//	Método para listar los modelos segun el ID de la marca
+	public ArrayList<ModeloVehiculo> listarModelos (int ID_Marca) {
+		ArrayList<ModeloVehiculo> lista = new ArrayList<ModeloVehiculo>();
+		String query = "CALL SP_ListarModelos("+ID_Marca+")";
+		ModeloVehiculo modeloActual;
+		try {
+			Statement st = conectar.conexion().createStatement();
+			ResultSet resultado = st.executeQuery(query);
+			while (resultado.next()) {
+				modeloActual = new ModeloVehiculo(resultado.getInt("IDModelo"), resultado.getString("NombreModelo"));
+				lista.add(modeloActual);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		conectar.cerrar();
+		return lista;
+	}
 }
