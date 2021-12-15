@@ -238,4 +238,22 @@ public class DaoVehiculos {
 		return lista;
 	}
 
+//	Método para listar las marcas de vehiculos
+	public ArrayList<MarcaVehiculo> listarMarcas() {
+		ArrayList<MarcaVehiculo> lista = new ArrayList<MarcaVehiculo>();
+		String query = "CALL SP_ListarMarcas()";
+		MarcaVehiculo marcaActual;
+		try {
+			Statement st = conectar.conexion().createStatement();
+			ResultSet resultado = st.executeQuery(query);
+			while (resultado.next()) {
+				marcaActual = new MarcaVehiculo(resultado.getInt("IDMarca"), resultado.getString("NombreMarca"));
+				lista.add(marcaActual);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		conectar.cerrar();
+		return lista;
+	}
 }
