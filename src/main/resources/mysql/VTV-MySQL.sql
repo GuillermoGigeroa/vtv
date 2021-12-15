@@ -204,6 +204,7 @@ BEGIN
 	WHERE P.DNI = DNI;
 END;
 
+/*Stored Procedure para agregar una nueva marca*/
 DROP PROCEDURE IF EXISTS SP_AgregarMarca;
 CREATE PROCEDURE SP_AgregarMarca (IN IDMarca int, IN NombreMarca VARCHAR(255))
 BEGIN
@@ -291,6 +292,14 @@ CALL SP_AgregarMarca(77,"Volkswagen");
 CALL SP_AgregarMarca(78,"Volvo");
 CALL SP_AgregarMarca(79,"Wartburg");
 
+/*Stored Procedure para listar las marcas*/
+DROP PROCEDURE IF EXISTS SP_ListarMarcas;
+CREATE PROCEDURE SP_ListarMarcas ()
+BEGIN
+	SELECT Marcas.ID as IDMarca, Marcas.Nombre as NombreMarca	FROM Marcas;
+END;
+
+/*Stored Procedure para agregar un nuevo modelo*/
 DROP PROCEDURE IF EXISTS SP_AgregarModelo;
 CREATE PROCEDURE SP_AgregarModelo (IN IDMarca int, IN IDModelo int, IN NombreModelo VARCHAR(255))
 BEGIN
@@ -1308,6 +1317,17 @@ CALL SP_AgregarModelo(79,1005,"353");
 CALL SP_AgregarModelo(53,1006,"Mini");
 CALL SP_AgregarModelo(53,1007,"Countryman");
 CALL SP_AgregarModelo(53,1008,"Paceman");
+
+/*Stored Procedure para listar los modelos segun la marca*/
+DROP PROCEDURE IF EXISTS SP_ListarModelos;
+CREATE PROCEDURE SP_ListarModelos (IN IDMarca int)
+BEGIN
+	SELECT M.ID as IDModelo, M.Nombre as NombreModelo
+	FROM Modelos as M
+	LEFT JOIN Modelos_x_Marca as MXM
+	ON MXM.ID_Modelo = M.ID
+	WHERE MXM.ID_Marca = IDMarca;
+END;
 
 /*Stored Procedure para agregar un nuevo vehiculo*/
 DROP PROCEDURE IF EXISTS SP_AgregarVehiculo;
