@@ -6,22 +6,41 @@
 		<div th:replace="layout/titulo"></div>
 		<hr/>
 		<div class="container pt-5">
+			<div class="col-md-12 d-flex justify-content-center">
+				<a class="btn btn-success" href="/agregarVehiculo"><i class="bi bi-file-plus">&nbsp;Nuevo vehículo</i></a>
+			</div>
 			<div class="col-md-12">
 				<div class="row d-flex justify-content-center">
-					<div class="col-md-6">
-						<b>Vehiculos</b>
-						<div class="input-group mb-3 d-flex">
-							<div th:if="${listaVehiculos != null or listaVehiculos.isEmpty}">
-								<select class="form-select">
-									<option value="" selected>Seleccionar Vehículo</option>
-									<span th:each="vehiculo : ${listaVehiculos}">
-										<option value="3" th:text="${vehiculo}">[vehiculo]</option>
-									</span>
-								</select>
-							</div>
-						</div>
-					</div>
 				</div>
+				<div class="row">
+					<table id="tabla" class="table table-striped table-bordered table-sm table-responsive">
+						<thead>
+							<tr>
+								<th>Matricula</th>
+								<th>Marca</th>
+								<th>Modelo</th>
+								<th>Propietario: Nombre</th>
+								<th>Propietario: DNI</th>
+								<th>Acción</th>
+							</tr>
+						</thead>
+						<tbody>
+							<div th:if="${listaVehiculos != null or listaVehiculos.isEmpty}">
+								<tr th:each="vehiculo : ${listaVehiculos}">
+									<td class="text-center" th:text="${vehiculo.getMatricula}">[Matricula]</td>
+									<td class="text-center" th:text="${vehiculo.getMarca}">[Marca]</td>
+									<td class="text-center" th:text="${vehiculo.getModelo}">[Modelo]</td>
+									<td class="text-center" th:text="${vehiculo.getPropietario().getNombre}">[Nombre_propietario]</td>
+									<td class="text-center" th:text="${vehiculo.getPropietario().getDni}">[Dni_propietario]</td>
+									<td class="text-center">
+										<a class="btn btn-warning p-1"><i class="bi bi-pencil-square" title="Editar"></i></a>
+										<a class="btn btn-danger p-1"><i class="bi bi-trash" title="Borrar"></i></a>
+									</td>
+								</tr>
+							</div>
+						</tbody>
+					</table>
+			</div>
 				<div class="row">
 					<div class="col d-flex justify-content-center">
 						<a class="btn btn-success" style="width: auto;" href="/">Volver a inicio</a>
