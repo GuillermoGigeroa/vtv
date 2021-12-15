@@ -15,7 +15,7 @@ public class InspeccionesController {
 	
 	@GetMapping ("/listarInspecciones")
 	public String listarInspecciones (Model model) {
-		titulo = "Listar inspecciones";
+		titulo = "Lista de inspecciones";
 		model.addAttribute("titulo",titulo);
 		
 //		Se trae lista de inspecciones

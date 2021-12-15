@@ -15,7 +15,7 @@ public class VehiculosController {
 	
 	@GetMapping("/listarVehiculos")
 	public String listarVehiculos (Model model) {
-		titulo = "Listar vehículos";
+		titulo = "Lista de vehículos";
 		model.addAttribute("titulo",titulo);
 		
 //		Se trae lista de vehiculos

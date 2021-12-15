@@ -15,7 +15,7 @@ public class PropietariosController {
 	
 	@GetMapping("/listarPropietarios")
 	public String listarPropietarios (Model model) {
-		titulo = "Listar propietarios";
+		titulo = "Lista de propietarios";
 		model.addAttribute("titulo",titulo);
 		
 //		Se trae lista de propietarios
