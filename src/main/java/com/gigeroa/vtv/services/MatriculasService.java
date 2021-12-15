@@ -1,5 +1,7 @@
 package com.gigeroa.vtv.services;
 
+import com.gigeroa.vtv.repositories.IMatricula;
+
 /*
  * Servicio creado para poder administrar las validaciones de matrícula.
  */
@@ -80,4 +82,8 @@ public abstract class MatriculasService {
 		// En caso de que todo esté bien, retorna true
 		return true;
 	}
+	
+//	TODO Hacer un método que permita identificar en BBDD si existe la matrícula antes de ingresarla
+	public void verificarMatricula (IMatricula matricula) {}
+	
 }
