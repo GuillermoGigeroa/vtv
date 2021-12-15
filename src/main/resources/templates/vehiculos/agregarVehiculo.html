@@ -4,6 +4,24 @@
 	<body>
 		<header th:replace="layout/header"></header>
 		<div th:replace="layout/titulo"></div>
+		<div class="container d-flex justify-content-center">
+			<div class="col-md-6">
+				<div class="row mb-3">
+					<select class="form-control">
+						<option selected>Elija la marca</option>
+						<div th:if="${listaMarcas != null or listaMarcas.isEmpty}">
+							<span th:each="marca : ${listaMarcas}">
+								<option th:text="${marca}"></option>
+							</span>
+						</div>
+					</select>
+				</div>
+				<div class="row mb-3">
+					<input type="submit" class="btn btn-success" name="btnBuscarModelos" value="Buscar modelos">
+				</div>
+				Ayax?
+			</div>
+		</div>
 		<div th:replace="layout/desarrollo"></div>
 	</body>
 	<script	th:replace="layout/scripts"></script>

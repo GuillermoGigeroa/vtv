@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.gigeroa.vtv.dto.DtoVehiculos;
+import com.gigeroa.vtv.entities.MarcaVehiculo;
 import com.gigeroa.vtv.entities.Vehiculo;
 
 @Controller
@@ -29,6 +30,11 @@ public class VehiculosController {
 	public String agregarVehiculo (Model model) {
 		titulo = "Agregar vehículo";
 		model.addAttribute("titulo",titulo);
+
+//		Se trae lista de marcas
+		ArrayList<MarcaVehiculo> listaMarcas = (new DtoVehiculos()).listarMarcas();
+		model.addAttribute("listaMarcas", listaMarcas);
+
 		return "vehiculos/agregarVehiculo";
 	}
 }
