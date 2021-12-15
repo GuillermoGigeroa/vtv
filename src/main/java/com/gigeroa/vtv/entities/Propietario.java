@@ -34,6 +34,10 @@ public class Propietario implements IPersona{
 		return exento;
 	}
 
+	public String esExento() {
+		return exento ? "Si" : "No";
+	}
+
 	public void setExento(boolean exento) {
 		this.exento = exento;
 	}
