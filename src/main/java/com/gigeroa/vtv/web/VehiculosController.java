@@ -10,6 +10,7 @@ import com.gigeroa.vtv.dto.DtoVehiculos;
 import com.gigeroa.vtv.entities.MarcaVehiculo;
 import com.gigeroa.vtv.entities.ModeloVehiculo;
 import com.gigeroa.vtv.entities.Vehiculo;
+import com.gigeroa.vtv.services.MatriculasService;
 
 @Controller
 public class VehiculosController {
@@ -23,6 +24,16 @@ public class VehiculosController {
 //		Se trae lista de vehiculos
 		ArrayList<Vehiculo> listaVehiculos = (new DtoVehiculos()).listarVehiculos();
 		model.addAttribute("listaVehiculos", listaVehiculos);
+		
+//		Prueba 1 del método existeMatricula
+		String matricula1 = "AA458RT";
+		model.addAttribute("matricula1",matricula1);
+		model.addAttribute("existeMatricula1",MatriculasService.existeMatricula(matricula1));
+
+//		Prueba 1 del método existeMatricula
+		String matricula2 = "EZR271";
+		model.addAttribute("matricula2",matricula2);
+		model.addAttribute("existeMatricula2",MatriculasService.existeMatricula(matricula2));
 		
 		return "vehiculos/listarVehiculos";
 	}
@@ -61,7 +72,7 @@ public class VehiculosController {
 		ArrayList<ModeloVehiculo> listaModelos4 = dto.listarModelos(ID4);
 		model.addAttribute("listaModelos4", listaModelos4);
 		model.addAttribute("ID4", ID4);
-
+		
 		return "vehiculos/agregarVehiculo";
 	}
 }

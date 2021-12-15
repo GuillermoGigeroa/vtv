@@ -4,6 +4,12 @@
 	<body>
 		<header th:replace="layout/estructura :: header"></header>
 		<div th:replace="layout/estructura :: titulo"></div>
+		<div id="pruebaMatricula1" class="alert alert-dark" th:if="${matricula1 != null or matricula1.isEmpty and existeMatricula1 != null}">
+			<a>Matricula "[[${matricula1}]]" - Existe: [[${existeMatricula1}]]</a>
+		</div>
+		<div id="pruebaMatricula2" class="alert alert-dark" th:if="${matricula2 != null or matricula2.isEmpty and existeMatricula2 != null}">
+			<a>Matricula "[[${matricula2}]]" - Existe: [[${existeMatricula2}]]</a>
+		</div>
 		<div class="container pt-1">
 			<div class="col-md-12 d-flex justify-content-center">
 				<a class="btn btn-success" href="/estructura :: agregarVehiculo"><i class="bi bi-file-plus">&nbsp;Nuevo vehículo</i></a>
