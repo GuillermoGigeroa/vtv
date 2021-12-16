@@ -1,9 +1,27 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="layout/estructura :: head"></head>
-<body>
+<body class="text-center">
 	<header th:replace="layout/estructura :: header"></header>
 	<div th:replace="layout/estructura :: titulo"></div>
+	<hr>
+	<h4><b>Prueba de lista de marcas</b></h4>
+	<hr>
+	<div class="d-flex justify-content-center" th:if="${marcas != null}">
+		<table>
+			<thead>
+				<tr>
+					<th>Nombre</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="marca : ${marcas}">
+					<td>[[${marca.getNombre}]]</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<hr>
 	<script	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
