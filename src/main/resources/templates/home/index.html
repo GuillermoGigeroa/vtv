@@ -7,32 +7,16 @@
 	<hr>
 	<h4><b>Prueba de lista de marcas</b></h4>
 	<hr>
-	<div class="d-flex justify-content-center" th:if="${marcas != null}">
+	<div class="d-flex justify-content-center" th:if="${listaMarcas != null}">
 		<div>
 			<div class="col">
-				<div class="row">
-					<table class="table table-striped table-light table-responsive border border-2 border-dark">
-						<thead>
-							<tr>
-								<th>Nombre</th>
-								<th>Seleccionar</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr th:each="marca : ${marcas}">
-								<td>[[${marca.getNombre}]]</td>
-								<td><a th:href="@{/index?seleccion=} + ${marca.getNombre}">Seleccionar</a></td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
 				<div class="row">
 					<form th:action="@{/index}" method="get" class="form-control">
 						<div class="input-group">
 							<select class="form-select" required>
 								<option selected>Seleccione una marca</option>
-								<span th:each="marca : ${marcas}">
-									<option name="marcaElegida">[[${marca.getNombre}]]</option>
+								<span th:each="marca : ${listaMarcas}">
+									<option th:value="${marca.getID}" th:text="${marca.getNombre}"></option>
 								</span>
 							</select>
 							<input type="submit" class="btn btn-outline-secondary" name="seleccionarMarca" value="Seleccionar">
