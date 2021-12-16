@@ -1,5 +1,9 @@
 package com.gigeroa.vtv.services;
 
+import com.gigeroa.vtv.dto.DtoInspectores;
+import com.gigeroa.vtv.dto.DtoPropietarios;
+import com.gigeroa.vtv.entities.Inspector;
+import com.gigeroa.vtv.entities.Propietario;
 import com.gigeroa.vtv.repositories.IDni;
 
 public abstract class DniService {
@@ -20,10 +24,24 @@ public abstract class DniService {
 		}
 	}
 	
-//	TODO Hacer un método que permita identificar en BBDD si existe el inspector antes de ingresarlo
-	public void verificarDniInspector (IDni dni) {}
+//	Método que permite identificar en BBDD si existe un DNI de inspector
+	public static boolean existeDniInspector (IDni dni) {
+		for(Inspector inspector : (new DtoInspectores()).listarInspectores()) {
+			if (dni.getNumero() == inspector.getDni().getNumero()) {
+				return true;
+			}
+		}
+		return false;
+	}
 	
-//	TODO Hacer un método que permita identificar en BBDD si existe el propietario antes de ingresarlo
-	public void verificarDniPropietario (IDni dni) {}
+//	Método que permite identificar en BBDD si existe un DNI de propietario
+	public static boolean existeDniPropietario (IDni dni) {
+		for(Propietario propietario : (new DtoPropietarios()).listarPropietarios()) {
+			if (dni.getNumero() == propietario.getDni().getNumero()) {
+				return true;
+			}
+		}
+		return false;
+	}
 	
 }
