@@ -28,7 +28,7 @@
 								<tr th:each="inspeccion : ${listaInspecciones}">
 									<td class="text-center" th:text="${inspeccion.getNumero}">[Número]</td>
 									<td class="text-center" th:text="${inspeccion.getFecha}">[Fecha de realización]</td>
-									<td th:text="${inspeccion.getInspector}">[Inspector]</td>
+									<td th:text="${inspeccion.getInspector.getNombre}">[Inspector]</td>
 									<td th:text="${inspeccion.getVehiculo}">[Vehículo]</td>
 									<td class="text-center columnaEstado" th:text="${inspeccion.getEstado}">[Estado]</td>
 									<td class="text-center">
