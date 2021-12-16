@@ -17,13 +17,21 @@ public class HomeController {
 	public String inicioGet (Model model) {
 		model.addAttribute("titulo", tituloIndex);
 
-//		Pruebas de enum
+//		Pruebas de listado de marcas
 		ArrayList<MarcaVehiculo> listaMarcas = (new DtoVehiculos()).listarMarcas();
 		model.addAttribute("listaMarcas",listaMarcas);
-		
+		model.addAttribute("objetoMarca",new MarcaVehiculo(-1, "Marca"));
 		return "home/index";
 	}
 
+	@GetMapping ("/seleccion")
+	public String seleccion (Model model, MarcaVehiculo objetoMarca) {
+//		Pruebas de listado de marcas
+		ArrayList<MarcaVehiculo> listaMarcas = (new DtoVehiculos()).listarMarcas();
+		model.addAttribute("listaMarcas",listaMarcas);
+		return inicioGet(model);
+	}
+	
 	@GetMapping ("/index")
 	public String index (Model model) {
 		model.addAttribute("titulo", tituloIndex);

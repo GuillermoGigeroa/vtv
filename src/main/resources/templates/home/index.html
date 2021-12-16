@@ -11,10 +11,9 @@
 		<div>
 			<div class="col">
 				<div class="row">
-					<form th:action="@{/index}" method="get" class="form-control">
+					<form th:action="@{/seleccion}" method="get" class="form-control" th:object="${objetoMarca}">
 						<div class="input-group">
-							<select class="form-select" required>
-								<option selected>Seleccione una marca</option>
+							<select class="form-select" th:field="*{ID}" required>
 								<span th:each="marca : ${listaMarcas}">
 									<option th:value="${marca.getID}" th:text="${marca.getNombre}"></option>
 								</span>
