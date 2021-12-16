@@ -8,6 +8,19 @@ import com.gigeroa.vtv.entities.*;
 public class DaoPropietarios {
 
 	private ConexionMySQL conectar;
+	private final String listarPropietarios = "CALL SP_ListarPropietarios()";
+	
+	/*
+	 * TODO Probar haciendo un callable statement
+	 * private CallableStatement cst;
+	 * private final String agregarPropietario = "CALL SP_AgregarPropietario(?,?,?,?)";
+	 * cst = conectar.conexion().prepareCall("CALL SP_AgregarPropietario(?,?,?,?)");
+	 * cst.setInt(1, int dniPropietario);
+	 * cst.setString(2, String nombrePropietario);
+	 * cst.setString(3, String apellidoPropietario);
+	 * cst.setString(4, int exento);
+	 * resultado = cst.executeQuery();
+	 */
 
 //	Constructor
 	public DaoPropietarios() {
@@ -31,16 +44,7 @@ public class DaoPropietarios {
 
 //	Método para dar de baja un propietario
 	public int bajaPropietario(Propietario propietario) {
-		String query = "CALL SP_BajaLogicaPropietario(" + propietario.getDni().getNumero() + ",1)";
-		int filas = 0;
-		try {
-			Statement st = conectar.conexion().createStatement();
-			filas = st.executeUpdate(query);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		conectar.cerrar();
-		return filas;
+		return bajaPropietario(propietario.getDni().getNumero());
 	}
 
 //	Método sobrecargado para dar de baja un propietario con el id
@@ -76,28 +80,16 @@ public class DaoPropietarios {
 //	Método sobrecargado para modificar un propietario insertando otro
 //	propietario
 	public int modificarPropietario(int dni, Propietario propietario) {
-		String query = "CALL SP_ModificarPropietario(" + dni
-						+ ",'" + propietario.getNombre()
-						+ "'," + propietario.isExento() + ")";
-		int filas = 0;
-		try {
-			Statement st = conectar.conexion().createStatement();
-			filas = st.executeUpdate(query);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		conectar.cerrar();
-		return filas;
+		return modificarPropietario(dni, propietario.getNombre(), propietario.isExento());
 	}
 
 //	Método para listar los propietarios
 	public ArrayList<Propietario> listarPropietarios() {
 		ArrayList<Propietario> lista = new ArrayList<Propietario>();
-		String query = "CALL SP_ListarPropietarios()";
 		Propietario propietarioActual;
 		try {
 			Statement st = conectar.conexion().createStatement();
-			ResultSet resultado = st.executeQuery(query);
+			ResultSet resultado = st.executeQuery(listarPropietarios);
 			while (resultado.next()) {
 				propietarioActual = new Propietario(
 						resultado.getInt("DNI"),
