@@ -3,6 +3,7 @@ package com.gigeroa.vtv.web;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class HomeController {
@@ -23,7 +24,7 @@ public class HomeController {
 	}
 	
 	@GetMapping ("/")
-	public String inicio (Model model) {
+	public String inicioGet (Model model) {
 		model.addAttribute("titulo", tituloIndex);
 
 //		Pruebas de enum
@@ -35,8 +36,21 @@ public class HomeController {
 	@GetMapping ("/index")
 	public String index (Model model) {
 		model.addAttribute("titulo", tituloIndex);
+		return inicioGet(model);
+	}
+
+	@PostMapping ("/")
+	public String inicioPost (Model model) {
+		model.addAttribute("titulo", tituloIndex);
 		
+//		Pruebas de enum
+		model.addAttribute("marcas",Marca.values());
 		return "home/index";
+	}
+	
+	@PostMapping ("/index")
+	public String indexPost (Model model) {
+		return inicioPost(model);
 	}
 
 }
