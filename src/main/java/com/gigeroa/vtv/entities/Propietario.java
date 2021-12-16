@@ -6,6 +6,7 @@ import com.gigeroa.vtv.repositories.*;
 public class Propietario implements IPersona{
 	private Dni dni;
 	private String nombre;
+	private String apellido;
 	private boolean exento;
 	
 //	Constructores
@@ -22,10 +23,12 @@ public class Propietario implements IPersona{
 	}
 
 //	Métodos
+	@Override
 	public String getNombre() {
 		return nombre;
 	}
 
+	@Override
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
@@ -42,10 +45,12 @@ public class Propietario implements IPersona{
 		this.exento = exento;
 	}
 	
+	@Override
 	public Dni getDni() {
 		return dni;
 	}
 	
+	@Override
 	public void setDni(String dni) throws DniInvalido {
 		this.dni = new Dni(dni);
 	}
@@ -53,6 +58,16 @@ public class Propietario implements IPersona{
 	@Override
 	public String toString() {
 		return nombre + " - Dni: "+ getDni();
+	}
+
+	@Override
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
+	@Override
+	public String getApellido() {
+		return apellido;
 	}
 
 }

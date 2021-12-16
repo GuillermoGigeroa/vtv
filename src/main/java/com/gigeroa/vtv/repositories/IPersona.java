@@ -5,9 +5,11 @@ import com.gigeroa.vtv.exceptions.DniInvalido;
 
 public interface IPersona {
 	String sinNombre = "Sin nombre";
+	String sinApellido = "Sin apellido";
 	void setNombre(String nombre);
 	String getNombre();
+	void setApellido(String apellido);
+	String getApellido();
 	void setDni(String dni) throws DniInvalido;
 	Dni getDni();
-	//TODO se debe separar nombre y apellido, lo mismo en BBDD. Tiene que estar reflejado en Inspector y Propietario
 }
