@@ -23,13 +23,15 @@ public class HomeController {
 
 		ArrayList<MarcaVehiculo> listaMarcas = (new DtoVehiculos()).listarMarcas();
 		model.addAttribute("listaMarcas",listaMarcas);
-		model.addAttribute("marcaVehiculo",new MarcaVehiculo(-1, "objetoMarca nombre"));
+		model.addAttribute("marcaVehiculo",listaMarcas.get(0));
 		return "home/index";
 	}
 
 	@GetMapping ("/seleccion")
 	public String seleccion (Model model, @RequestParam int ID) {
-		model.addAttribute("ID",ID);
+		ArrayList<MarcaVehiculo> listaMarcas = (new DtoVehiculos()).listarMarcas();
+		model.addAttribute("marcaSeleccionada",listaMarcas.get(ID-1));
+		
 		return inicioGet(model);
 	}
 	

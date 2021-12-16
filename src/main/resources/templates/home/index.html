@@ -12,11 +12,13 @@
 			<div class="col">
 				<div class="row">
 					<form th:action="@{/seleccion}" method="get" class="form-control" th:object="${marcaVehiculo}">
-						<div th:if="${ID != null}">
-							[[${ID}]]
+						<div th:if="${marcaSeleccionada != null}">
+							[[${marcaVehiculo.setNombre(marcaSeleccionada.getNombre)}]]
+							[[${marcaVehiculo.setID(marcaSeleccionada.getID)}]]
+							Marca seleccionada: [[${marcaVehiculo.getNombre}]]
 						</div>
-						<div th:if="${ID == null}">
-							[[${marcaVehiculo.getID}]]
+						<div th:if="${marcaSeleccionada == null}">
+							Marca seleccionada: [[${marcaVehiculo.getNombre}]]
 						</div>
 						<div class="input-group">
 							<select class="form-select" th:field="*{ID}" required>
