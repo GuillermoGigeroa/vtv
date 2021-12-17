@@ -7,6 +7,7 @@ public class Inspector implements IPersona {
 	private Dni dni;
 	private String nombre;
 	private String apellido;
+	//TODO se debe crear el campo legajo para generar un perfil más realista
 	
 //	Constructores
 	public Inspector(String dni, String nombre) throws DniInvalido {

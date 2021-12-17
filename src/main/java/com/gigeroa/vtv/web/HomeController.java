@@ -14,6 +14,21 @@ public class HomeController {
 	private final String tituloIndex = "Inicio - Proyecto VTV";
 	
 	enum Usuario {
+		//TODO Continuar con la implementación de esta clase
+		/* La idea es crear una interface IUsuario que tenga los campos:
+		 * public static int tipoAdmin = 1;
+		 * public static int tipoUsuario = 2;
+		 * public static int tipoInterno = 3;
+		 * int getTipo();
+		 * void setTipo(int tipo);
+		 * String getUserName();
+		 * void setUserName(String userName);
+		 * String getPassword();
+		 * void setPassword(String password);
+		 * 
+		 * TODO Se debe crear un método para encriptar la clave camino a la BBDD
+		 * Metodo encriptar: String encriptar(String password);
+		 */
 		ADMIN("admin","admin"), USUARIO("user","user"), INTERNO("interno","interno");
 
 		private String userName;
@@ -30,6 +45,7 @@ public class HomeController {
 		
 		public String getPassword() {
 			return password;
+			
 		}
 	}
 	
