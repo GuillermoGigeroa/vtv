@@ -27,7 +27,7 @@ public class InspectoresController {
 	
 	@GetMapping("/agregarInspector")
 	public String agregarInspector (Model model) {
-		titulo = "Agregar inspector";
+		titulo = "Alta de inspector";
 		model.addAttribute("titulo",titulo);
 		return "inspectores/agregarInspector";
 	}
