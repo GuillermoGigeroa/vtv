@@ -1,9 +1,9 @@
 package com.gigeroa.vtv.web;
 
-import java.util.ArrayList;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.gigeroa.vtv.dto.DtoVehiculos;
 import com.gigeroa.vtv.entities.MarcaVehiculo;
@@ -15,24 +15,38 @@ public class HomeController {
 	
 	@GetMapping ("/")
 	public String inicioGet (Model model) {
-		model.addAttribute("titulo", tituloIndex);
-
-		ArrayList<MarcaVehiculo> listaMarcas = (new DtoVehiculos()).listarMarcas();
-		model.addAttribute("listaMarcas",listaMarcas);
-		model.addAttribute("marcaVehiculo",listaMarcas.get(0));
+		titulo(model);
+		listarMarcas(model);
+		marcaNueva(model);
 		return "home/index";
 	}
 
-	@GetMapping ("/seleccion")
+	@PostMapping ("/seleccion")
 	public String seleccion (Model model, @RequestParam int ID) {
-		ArrayList<MarcaVehiculo> listaMarcas = (new DtoVehiculos()).listarMarcas();
-		model.addAttribute("marcaSeleccionada",listaMarcas.get(ID-1));
-		return inicioGet(model);
+		titulo(model);
+		listarMarcas(model);
+		marcaSelecionada(model, ID);
+		return "home/index";
 	}
 	
 	@GetMapping ("/index")
 	public String index (Model model) {
 		return inicioGet(model);
 	}
+	
+	public void marcaNueva(Model model) {
+		model.addAttribute("marcaVehiculo",new MarcaVehiculo());
+	}
+	
+	public void marcaSelecionada(Model model, int ID) {
+		model.addAttribute("marcaVehiculo",(new DtoVehiculos()).listarMarcas().get(ID-1));
+	}
+	
+	public void titulo(Model model) {
+		model.addAttribute("titulo", tituloIndex);
+	}
 
+	public void listarMarcas(Model model) {
+		model.addAttribute("listaMarcas",(new DtoVehiculos()).listarMarcas());
+	}
 }
