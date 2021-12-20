@@ -1,27 +1,48 @@
 package com.gigeroa.vtv.entities;
 
+import java.util.Objects;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import com.gigeroa.vtv.repositories.IContieneID;
 import com.gigeroa.vtv.repositories.IModelo_Marca;
 
+@Entity
+@Table (name = "modelos")
 public class ModeloVehiculo implements IContieneID, IModelo_Marca{
-	private int ID;
+	
+	@Id
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@Column (name = "id")
+	private int idModelo;
+	
+	@Column (name = "nombre")
 	private String nombre;
 	
-//	Constructor
+//	Constructores
+	public ModeloVehiculo() {
+		this.idModelo = idDefault;
+		this.nombre = nombreDefault;
+	}
+	
 	public ModeloVehiculo(int ID, String nombre) {
-		this.ID = ID;
+		this.idModelo = ID;
 		this.nombre = nombre;
 	}
 
-//	Métodos
 	@Override
 	public int getID() {
-		return ID;
+		return idModelo;
 	}
 
 	@Override
 	public void setID(int id) {
-		this.ID = id;
+		this.idModelo = id;
 	}
 
 	@Override
@@ -37,5 +58,22 @@ public class ModeloVehiculo implements IContieneID, IModelo_Marca{
 	@Override
 	public String toString() {
 		return nombre;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(idModelo, nombre);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ModeloVehiculo other = (ModeloVehiculo) obj;
+		return idModelo == other.idModelo && Objects.equals(nombre, other.nombre);
 	}
 }
