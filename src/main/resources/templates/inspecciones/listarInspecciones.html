@@ -18,20 +18,24 @@
 								<th>Número</th>
 								<th>Fecha de realización</th>
 								<th>Inspector</th>
-								<th>Vehículo</th>
+								<th>Vehículo: Marca</th>
+								<th>Vehículo: Modelo</th>
+								<th>Vehículo: Matrícula</th>
 								<th>Estado</th>
 								<th>Acción</th>
 							</tr>
 						</thead>
 						<tbody>
 							<div th:if="${listaInspecciones != null or listaInspecciones.isEmpty}">
-								<tr th:each="inspeccion : ${listaInspecciones}">
-									<td class="text-center" th:text="${inspeccion.getNumero}">[Número]</td>
-									<td class="text-center" th:text="${inspeccion.getFecha}">[Fecha de realización]</td>
+								<tr th:each="inspeccion : ${listaInspecciones}" class="text-center">
+									<td th:text="${inspeccion.getNumero}">[Número]</td>
+									<td th:text="${inspeccion.getFecha}">[Fecha de realización]</td>
 									<td th:text="${inspeccion.getInspector.getNombre}">[Inspector]</td>
-									<td th:text="${inspeccion.getVehiculo}">[Vehículo]</td>
-									<td class="text-center columnaEstado" th:text="${inspeccion.getEstado}">[Estado]</td>
-									<td class="text-center">
+									<td th:text="${inspeccion.getVehiculo.getMarca}">[Vehículo]</td>
+									<td th:text="${inspeccion.getVehiculo.getModelo}">[Vehículo]</td>
+									<td th:text="${inspeccion.getVehiculo.getMatricula}">[Vehículo]</td>
+									<td class="columnaEstado" th:text="${inspeccion.getEstado}">[Estado]</td>
+									<td>
 										<a class="btn btn-warning p-1"><i class="bi bi-pencil-square" title="Editar"></i></a>
 										<a class="btn btn-danger p-1"><i class="bi bi-trash" title="Borrar"></i></a>
 									</td>
