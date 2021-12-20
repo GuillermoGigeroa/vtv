@@ -21,12 +21,12 @@ public class TestEstadosService extends TestCase {
 //	Prueba del método numeroEstado de EstadosServices con un IControl del tipo Observacion
 	public void testEstadosService1 () {
 		escenarioControlObservacion();
-		assertTrue(EstadosService.numeroEstado(observacion.toString()) == 1);
+		assertTrue(EstadosService.estadoToNumero(observacion.toString()) == 1);
 	}
 	
 //	Prueba del método numeroEstado de EstadosServices con un IControl del tipo Medicion
 	public void testEstadosService2 () {
 		escenarioControlMedicion();
-		assertTrue(EstadosService.numeroEstado(medicion.toString()) == 1);
+		assertTrue(EstadosService.estadoToNumero(medicion.toString()) == 1);
 	}
 }

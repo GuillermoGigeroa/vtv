@@ -1,6 +1,7 @@
 package com.gigeroa.vtv.services;
 
-import com.gigeroa.vtv.dto.DtoVehiculos;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.gigeroa.vtv.dto.DtoVehiculosImpl;
 import com.gigeroa.vtv.entities.Vehiculo;
 import com.gigeroa.vtv.repositories.IMatricula;
 
@@ -9,7 +10,10 @@ import com.gigeroa.vtv.repositories.IMatricula;
  */
 
 public abstract class MatriculasService {
-
+	
+	@Autowired
+	DtoVehiculosImpl dtoVehiculos;
+	
 //	Método para procesar el texto ingresado y verificar si es válido
 	public static String procesarMatricula(String matricula) {
 
@@ -87,8 +91,7 @@ public abstract class MatriculasService {
 	
 //	Método que permite identificar si ya existe la matrícula en BBDD
 	public static boolean existeMatricula (IMatricula matricula) {
-		DtoVehiculos dto = new DtoVehiculos();
-		for (Vehiculo vehiculo : dto.listarVehiculos()) {
+		for (Vehiculo vehiculo : (new DtoVehiculosImpl()).listarVehiculos()) {
 			if (vehiculo.getMatricula().equalsIgnoreCase(matricula.getMatricula())){
 				return true;
 			}
@@ -98,7 +101,7 @@ public abstract class MatriculasService {
 
 //	Método sobrecargado que permite identificar si ya existe la matrícula en BBDD a partir de un String
 	public static boolean existeMatricula (String matricula) {
-		for (Vehiculo vehiculo : (new DtoVehiculos()).listarVehiculos()) {
+		for (Vehiculo vehiculo : (new DtoVehiculosImpl()).listarVehiculos()) {
 			if (vehiculo.getMatricula().equalsIgnoreCase(matricula)){
 				return true;
 			}
