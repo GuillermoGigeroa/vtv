@@ -1,34 +1,40 @@
 package com.gigeroa.vtv.web;
 
-import java.util.ArrayList;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import com.gigeroa.vtv.dto.DtoPropietarios;
-import com.gigeroa.vtv.entities.Propietario;
+import com.gigeroa.vtv.dto.DtoPropietariosImpl;
 
 @Controller
 public class PropietariosController {
-	private String titulo;
 	
-	@GetMapping("/listarPropietarios")
-	public String listarPropietarios (Model model) {
-		titulo = "Lista de propietarios";
-		model.addAttribute("titulo",titulo);
-		
-//		Se trae lista de propietarios
-		ArrayList<Propietario> listaPropietarios = (new DtoPropietarios()).listarPropietarios();
-		model.addAttribute("listaPropietarios", listaPropietarios);
-		
-		return "propietarios/listarPropietarios";
+	private final String listaPropietarios = "propietarios/listaPropietarios";
+	private final String agregarPropietario = "propietarios/agregarPropietario";
+
+	@Autowired
+	DtoPropietariosImpl dto;
+	
+	@GetMapping("/listaPropietarios")
+	public String listaPropietarios (Model model) {
+		setTitulo(model, "Lista de propietarios");
+		listarPropietarios(model);
+		return listaPropietarios;
 	}
 	
 	@GetMapping("/agregarPropietario")
 	public String agregarPropietarios (Model model) {
-		titulo = "Agregar propietario";
+		setTitulo(model, "Agregar propietario");
+		return agregarPropietario;
+	}
+	
+//	Método para definir el título a utilizar en la página
+	private void setTitulo(Model model, String titulo) {
 		model.addAttribute("titulo",titulo);
-		return "propietarios/agregarPropietario";
+	}
+	
+//	Método para listar los propietarios
+	private void listarPropietarios(Model model) {
+		model.addAttribute("listaPropietarios", dto.listarPropietarios());
 	}
 }

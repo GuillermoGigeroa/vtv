@@ -1,6 +1,5 @@
 package com.gigeroa.vtv.web;
 
-import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,14 +9,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.gigeroa.vtv.dto.*;
 import com.gigeroa.vtv.entities.*;
 import com.gigeroa.vtv.exceptions.DniInvalido;
-import com.gigeroa.vtv.services.MatriculasService;
-
 
 @Controller
 public class VehiculosController {
 	private String titulo;
 	private final String listarVehiculos = "vehiculos/listarVehiculos";
 	private final String agregarVehiculo = "vehiculos/agregarVehiculo";
+	
+	@Autowired
+	private DtoPropietariosImpl dtoPropietarios;
+
+	@Autowired
+	private DtoVehiculosImpl dtoVehiculos;
 	
 	@Autowired
 	private DtoMarcasImpl dtoMarcas;
@@ -31,19 +34,7 @@ public class VehiculosController {
 		model.addAttribute("titulo",titulo);
 		
 //		Se trae lista de vehiculos
-		ArrayList<Vehiculo> listaVehiculos = (new DtoVehiculos()).listarVehiculos();
-		model.addAttribute("listaVehiculos", listaVehiculos);
-		
-//		Prueba 1 del método existeMatricula
-		String matricula1 = "AA458RT";
-		model.addAttribute("matricula1",matricula1);
-		model.addAttribute("existeMatricula1",MatriculasService.existeMatricula(matricula1));
-
-//		Prueba 1 del método existeMatricula
-		String matricula2 = "EZR271";
-		model.addAttribute("matricula2",matricula2);
-		model.addAttribute("existeMatricula2",MatriculasService.existeMatricula(matricula2));
-		
+		model.addAttribute("listaVehiculos", dtoVehiculos.listarVehiculos());
 		return listarVehiculos;
 	}
 	
@@ -117,7 +108,7 @@ public class VehiculosController {
 	}
 	
 	private void listarPropietarios(Model model) {
-		model.addAttribute("listaPropietarios",(new DtoPropietarios()).listarPropietarios());
+		model.addAttribute("listaPropietarios",dtoPropietarios.listarPropietarios());
 	}
 	
 	private void propietarioNuevo (Model model) throws DniInvalido {
@@ -125,9 +116,9 @@ public class VehiculosController {
 	}
 
 	private boolean propietarioSeleccionado (Model model, int dni) {
-		for (Propietario p : (new DtoPropietarios()).listarPropietarios()) {
-			if (p.getDni().getNumero() == dni) {
-				model.addAttribute("propietarioSeleccionado",p);
+		for (Propietario propietario : dtoPropietarios.listarPropietarios()) {
+			if (propietario.getDni() == dni) {
+				model.addAttribute("propietarioSeleccionado",propietario);
 				return true;
 			}
 		}
@@ -161,10 +152,10 @@ public class VehiculosController {
 	}
 
 	private void listarMarcas(Model model) {
-		model.addAttribute("listaMarcas",dtoMarcas.listarMarcas());
+		model.addAttribute("listaMarcas", dtoMarcas.listarMarcas());
 	}
 
 	private void listarModelos(Model model, int IDMarca) {
-		model.addAttribute("listaModelos",dtoModelos.listarModelosPorMarca(IDMarca));
+		model.addAttribute("listaModelos", dtoModelos.listarModelosPorMarca(IDMarca));
 	}
 }

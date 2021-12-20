@@ -1,17 +1,17 @@
 package com.gigeroa.vtv.web;
 
-import java.util.ArrayList;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import com.gigeroa.vtv.dto.DtoInspecciones;
-import com.gigeroa.vtv.entities.Inspeccion;
+import com.gigeroa.vtv.dto.DtoInspeccionesImpl;
 
 @Controller
 public class InspeccionesController {
 	private String titulo;
+	
+	@Autowired
+	DtoInspeccionesImpl dto;
 	
 	@GetMapping ("/listarInspecciones")
 	public String listarInspecciones (Model model) {
@@ -19,8 +19,7 @@ public class InspeccionesController {
 		model.addAttribute("titulo",titulo);
 		
 //		Se trae lista de inspecciones
-		ArrayList<Inspeccion> listaInspecciones = (new DtoInspecciones()).listarInspecciones();
-		model.addAttribute("listaInspecciones", listaInspecciones);
+		model.addAttribute("listaInspecciones", dto.listarInspecciones());
 		
 		return "inspecciones/listarInspecciones";
 	}
