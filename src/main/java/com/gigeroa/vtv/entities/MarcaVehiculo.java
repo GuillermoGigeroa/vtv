@@ -1,39 +1,43 @@
 package com.gigeroa.vtv.entities;
 
+import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.*;
 import com.gigeroa.vtv.repositories.IContieneID;
 import com.gigeroa.vtv.repositories.IModelo_Marca;
 
 @Entity
-public class MarcaVehiculo implements IContieneID, IModelo_Marca {
-	
+@Table (name = "marcas")
+public class MarcaVehiculo implements IContieneID, IModelo_Marca, Serializable {
+	private static final long serialVersionUID = 1L;
+
 	@Id
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	@Column (name = "id")
-	private int ID;
+	private int idMarca;
 	
 	@Column (name = "nombre")
 	private String nombre;
 	
 //	Constructores
 	public MarcaVehiculo() {
-		this.ID = idDefault;
+		this.idMarca = idDefault;
 		this.nombre = nombreDefault;
 	}
 	
-	public MarcaVehiculo(int ID, String nombre) {
-		this.ID = ID;
+	public MarcaVehiculo(int idMarca, String nombre) {
+		this.idMarca = idMarca;
 		this.nombre = nombre;
 	}
 
 	@Override
 	public int getID() {
-		return ID;
+		return idMarca;
 	}
 
 	@Override
 	public void setID(int id) {
-		this.ID = id;
+		this.idMarca = id;
 	}
 
 	@Override
@@ -53,7 +57,7 @@ public class MarcaVehiculo implements IContieneID, IModelo_Marca {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(ID, nombre);
+		return Objects.hash(idMarca, nombre);
 	}
 
 	@Override
@@ -65,7 +69,7 @@ public class MarcaVehiculo implements IContieneID, IModelo_Marca {
 		if (getClass() != obj.getClass())
 			return false;
 		MarcaVehiculo other = (MarcaVehiculo) obj;
-		return ID == other.ID && Objects.equals(nombre, other.nombre);
+		return idMarca == other.idMarca && Objects.equals(nombre, other.nombre);
 	}
 	
 }

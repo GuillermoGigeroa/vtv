@@ -21,6 +21,14 @@ public class HomeController {
 		return "home/index";
 	}
 
+	@GetMapping ("/seleccion")
+	public String seleccion (Model model) {
+		titulo(model);
+		listarMarcas(model);
+		marcaNueva(model);
+		return "home/index";
+	}
+
 	@PostMapping ("/seleccion")
 	public String seleccion (Model model, @RequestParam int ID) {
 		titulo(model);

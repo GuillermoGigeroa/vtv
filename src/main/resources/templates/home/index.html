@@ -9,9 +9,9 @@
 	<hr>
 	<div class="d-flex justify-content-center" th:if="${listaMarcas != null}">
 		<div>
-			<div class="col">
-				<div class="row">
-					<form th:action="@{/seleccion}" method="post" class="form-control" th:object="${marcaVehiculo}">
+			<div class="col form-control">
+				<div class="row" th:if="${marcaVehiculo != null}">
+					<form th:action="@{/seleccion}" method="post" th:object="${marcaVehiculo}">
 						<div class="input-group">
 							<select class="form-select" th:field="*{ID}" required>
 								<span th:each="marca : ${listaMarcas}">
@@ -21,6 +21,9 @@
 							<input type="submit" class="btn btn-outline-secondary" name="seleccionarMarca" value="Seleccionar">
 						</div>
 					</form>
+				</div>
+				<div class="row pt-2" th:if="${marcaVehiculo != null}">
+					<p th:if="${marcaVehiculo.getID != -1}">Marca seleccionada: <b>[[${marcaVehiculo.getNombre}]]</b></p>
 				</div>
 			</div>
 		</div>
