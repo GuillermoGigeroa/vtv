@@ -10,6 +10,13 @@ public class Propietario implements IPersona{
 	private boolean exento;
 	
 //	Constructores
+	public Propietario() throws DniInvalido {
+		setDni(sinDni);
+		this.nombre = sinNombre;
+		this.apellido = sinApellido;
+		this.exento = false;
+	}
+	
 	public Propietario(String dni, String nombre, boolean exento) throws DniInvalido {
 		setDni(dni);
 		this.nombre = nombre;
