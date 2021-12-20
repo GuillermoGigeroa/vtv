@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.gigeroa.vtv.dto.DtoPropietarios;
 import com.gigeroa.vtv.dto.DtoVehiculos;
@@ -98,6 +97,7 @@ public class VehiculosController {
 //	Mapeo de la sección /seleccionPropietario para continuar con la selección del propietario
 	@PostMapping ("/seleccionPropietario")
 	public String seleccionPropietario (Model model, @RequestParam int idModelo, @RequestParam int idMarca, @RequestParam String nombre) {
+		tituloAgregar(model);
 		listarMarcas(model);
 		listarModelos(model, idMarca);
 		marcaSelecionada(model, idMarca);
