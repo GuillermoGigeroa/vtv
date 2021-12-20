@@ -4,6 +4,39 @@
 	<body>
 		<header th:replace="layout/estructura :: header"></header>
 		<div th:replace="layout/estructura :: titulo"></div>
+		<div class="container d-flex justify-content-center">
+			<form class="col-md-6">
+				<div class="row">
+					<div class="input-group mb-3">
+					  <span class="input-group-text">Legajo</span>
+					  <input type="text" disabled value="[en desarrollo] 77598" class="form-control">
+					</div>
+				</div>
+				<div class="row">
+					<div class="input-group mb-3">
+					  <span class="input-group-text">Nombre</span>
+					  <input type="text" class="form-control" value="">
+					</div>
+				</div>
+				<div class="row">
+					<div class="input-group mb-3">
+					  <span class="input-group-text">Apellido</span>
+					  <input type="text" class="form-control">
+					</div>
+				</div>
+				<div class="row">
+					<div class="input-group mb-3">
+					  <span class="input-group-text">DNI</span>
+					  <input type="number" min="11111111" max="99999999" class="form-control">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col d-flex justify-content-center">
+						<input type="submit" class="btn btn-success" name="btnAgregar" value="Agregar">
+					</div>
+				</div>
+			</form>
+		</div>
 		<div th:replace="layout/estructura :: desarrollo"></div>
 	</body>
 	<script	th:replace="layout/estructura :: scripts"></script>
