@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.gigeroa.vtv.dto.DtoPropietarios;
 import com.gigeroa.vtv.dto.DtoVehiculos;
@@ -50,8 +52,23 @@ public class VehiculosController {
 		return agregarVehiculo;
 	}
 	
+	@GetMapping("/seleccionMarca")
+	public String marca (Model model) {
+		return agregarVehiculo(model);
+	}
+
+	@GetMapping("/seleccionModelo")
+	public String modelo (Model model) {
+		return agregarVehiculo(model);
+	}
+
+	@GetMapping("/seleccionPropietario")
+	public String propietario (Model model) {
+		return agregarVehiculo(model);
+	}
+
 //	Mapeo de la sección /seleccionMarca para continuar con la selección de la marca
-	@GetMapping ("/seleccionMarca")
+	@PostMapping ("/seleccionMarca")
 	public String seleccionMarca (Model model, @RequestParam int ID) {
 		tituloAgregar(model);
 		listarMarcas(model);
@@ -62,7 +79,7 @@ public class VehiculosController {
 	}
 
 //	Mapeo de la sección /seleccionModelo para continuar con la selección del modelo
-	@GetMapping ("/seleccionModelo")
+	@PostMapping ("/seleccionModelo")
 	public String seleccion (Model model, @RequestParam int ID, @RequestParam int idMarca) throws DniInvalido {
 		tituloAgregar(model);
 		listarMarcas(model);
@@ -79,7 +96,7 @@ public class VehiculosController {
 	}
 	
 //	Mapeo de la sección /seleccionPropietario para continuar con la selección del propietario
-	@GetMapping ("/seleccionPropietario")
+	@PostMapping ("/seleccionPropietario")
 	public String seleccionPropietario (Model model, @RequestParam int idModelo, @RequestParam int idMarca, @RequestParam String nombre) {
 		listarMarcas(model);
 		listarModelos(model, idMarca);
@@ -95,15 +112,15 @@ public class VehiculosController {
 		return agregarVehiculo;
 	}
 	
-	public void listarPropietarios(Model model) {
+	private void listarPropietarios(Model model) {
 		model.addAttribute("listaPropietarios",(new DtoPropietarios()).listarPropietarios());
 	}
 	
-	public void propietarioNuevo (Model model) throws DniInvalido {
+	private void propietarioNuevo (Model model) throws DniInvalido {
 		model.addAttribute("propietarioSeleccionado",new Propietario());
 	}
 
-	public boolean propietarioSeleccionado (Model model, int dni) {
+	private boolean propietarioSeleccionado (Model model, int dni) {
 		for (Propietario p : (new DtoPropietarios()).listarPropietarios()) {
 			if (p.getDni().getNumero() == dni) {
 				model.addAttribute("propietarioSeleccionado",p);
@@ -113,15 +130,15 @@ public class VehiculosController {
 		return false;
 	}
 	
-	public void marcaNueva(Model model) {
+	private void marcaNueva(Model model) {
 		model.addAttribute("marcaVehiculo",new MarcaVehiculo());
 	}
 
-	public void modeloNuevo(Model model) {
+	private void modeloNuevo(Model model) {
 		model.addAttribute("modeloVehiculo",new ModeloVehiculo());
 	}
 
-	public boolean modeloSeleccionado(Model model,int IDMarca, int ID) {
+	private boolean modeloSeleccionado(Model model,int IDMarca, int ID) {
 		for (ModeloVehiculo modelo : (new DtoVehiculos()).listarModelos(IDMarca)) {
 			if (modelo.getID() == ID) {
 				model.addAttribute("modeloVehiculo",modelo);
@@ -131,19 +148,19 @@ public class VehiculosController {
 		return false;
 	}
 
-	public void marcaSelecionada(Model model, int ID) {
+	private void marcaSelecionada(Model model, int ID) {
 		model.addAttribute("marcaVehiculo",(new DtoVehiculos()).listarMarcas().get(ID-1));
 	}
 	
-	public void tituloAgregar(Model model) {
+	private void tituloAgregar(Model model) {
 		model.addAttribute("titulo", "Agregar vehículo");
 	}
 
-	public void listarMarcas(Model model) {
+	private void listarMarcas(Model model) {
 		model.addAttribute("listaMarcas",(new DtoVehiculos()).listarMarcas());
 	}
 
-	public void listarModelos(Model model, int IDMarca) {
+	private void listarModelos(Model model, int IDMarca) {
 		model.addAttribute("listaModelos",(new DtoVehiculos()).listarModelos(IDMarca));
 	}
 }

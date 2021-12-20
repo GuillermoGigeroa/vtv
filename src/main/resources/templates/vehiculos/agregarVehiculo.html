@@ -10,7 +10,7 @@
 					<div class="col-md-8 form-control">
 						<div class="row" th:if="${marcaVehiculo != null}">
 							<h5><i><b>Seleccione una marca</b></i></h5>
-							<form method="get" th:action="@{/seleccionMarca}" th:object="${marcaVehiculo}">
+							<form method="POST" th:action="@{/seleccionMarca}" th:object="${marcaVehiculo}">
 								<div class="input-group">
 									<select class="form-select" th:field="*{ID}" required>
 										<span th:each="marca : ${listaMarcas}">
@@ -26,7 +26,7 @@
 						</div>
 						<div class="row" th:if="${modeloVehiculo != null and listaModelos != null}">
 							<h5><i><b>Seleccione un modelo</b></i></h5>
-							<form method="get" th:action="@{/seleccionModelo}" th:object="${modeloVehiculo}">
+							<form method="POST" th:action="@{/seleccionModelo}" th:object="${modeloVehiculo}">
 								<div class="input-group">
 									<input type="hidden" name="idMarca" th:value="${marcaVehiculo.getID}"/>
 									<select class="form-select" th:field="*{ID}" required>
@@ -43,7 +43,7 @@
 						</div>
 						<div th:if="${listaPropietarios != null and propietarioSeleccionado != null}">
 							<h5><i><b>Seleccione el propietario</b></i></h5>
-							<form method="get" th:action="@{/seleccionPropietario}" th:object="${propietarioSeleccionado}">
+							<form method="POST" th:action="@{/seleccionPropietario}" th:object="${propietarioSeleccionado}">
 								<div class="input-group">
 									<input type="hidden" name="idMarca" th:value="${marcaVehiculo.getID}"/>
 									<input type="hidden" name="idModelo" th:value="${modeloVehiculo.getID}"/>
