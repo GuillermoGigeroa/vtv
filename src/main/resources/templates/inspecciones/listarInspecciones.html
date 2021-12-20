@@ -12,12 +12,13 @@
 				<div class="row d-flex justify-content-center">
 				</div>
 				<div class="row">
-					<table id="tabla" class="table table-striped table-bordered table-sm table-responsive pt-2 pb-2">
+					<table id="tabla" class="text-center table table-striped table-bordered table-sm table-responsive pt-2 pb-2">
 						<thead>
 							<tr>
 								<th>Número</th>
 								<th>Fecha de realización</th>
-								<th>Inspector</th>
+								<th>Fecha de vencimiento</th>
+								<th>Legajo inspector</th>
 								<th>Vehículo: Marca</th>
 								<th>Vehículo: Modelo</th>
 								<th>Vehículo: Matrícula</th>
@@ -27,14 +28,15 @@
 						</thead>
 						<tbody>
 							<div th:if="${listaInspecciones != null or listaInspecciones.isEmpty}">
-								<tr th:each="inspeccion : ${listaInspecciones}" class="text-center">
+								<tr th:each="inspeccion : ${listaInspecciones}">
 									<td th:text="${inspeccion.getNumero}">[Número]</td>
 									<td th:text="${inspeccion.getFecha}">[Fecha de realización]</td>
-									<td th:text="${inspeccion.getInspector.getNombre}">[Inspector]</td>
-									<td th:text="${inspeccion.getVehiculo.getMarca}">[Vehículo]</td>
-									<td th:text="${inspeccion.getVehiculo.getModelo}">[Vehículo]</td>
-									<td th:text="${inspeccion.getVehiculo.getMatricula}">[Vehículo]</td>
-									<td class="columnaEstado" th:text="${inspeccion.getEstado}">[Estado]</td>
+									<td th:text="${inspeccion.getFechaVencimiento}">[Fecha de vencimiento]</td>
+									<td th:text="${inspeccion.getLegajoInspector}">[Inspector]</td>
+									<td>Marca [en desarrollo]</td>
+									<td>Modelo [en desarrollo]</td>
+									<td>Matricula [en desarrollo]</td>
+									<td class="columnaEstado" th:text="${T(com.gigeroa.vtv.services.EstadosService).numeroToEstado(inspeccion.getEstado)}">[Estado]</td>
 									<td>
 										<a class="btn btn-warning p-1"><i class="bi bi-pencil-square" title="Editar"></i></a>
 										<a class="btn btn-danger p-1"><i class="bi bi-trash" title="Borrar"></i></a>

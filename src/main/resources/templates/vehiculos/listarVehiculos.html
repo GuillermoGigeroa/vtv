@@ -12,7 +12,7 @@
 				<div class="row d-flex justify-content-center">
 				</div>
 				<div class="row">
-					<table id="tabla" class="table table-striped table-bordered table-sm table-responsive pt-1 pb-1">
+					<table id="tabla" class="text-center table table-striped table-bordered table-sm table-responsive pt-1 pb-1">
 						<thead>
 							<tr>
 								<th>Matricula</th>
@@ -25,13 +25,13 @@
 						</thead>
 						<tbody>
 							<div th:if="${listaVehiculos != null or listaVehiculos.isEmpty}">
-								<tr th:each="vehiculo : ${listaVehiculos}">
-									<td class="text-center" th:text="${vehiculo.getMatricula}">[Matricula]</td>
-									<td class="text-center" th:text="${vehiculo.getMarca}">[Marca]</td>
-									<td class="text-center" th:text="${vehiculo.getModelo}">[Modelo]</td>
-									<td class="text-center" th:text="${vehiculo.getPropietario().getNombre}">[Nombre_propietario]</td>
-									<td class="text-center" th:text="${vehiculo.getPropietario().getDni}">[Dni_propietario]</td>
-									<td class="text-center">
+								<tr class="text-center" th:each="vehiculo : ${listaVehiculos}">
+									<td th:text="${vehiculo.getMatricula}">[Matricula]</td>
+									<td th:text="${vehiculo.getMarca}">[Marca]</td>
+									<td th:text="${vehiculo.getModelo}">[Modelo]</td>
+									<td>Nombre [en desarrollo]</td>
+									<td>Apellido [en desarrollo]</td>
+									<td>
 										<a class="btn btn-warning p-1"><i class="bi bi-pencil-square" title="Editar"></i></a>
 										<a class="btn btn-danger p-1"><i class="bi bi-trash" title="Borrar"></i></a>
 									</td>
@@ -39,20 +39,13 @@
 							</div>
 						</tbody>
 					</table>
-			</div>
-				<div class="row">
+				</div>
+				<div class="row mb-4">
 					<div class="col d-flex justify-content-center">
 						<a class="btn btn-success" style="width: auto;" th:href="@{/index}">Volver a inicio</a>
 					</div>
 				</div>		
 			</div>
-		</div>
-		<hr/>
-		<div id="pruebaMatricula1" class="alert alert-dark" th:if="${matricula1 != null or matricula1.isEmpty and existeMatricula1 != null}">
-			<a>Matricula "[[${matricula1}]]" - Existe: [[${existeMatricula1}]]</a>
-		</div>
-		<div id="pruebaMatricula2" class="alert alert-dark" th:if="${matricula2 != null or matricula2.isEmpty and existeMatricula2 != null}">
-			<a>Matricula "[[${matricula2}]]" - Existe: [[${existeMatricula2}]]</a>
 		</div>
 	</body>
 	<script	th:replace="layout/estructura :: scripts"></script>

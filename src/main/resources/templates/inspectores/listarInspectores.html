@@ -12,19 +12,21 @@
 				<div class="row d-flex justify-content-center">
 				</div>
 				<div class="row">
-					<table id="tabla" class="table table-striped table-bordered table-sm table-responsive pt-1 pb-1">
+					<table id="tabla" class="text-center table table-striped table-bordered table-sm table-responsive pt-1 pb-1">
 						<thead>
 							<tr>
-								<th>DNI</th>
+								<th>Legajo</th>
 								<th>Nombre</th>
+								<th>Apellido</th>
 								<th>Acción</th>
 							</tr>
 						</thead>
 						<tbody>
 							<div th:if="${listaInspectores != null or listaInspectores.isEmpty}">
 								<tr th:each="inspector : ${listaInspectores}">
-									<td th:text="${inspector.getDni().getNumero()}">[DNI]</td>
+									<td th:text="${inspector.getLegajo}">[Legajo]</td>
 									<td th:text="${inspector.getNombre}">[Nombre]</td>
+									<td th:text="${inspector.getApellido}">[Apellido]</td>
 									<td class="text-center">
 										<a class="btn btn-warning p-1"><i class="bi bi-pencil-square" title="Editar"></i></a>
 										<a class="btn btn-danger p-1"><i class="bi bi-trash" title="Borrar"></i></a>
