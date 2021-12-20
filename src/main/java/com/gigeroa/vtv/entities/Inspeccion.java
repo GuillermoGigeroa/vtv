@@ -1,34 +1,53 @@
 package com.gigeroa.vtv.entities;
 
 import java.time.LocalDate;
-import com.gigeroa.vtv.repositories.*;
+import java.util.Objects;
+import javax.persistence.*;
 
-public class Inspeccion implements IContieneID {
+@Entity
+@Table (name = "inspecciones")
+public class Inspeccion {
+	
+	@Id
+	@Column (name = "numero")
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private int numero;
+	
+	@Column (name = "fecha")
 	private LocalDate fecha;
+	
+	@Column (name = "fechavencimiento")
 	private LocalDate fechaVencimiento;
-	private Inspector inspector;
-	private Vehiculo vehiculo;
-	private Estado estado;
+
+	@Column (name = "legajoinspector")
+	private int legajoInspector;
+	
+	@Column (name = "estado")
+	private int estado;
 	
 //	Constructores
+	public Inspeccion()
+	{
+		this.numero = -1;
+		this.fecha = LocalDate.now();
+		this.fechaVencimiento = LocalDate.now();
+		this.estado = 3;
+	}
+	
 	public Inspeccion(
 			int numero,
 			LocalDate fecha,
 			Inspector inspector,
 			Vehiculo vehiculo,
-			Estado estado
+			int estado
 			)
 	{
 		this.numero = numero;
 		this.fecha = fecha;
 		this.fechaVencimiento = fecha.plusYears(1);
-		this.inspector = inspector;
-		this.vehiculo = vehiculo;
 		this.estado = estado;
 	}
 
-//	Métodos
 	public int getNumero() {
 		return numero;
 	}
@@ -40,57 +59,51 @@ public class Inspeccion implements IContieneID {
 	public LocalDate getFecha() {
 		return fecha;
 	}
-	
+
+	public void setFecha(LocalDate fecha) {
+		this.fecha = fecha;
+	}
+
 	public LocalDate getFechaVencimiento() {
 		return fechaVencimiento;
 	}
 
-	public void setFecha(LocalDate fecha) {
-		this.fecha = fecha;
-		this.fechaVencimiento = fecha.plusYears(1);
+	public void setFechaVencimiento(LocalDate fechaVencimiento) {
+		this.fechaVencimiento = fechaVencimiento;
 	}
 
-	public Inspector getInspector() {
-		return inspector;
+	public int getLegajoInspector() {
+		return legajoInspector;
 	}
 
-	public void setInspector(Inspector inspector) {
-		this.inspector = inspector;
+	public void setLegajoInspector(int legajoInspector) {
+		this.legajoInspector = legajoInspector;
 	}
 
-	public Vehiculo getVehiculo() {
-		return vehiculo;
-	}
-
-	public void setVehiculo(Vehiculo vehiculo) {
-		this.vehiculo = vehiculo;
-	}
-
-	public Estado getEstado() {
+	public int getEstado() {
 		return estado;
 	}
 
-	public void setEstadoGeneral(Estado estado) {
+	public void setEstado(int estado) {
 		this.estado = estado;
-	}
-	
-	public int getID() {
-		return numero;
-	}
-	
-	public void setID(int id) {
-		numero = id;
 	}
 
 	@Override
-	public String toString() {
-		return "Número de inspección: " + numero
-				+ "\n" + "Fecha de inspección: " + fecha.toString()
-				+ "\n" + "Estado: " + estado
-				+ "\n" + "Propietario: " + vehiculo.getPropietario().getNombre()
-				+ "\n" + "Es excento: " + (vehiculo.getPropietario().isExento() ? "Si": "No")
-				+ "\n" + "Inspector a cargo: " + inspector
-				+ "\n" + "Datos del vehiculo: "+ vehiculo;
+	public int hashCode() {
+		return Objects.hash(estado, fecha, fechaVencimiento, legajoInspector, numero);
 	}
-	
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Inspeccion other = (Inspeccion) obj;
+		return estado == other.estado && Objects.equals(fecha, other.fecha)
+				&& Objects.equals(fechaVencimiento, other.fechaVencimiento) && legajoInspector == other.legajoInspector
+				&& numero == other.numero;
+	}
 }

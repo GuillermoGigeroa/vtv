@@ -1,12 +1,25 @@
 package com.gigeroa.vtv.entities;
 
+import java.util.Objects;
+import javax.persistence.*;
 import com.gigeroa.vtv.exceptions.DniInvalido;
 import com.gigeroa.vtv.repositories.*;
 
+@Entity
+@Table (name = "propietarios")
 public class Propietario implements IPersona{
-	private Dni dni;
+	
+	@Id
+	@Column (name = "dni")
+	private int dni;
+	
+	@Column (name = "nombre")
 	private String nombre;
+
+	@Column (name = "apellido")
 	private String apellido;
+	
+	@Column (name = "exento")
 	private boolean exento;
 	
 //	Constructores
@@ -17,15 +30,10 @@ public class Propietario implements IPersona{
 		this.exento = false;
 	}
 	
-	public Propietario(String dni, String nombre, boolean exento) throws DniInvalido {
-		setDni(dni);
+	public Propietario(String dni, String nombre, String apellido, boolean exento) throws DniInvalido {
+		this.dni = (new Dni(dni)).getNumero();
 		this.nombre = nombre;
-		this.exento = exento;
-	}
-
-	public Propietario(int dni, String nombre, boolean exento) throws DniInvalido {
-		this.dni = new Dni(dni);
-		this.nombre = nombre;
+		this.apellido = apellido;
 		this.exento = exento;
 	}
 
@@ -53,13 +61,13 @@ public class Propietario implements IPersona{
 	}
 	
 	@Override
-	public Dni getDni() {
+	public int getDni() {
 		return dni;
 	}
 	
 	@Override
 	public void setDni(String dni) throws DniInvalido {
-		this.dni = new Dni(dni);
+		this.dni = (new Dni(dni)).getNumero();
 	}
 
 	@Override
@@ -75,6 +83,24 @@ public class Propietario implements IPersona{
 	@Override
 	public String getApellido() {
 		return apellido;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(apellido, dni, exento, nombre);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Propietario other = (Propietario) obj;
+		return Objects.equals(apellido, other.apellido) && Objects.equals(dni, other.dni) && exento == other.exento
+				&& Objects.equals(nombre, other.nombre);
 	}
 
 }

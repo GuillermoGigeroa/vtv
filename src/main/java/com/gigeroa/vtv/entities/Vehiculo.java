@@ -1,39 +1,55 @@
 package com.gigeroa.vtv.entities;
 
+import javax.persistence.*;
 import com.gigeroa.vtv.exceptions.MatriculaInvalida;
 import com.gigeroa.vtv.repositories.*;
 
+@Entity
+@Table (name = "vehiculos")
 public class Vehiculo implements IContieneID {
+	
+	@Id
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private int id;
-	private IMatricula matricula;
+
+	@Column (name = "dominio")
+	private String matricula;
+
+	@Column (name = "marca")
 	private String marca;
+
+	@Column (name = "modelo")
 	private String modelo;
-	private Propietario propietario;
 	
 //	Constructores
-	public Vehiculo(String matricula, String marca, String modelo, Propietario propietario) throws MatriculaInvalida {
+	public Vehiculo(){
+		this.id = -1;
+		this.matricula = "00ZZZ00";
+		this.marca = "default";
+		this.modelo = "default";
+	}
+	
+	public Vehiculo(String matricula, String marca, String modelo) throws MatriculaInvalida {
 		this.id = -1;
 		setMatricula(matricula);
 		this.marca = marca;
 		this.modelo = modelo;
-		this.propietario = propietario;
 	}
 	
-	public Vehiculo(int id, String matricula, String marca, String modelo, Propietario propietario) throws MatriculaInvalida {
+	public Vehiculo(int id, String matricula, String marca, String modelo) throws MatriculaInvalida {
 		this.id = id;
 		setMatricula(matricula);
 		this.marca = marca;
 		this.modelo = modelo;
-		this.propietario = propietario;
 	}
 
 //	Métodos
 	public String getMatricula() {
-		return matricula.getMatricula();
+		return matricula;
 	}
 
 	public void setMatricula(String matricula) throws MatriculaInvalida {
-		this.matricula = new Matricula(matricula);
+		this.matricula = (new Matricula(matricula)).getMatricula();
 	}
 
 	public String getMarca() {
@@ -52,14 +68,6 @@ public class Vehiculo implements IContieneID {
 		this.modelo = modelo;
 	}
 
-	public Propietario getPropietario() {
-		return propietario;
-	}
-
-	public void setPropietario(Propietario propietario) {
-		this.propietario = propietario;
-	}
-	
 	public int getID() {
 		return id;
 	}
@@ -70,6 +78,6 @@ public class Vehiculo implements IContieneID {
 	
 	@Override
 	public String toString() {
-		return marca + " - " + modelo + " - " + matricula.getMatricula();
+		return marca + " - " + modelo + " - " + matricula;
 	}
 }

@@ -1,58 +1,94 @@
 package com.gigeroa.vtv.entities;
 
+import java.util.Objects;
+
+import javax.persistence.*;
 import com.gigeroa.vtv.exceptions.DniInvalido;
 import com.gigeroa.vtv.repositories.*;
 
+@Entity
+@Table (name = "inspectores")
 public class Inspector implements IPersona {
-	private Dni dni;
+	
+	@Id
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	private int legajo;
+	
+	@Column (name = "dni")
+	private int dni;
+
+	@Column (name = "nombre")
 	private String nombre;
+
+	@Column (name = "apellido")
 	private String apellido;
-	//TODO se debe crear el campo legajo para generar un perfil más realista
 	
 //	Constructores
+	public Inspector() {
+		this.dni = IDni.sinNumero;
+		this.nombre = sinNombre;
+		this.apellido = sinApellido;
+	}
+	
 	public Inspector(String dni, String nombre) throws DniInvalido {
 		setDni(dni);
 		this.nombre = nombre;
 	}
 
 	public Inspector(int dni, String nombre) throws DniInvalido {
-		this.dni = new Dni(dni);
+		this.dni = (new Dni(dni)).getNumero();
 		this.nombre = nombre;
 	}
-	
-//	Métodos
+
+	public int getLegajo() {
+		return legajo;
+	}
+
+	public void setLegajo(int legajo) {
+		this.legajo = legajo;
+	}
+
+	public int getDni() {
+		return dni;
+	}
+
 	@Override
+	public void setDni(String dni) throws DniInvalido {
+		this.dni = (new Dni(dni)).getNumero();
+	}
+
 	public String getNombre() {
 		return nombre;
 	}
 
-	@Override
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
-	@Override
-	public void setDni(String dni) throws DniInvalido {
-		this.dni = new Dni(dni);
+
+	public String getApellido() {
+		return apellido;
 	}
 
-	@Override
-	public Dni getDni() {
-		return dni;
-	}
-	
-	@Override
-	public String toString() {
-		return nombre + " - Dni: " + getDni();
-	}
-
-	@Override
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
 
 	@Override
-	public String getApellido() {
-		return apellido;
+	public int hashCode() {
+		return Objects.hash(apellido, dni, legajo, nombre);
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Inspector other = (Inspector) obj;
+		return Objects.equals(apellido, other.apellido) && dni == other.dni && legajo == other.legajo
+				&& Objects.equals(nombre, other.nombre);
+	}
+	
 }

@@ -1,5 +1,7 @@
 package com.gigeroa.vtv.entities;
 
+import java.util.Objects;
+
 import com.gigeroa.vtv.exceptions.DniInvalido;
 import com.gigeroa.vtv.repositories.IDni;
 import com.gigeroa.vtv.services.DniService;
@@ -38,6 +40,23 @@ public class Dni implements IDni {
 		else {
 			throw new DniInvalido();
 		}
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(numero);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Dni other = (Dni) obj;
+		return numero == other.numero;
 	}
 
 }
