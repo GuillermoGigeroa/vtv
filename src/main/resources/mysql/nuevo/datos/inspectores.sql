@@ -1,0 +1,10 @@
+INSERT INTO `inspectores`(`DNI`, `Legajo`, `Nombre`, `Apellido`) VALUES (11111111, 1001, 'Mario', 'Allende');
+INSERT INTO `inspectores`(`DNI`, `Legajo`, `Nombre`, `Apellido`) VALUES (22222222, 1002, 'Roberto', 'Gomez');
+INSERT INTO `inspectores`(`DNI`, `Legajo`, `Nombre`, `Apellido`) VALUES (33333333, 1003, 'Mariana', 'Perez');
+INSERT INTO `inspectores`(`DNI`, `Legajo`, `Nombre`, `Apellido`) VALUES (39112399, 1004, 'Guillermo', 'Gigeroa');
+INSERT INTO `inspectores`(`DNI`, `Legajo`, `Nombre`, `Apellido`) VALUES (44444444, 1005, 'Gianluca', 'Salvador');
+INSERT INTO `inspectores`(`DNI`, `Legajo`, `Nombre`, `Apellido`) VALUES (55555555, 1006, 'Santiago', 'Martinez');
+INSERT INTO `inspectores`(`DNI`, `Legajo`, `Nombre`, `Apellido`) VALUES (66666666, 1007, 'Maximiliano', 'Fernandez');
+INSERT INTO `inspectores`(`DNI`, `Legajo`, `Nombre`, `Apellido`) VALUES (77777777, 1008, 'Lucas', 'Lopez');
+INSERT INTO `inspectores`(`DNI`, `Legajo`, `Nombre`, `Apellido`) VALUES (88888888, 1009, 'Damian', 'Basualdo');
+INSERT INTO `inspectores`(`DNI`, `Legajo`, `Nombre`, `Apellido`) VALUES (99999999, 1010, 'Nicolas', 'Vega');

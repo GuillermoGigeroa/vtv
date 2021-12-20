@@ -1,0 +1,10 @@
+INSERT INTO `vehiculos`(`ID`, `Dominio`, `Marca`, `Modelo`) VALUES (1, 'AB056XS', 'Ford', 'Focus');
+INSERT INTO `vehiculos`(`ID`, `Dominio`, `Marca`, `Modelo`) VALUES (2, 'VTE213', 'Ford', 'Sierra');
+INSERT INTO `vehiculos`(`ID`, `Dominio`, `Marca`, `Modelo`) VALUES (3, 'AA458RT', 'Volkswagen', 'Golf');
+INSERT INTO `vehiculos`(`ID`, `Dominio`, `Marca`, `Modelo`) VALUES (4, 'AB984FS', 'Audi', 'A3');
+INSERT INTO `vehiculos`(`ID`, `Dominio`, `Marca`, `Modelo`) VALUES (5, 'AG149SL', 'Audi', 'A4');
+INSERT INTO `vehiculos`(`ID`, `Dominio`, `Marca`, `Modelo`) VALUES (6, 'BC938HF', 'Peugeot', '207');
+INSERT INTO `vehiculos`(`ID`, `Dominio`, `Marca`, `Modelo`) VALUES (7, 'FLE786', 'Chevrolet', 'Corsa');
+INSERT INTO `vehiculos`(`ID`, `Dominio`, `Marca`, `Modelo`) VALUES (8, 'AK476UL', 'Honda', 'Civic');
+INSERT INTO `vehiculos`(`ID`, `Dominio`, `Marca`, `Modelo`) VALUES (9, 'BF668JK', 'Toyota', 'Corolla');
+INSERT INTO `vehiculos`(`ID`, `Dominio`, `Marca`, `Modelo`) VALUES (10, 'EZR272', 'Suzuki', 'Fun');
