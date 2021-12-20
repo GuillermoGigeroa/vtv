@@ -21,6 +21,12 @@ public class HomeController {
 		return "home/index";
 	}
 
+	@GetMapping ("/index")
+	public String index (Model model) {
+		return inicioGet(model);
+	}
+
+//	Mapeo de la sección /seleccion para continuar con la selección de la marca y modelo en GET
 	@GetMapping ("/seleccion")
 	public String seleccion (Model model) {
 		titulo(model);
@@ -29,17 +35,13 @@ public class HomeController {
 		return "home/index";
 	}
 
+//	Mapeo de la sección /seleccion para continuar con la selección de la marca y modelo en POST
 	@PostMapping ("/seleccion")
 	public String seleccion (Model model, @RequestParam int ID) {
 		titulo(model);
 		listarMarcas(model);
 		marcaSelecionada(model, ID);
 		return "home/index";
-	}
-	
-	@GetMapping ("/index")
-	public String index (Model model) {
-		return inicioGet(model);
 	}
 	
 	public void marcaNueva(Model model) {
