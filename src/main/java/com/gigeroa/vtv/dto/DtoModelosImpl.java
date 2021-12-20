@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.gigeroa.vtv.dao.DaoModelos;
 import com.gigeroa.vtv.entities.ModeloVehiculo;
+import com.gigeroa.vtv.repositories.DtoModelos;
 
 @Service
 public class DtoModelosImpl implements DtoModelos{

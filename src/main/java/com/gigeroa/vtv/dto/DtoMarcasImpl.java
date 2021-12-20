@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.gigeroa.vtv.dao.DaoMarcas;
 import com.gigeroa.vtv.entities.MarcaVehiculo;
+import com.gigeroa.vtv.repositories.DtoMarcas;
 
 @Service
 public class DtoMarcasImpl implements DtoMarcas{
