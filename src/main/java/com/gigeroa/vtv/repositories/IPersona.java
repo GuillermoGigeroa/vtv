@@ -4,6 +4,7 @@ import com.gigeroa.vtv.entities.Dni;
 import com.gigeroa.vtv.exceptions.DniInvalido;
 
 public interface IPersona {
+	String sinDni = "00000000";
 	String sinNombre = "Sin nombre";
 	String sinApellido = "Sin apellido";
 	void setNombre(String nombre);
