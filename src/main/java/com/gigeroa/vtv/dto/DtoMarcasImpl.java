@@ -37,4 +37,10 @@ public class DtoMarcasImpl implements DtoMarcas{
 		return dao.findById(marca.getID()).orElse(null);
 	}
 
+	@Override
+	@Transactional (readOnly = true)
+	public MarcaVehiculo encontrarMarca(int IDMarca) {
+		return dao.findById(IDMarca).orElse(null);
+	}
+
 }

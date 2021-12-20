@@ -8,4 +8,5 @@ public interface DtoMarcas {
 	public void guardar (MarcaVehiculo usuario);
 	public void eliminar (MarcaVehiculo usuario);
 	public MarcaVehiculo encontrarMarca(MarcaVehiculo usuario);
+	public MarcaVehiculo encontrarMarca(int IDMarca);
 }
