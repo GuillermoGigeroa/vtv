@@ -61,14 +61,4 @@ public class DtoVehiculos {
 	public ArrayList<Vehiculo> listarVehiculosPorEstado(Estado estado){
 		return dao.listarVehiculosPorEstado(estado);
 	}
-	
-//	Método para listar las marcas de vehiculos
-	public ArrayList<MarcaVehiculo> listarMarcas() {
-		return dao.listarMarcas();
-	}
-	
-//	Método para listar los modelos segun el ID de la marca
-	public ArrayList<ModeloVehiculo> listarModelos (int ID_Marca) {
-		return dao.listarModelos(ID_Marca);
-	}
 }
