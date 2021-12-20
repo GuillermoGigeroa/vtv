@@ -1,20 +1,24 @@
 package com.gigeroa.vtv.web;
 
 import java.util.ArrayList;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
+import org.springframework.web.bind.annotation.RequestParam;
+import com.gigeroa.vtv.dto.DtoPropietarios;
 import com.gigeroa.vtv.dto.DtoVehiculos;
 import com.gigeroa.vtv.entities.MarcaVehiculo;
 import com.gigeroa.vtv.entities.ModeloVehiculo;
+import com.gigeroa.vtv.entities.Propietario;
 import com.gigeroa.vtv.entities.Vehiculo;
+import com.gigeroa.vtv.exceptions.DniInvalido;
 import com.gigeroa.vtv.services.MatriculasService;
 
 @Controller
 public class VehiculosController {
 	private String titulo;
+	private final String listarVehiculos = "vehiculos/listarVehiculos";
+	private final String agregarVehiculo = "vehiculos/agregarVehiculo";
 	
 	@GetMapping("/listarVehiculos")
 	public String listarVehiculos (Model model) {
@@ -35,44 +39,111 @@ public class VehiculosController {
 		model.addAttribute("matricula2",matricula2);
 		model.addAttribute("existeMatricula2",MatriculasService.existeMatricula(matricula2));
 		
-		return "vehiculos/listarVehiculos";
+		return listarVehiculos;
 	}
 	
 	@GetMapping("/agregarVehiculo")
 	public String agregarVehiculo (Model model) {
-		titulo = "Agregar vehículo";
-		model.addAttribute("titulo",titulo);
+		tituloAgregar(model);
+		listarMarcas(model);
+		marcaNueva(model);
+		return agregarVehiculo;
+	}
+	
+//	Mapeo de la sección /seleccionMarca para continuar con la selección de la marca
+	@GetMapping ("/seleccionMarca")
+	public String seleccionMarca (Model model, @RequestParam int ID) {
+		tituloAgregar(model);
+		listarMarcas(model);
+		listarModelos(model, ID);
+		marcaSelecionada(model, ID);
+		modeloNuevo(model);
+		return agregarVehiculo;
+	}
 
-		DtoVehiculos dto = new DtoVehiculos();
-		
-//		Se trae lista de marcas
-		ArrayList<MarcaVehiculo> listaMarcas = dto.listarMarcas();
-		model.addAttribute("listaMarcas", listaMarcas);
+//	Mapeo de la sección /seleccionModelo para continuar con la selección del modelo
+	@GetMapping ("/seleccionModelo")
+	public String seleccion (Model model, @RequestParam int ID, @RequestParam int idMarca) throws DniInvalido {
+		tituloAgregar(model);
+		listarMarcas(model);
+		listarModelos(model, idMarca);
+		listarPropietarios(model);
+		propietarioNuevo(model);
+		marcaSelecionada(model, idMarca);
+		if (modeloSeleccionado(model, idMarca, ID)) {
+			return agregarVehiculo;
+		}
+		else {
+			return "redirect:/errorID";
+		}
+	}
+	
+//	Mapeo de la sección /seleccionPropietario para continuar con la selección del propietario
+	@GetMapping ("/seleccionPropietario")
+	public String seleccionPropietario (Model model, @RequestParam int idModelo, @RequestParam int idMarca, @RequestParam String nombre) {
+		listarMarcas(model);
+		listarModelos(model, idMarca);
+		marcaSelecionada(model, idMarca);
+		modeloSeleccionado(model, idMarca, idModelo);
+		listarPropietarios(model);
+		try {
+			propietarioSeleccionado(model, Integer.parseInt(nombre));
+		}
+		catch (NumberFormatException e){
+			return "redirect:/errorDni";
+		}
+		return agregarVehiculo;
+	}
+	
+	public void listarPropietarios(Model model) {
+		model.addAttribute("listaPropietarios",(new DtoPropietarios()).listarPropietarios());
+	}
+	
+	public void propietarioNuevo (Model model) throws DniInvalido {
+		model.addAttribute("propietarioSeleccionado",new Propietario());
+	}
 
-//		Se trae lista de los modelos de la marca Chevrolet
-		int ID1 = 14;
-		ArrayList<ModeloVehiculo> listaModelos1 = dto.listarModelos(ID1);
-		model.addAttribute("ID1", ID1);
-		model.addAttribute("listaModelos1", listaModelos1);
+	public boolean propietarioSeleccionado (Model model, int dni) {
+		for (Propietario p : (new DtoPropietarios()).listarPropietarios()) {
+			if (p.getDni().getNumero() == dni) {
+				model.addAttribute("propietarioSeleccionado",p);
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public void marcaNueva(Model model) {
+		model.addAttribute("marcaVehiculo",new MarcaVehiculo());
+	}
 
-//		Se trae lista de los modelos de la marca Fiat
-		int ID2 = 25;
-		ArrayList<ModeloVehiculo> listaModelos2 = dto.listarModelos(ID2);
-		model.addAttribute("listaModelos2", listaModelos2);
-		model.addAttribute("ID2", ID2);
+	public void modeloNuevo(Model model) {
+		model.addAttribute("modeloVehiculo",new ModeloVehiculo());
+	}
 
-//		Se trae lista de los modelos de la marca Ford
-		int ID3 = 26;
-		ArrayList<ModeloVehiculo> listaModelos3 = dto.listarModelos(ID3);
-		model.addAttribute("listaModelos3", listaModelos3);
-		model.addAttribute("ID3", ID3);
+	public boolean modeloSeleccionado(Model model,int IDMarca, int ID) {
+		for (ModeloVehiculo modelo : (new DtoVehiculos()).listarModelos(IDMarca)) {
+			if (modelo.getID() == ID) {
+				model.addAttribute("modeloVehiculo",modelo);
+				return true;
+			}
+		}
+		return false;
+	}
 
-//		Se trae lista de los modelos de la marca Toyota
-		int ID4 = 74;
-		ArrayList<ModeloVehiculo> listaModelos4 = dto.listarModelos(ID4);
-		model.addAttribute("listaModelos4", listaModelos4);
-		model.addAttribute("ID4", ID4);
-		
-		return "vehiculos/agregarVehiculo";
+	public void marcaSelecionada(Model model, int ID) {
+		model.addAttribute("marcaVehiculo",(new DtoVehiculos()).listarMarcas().get(ID-1));
+	}
+	
+	public void tituloAgregar(Model model) {
+		model.addAttribute("titulo", "Agregar vehículo");
+	}
+
+	public void listarMarcas(Model model) {
+		model.addAttribute("listaMarcas",(new DtoVehiculos()).listarMarcas());
+	}
+
+	public void listarModelos(Model model, int IDMarca) {
+		model.addAttribute("listaModelos",(new DtoVehiculos()).listarModelos(IDMarca));
 	}
 }

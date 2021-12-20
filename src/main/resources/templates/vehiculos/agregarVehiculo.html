@@ -4,64 +4,61 @@
 	<body>
 		<header th:replace="layout/estructura :: header"></header>
 		<div th:replace="layout/estructura :: titulo"></div>
-		<div th:if="${listaMarcas != null or listaMarcas.isEmpty}">
-			<div class="container d-flex justify-content-center">
-				<div class="col-md-6">
-					<div class="row mb-3">
-						<select class="form-control">
-							<option selected>Elija la marca</option>
-							<span th:each="marca : ${listaMarcas}">
-								<option>[[${marca.getNombre}]] - [[${marca.getID}]]</option>
-							</span>
-						</select>
-					</div>
-					<div class="row mb-3">
-						<input type="submit" class="btn btn-success" name="btnBuscarModelos" value="Buscar modelos">
-					</div>
-					Ayax?
-					<div class="row mb-3">
-						<b>Modelos del ID [[${ID1}]] - [[${listaMarcas.get(ID1-1)}]]</b>
-						<select class="form-control">
-							<option selected>Modelos</option>
-							<div th:if="${listaModelos1 != null or listaModelos1.isEmpty}">
-								<span th:each="modelo : ${listaModelos1}">
-									<option th:text="${modelo}"></option>
-								</span>
-							</div>
-						</select>
-					</div>
-					<div class="row mb-3">
-						<b>Modelos del ID [[${ID2}]] - [[${listaMarcas.get(ID2-1)}]]</b>
-						<select class="form-control">
-							<option selected>Modelos</option>
-							<div th:if="${listaModelos2 != null or listaModelos2.isEmpty}">
-								<span th:each="modelo : ${listaModelos2}">
-									<option th:text="${modelo}"></option>
-								</span>
-							</div>
-						</select>
-					</div>
-					<div class="row mb-3">
-						<b>Modelos del ID [[${ID3}]] - [[${listaMarcas.get(ID3-1)}]]</b>
-						<select class="form-control">
-							<option selected>Modelos</option>
-							<div th:if="${listaModelos3 != null or listaModelos3.isEmpty}">
-								<span th:each="modelo : ${listaModelos3}">
-									<option th:text="${modelo}"></option>
-								</span>
-							</div>
-						</select>
-					</div>
-					<div class="row mb-3">
-						<b>Modelos del ID [[${ID4}]] - [[${listaMarcas.get(ID4-1)}]]</b>
-						<select class="form-control">
-							<option selected>Modelos</option>
-							<div th:if="${listaModelos4 != null or listaModelos4.isEmpty}">
-								<span th:each="modelo : ${listaModelos4}">
-									<option th:text="${modelo}"></option>
-								</span>
-							</div>
-						</select>
+		<div th:if="${listaMarcas != null}">
+			<div class="d-flex justify-content-center text-center">
+				<div class="container-md-12" style="max-width: 90%;">
+					<div class="col-md-8 form-control">
+						<div class="row" th:if="${marcaVehiculo != null}">
+							<h5><i><b>Seleccione una marca</b></i></h5>
+							<form method="get" th:action="@{/seleccionMarca}" th:object="${marcaVehiculo}">
+								<div class="input-group">
+									<select class="form-select" th:field="*{ID}" required>
+										<span th:each="marca : ${listaMarcas}">
+											<option th:value="${marca.getID}" th:text="${marca.getNombre}"></option>
+										</span>
+									</select>
+									<input type="submit" class="btn btn-outline-secondary" name="seleccionarMarca" value="Seleccionar">
+								</div>
+							</form>
+						</div>
+						<div class="row pt-2" th:if="${marcaVehiculo != null}">
+							<p th:if="${marcaVehiculo.getID != -1}">Marca seleccionada: <b>[[${marcaVehiculo.getNombre}]]</b></p>
+						</div>
+						<div class="row" th:if="${modeloVehiculo != null and listaModelos != null}">
+							<h5><i><b>Seleccione un modelo</b></i></h5>
+							<form method="get" th:action="@{/seleccionModelo}" th:object="${modeloVehiculo}">
+								<div class="input-group">
+									<input type="hidden" name="idMarca" th:value="${marcaVehiculo.getID}"/>
+									<select class="form-select" th:field="*{ID}" required>
+										<span th:each="modelo : ${listaModelos}">
+											<option th:value="${modelo.getID}" th:text="${modelo.getNombre}"></option>
+										</span>
+									</select>
+									<input type="submit" class="btn btn-outline-secondary" name="seleccionarModelo" value="Seleccionar">
+								</div>
+							</form>
+						</div>
+						<div class="row pt-2" th:if="${modeloVehiculo != null}">
+							<p th:if="${modeloVehiculo.getID != -1}">Modelo seleccionado: <b>[[${modeloVehiculo.getNombre}]]</b></p>
+						</div>
+						<div th:if="${listaPropietarios != null and propietarioSeleccionado != null}">
+							<h5><i><b>Seleccione el propietario</b></i></h5>
+							<form method="get" th:action="@{/seleccionPropietario}" th:object="${propietarioSeleccionado}">
+								<div class="input-group">
+									<input type="hidden" name="idMarca" th:value="${marcaVehiculo.getID}"/>
+									<input type="hidden" name="idModelo" th:value="${modeloVehiculo.getID}"/>
+									<select class="form-select" th:field="*{nombre}" required>
+										<span th:each="propietario : ${listaPropietarios}">
+											<option th:value="${propietario.getDni.getNumero}">[[${propietario.getNombre}]] - DNI [[${propietario.getDni.getNumero}]]</option>
+										</span>
+									</select>
+									<input type="submit" class="btn btn-outline-secondary" name="seleccionarPropietario" value="Seleccionar">
+								</div>
+							</form>
+						</div>
+						<div class="row pt-2" th:if="${propietarioSeleccionado != null}">
+							<p th:if="${propietarioSeleccionado.getNombre != T(com.gigeroa.vtv.repositories.IPersona).sinNombre}">Propietario seleccionado: <b>[[${propietarioSeleccionado.getNombre}]] - DNI [[${propietarioSeleccionado.getDni.getNumero}]]</b></p>
+						</div>
 					</div>
 				</div>
 			</div>

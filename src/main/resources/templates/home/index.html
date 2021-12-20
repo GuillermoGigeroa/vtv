@@ -4,62 +4,6 @@
 <body class="text-center">
 	<header th:replace="layout/estructura :: header"></header>
 	<div th:replace="layout/estructura :: titulo"></div>
-	<hr>
-	<h4><b>Prueba de lista de marcas</b></h4>
-	<hr>
-	<div class="d-flex justify-content-center" th:if="${listaMarcas != null}">
-		<div>
-			<div class="col form-control">
-				<div class="row" th:if="${marcaVehiculo != null}">
-					<h5><i><b>Seleccione una marca</b></i></h5>
-					<form method="get" th:action="@{/seleccionMarca}" th:object="${marcaVehiculo}">
-						<div class="input-group">
-							<select class="form-select" th:field="*{ID}" required>
-								<span th:each="marca : ${listaMarcas}">
-									<option th:value="${marca.getID}" th:text="${marca.getNombre}"></option>
-								</span>
-							</select>
-							<input type="submit" class="btn btn-outline-secondary" name="seleccionarMarca" value="Seleccionar">
-						</div>
-					</form>
-				</div>
-				<div class="row pt-2" th:if="${marcaVehiculo != null}">
-					<p th:if="${marcaVehiculo.getID != -1}">Marca seleccionada: <b>[[${marcaVehiculo.getNombre}]]</b></p>
-				</div>
-				<div class="row" th:if="${modeloVehiculo != null and listaModelos != null}">
-					<h5><i><b>Seleccione un modelo</b></i></h5>
-					<form method="get" th:action="@{/seleccionModelo}" th:object="${modeloVehiculo}">
-						<div class="input-group">
-							<input type="hidden" name="idMarca" th:value="${marcaVehiculo.getID}"/>
-							<select class="form-select" th:field="*{ID}" required>
-								<span th:each="modelo : ${listaModelos}">
-									<option th:value="${modelo.getID}" th:text="${modelo.getNombre}"></option>
-								</span>
-							</select>
-							<input type="submit" class="btn btn-outline-secondary" name="seleccionarModelo" value="Seleccionar">
-						</div>
-					</form>
-				</div>
-				<div class="row pt-2" th:if="${modeloVehiculo != null}">
-					<p th:if="${modeloVehiculo.getID != -1}">Modelo seleccionado: <b>[[${modeloVehiculo.getNombre}]]</b></p>
-				</div>
-				<div class="row" th:if="${modeloVehiculo != null and 1 == 2}">
-					<h5><i><b>Seleccione un modelo</b></i></h5>
-					<form method="get" th:action="@{/seleccionModelo}" th:object="${modeloVehiculo}">
-						<div class="input-group">
-							<select class="form-select" th:field="*{ID}" required>
-								<span th:each="modelo : ${listaModelos}">
-									<option th:value="${modelo.getID}" th:text="${modelo.getNombre}"></option>
-								</span>
-							</select>
-							<input type="submit" class="btn btn-outline-secondary" name="seleccionarModelo" value="Seleccionar">
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-	<hr>
 	<script	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
