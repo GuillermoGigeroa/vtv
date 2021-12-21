@@ -1,38 +1,5 @@
-/*
- Navicat Premium Data Transfer
-
- Source Server         : MySQL80
- Source Server Type    : MySQL
- Source Server Version : 80026
- Source Host           : localhost:3306
- Source Schema         : vtv
-
- Target Server Type    : MySQL
- Target Server Version : 80026
- File Encoding         : 65001
-
- Date: 20/12/2021 18:03:58
-*/
-
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
-
--- ----------------------------
--- Table structure for estados
--- ----------------------------
-DROP TABLE IF EXISTS `estados`;
-CREATE TABLE `estados`  (
-  `ID` int(0) NOT NULL AUTO_INCREMENT,
-  `Nombre` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  PRIMARY KEY (`ID`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of estados
--- ----------------------------
-INSERT INTO `estados` VALUES (1, 'Apto');
-INSERT INTO `estados` VALUES (2, 'Condicional');
-INSERT INTO `estados` VALUES (3, 'Rechazado');
 
 -- ----------------------------
 -- Table structure for inspecciones
@@ -44,9 +11,7 @@ CREATE TABLE `inspecciones`  (
   `LegajoInspector` bigint(0) NOT NULL,
   `Estado` int(0) NOT NULL,
   `FechaVencimiento` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  PRIMARY KEY (`Numero`) USING BTREE,
-  INDEX `fk_Inspecciones_Inspectores_1`(`LegajoInspector`) USING BTREE,
-  INDEX `fk_Inspecciones_Estados_1`(`Estado`) USING BTREE
+  PRIMARY KEY (`Numero`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -80,33 +45,32 @@ DROP TABLE IF EXISTS `inspecciones_x_vehiculo`;
 CREATE TABLE `inspecciones_x_vehiculo`  (
   `ID_Inspeccion` int(0) NOT NULL,
   `ID_Vehiculo` int(0) NOT NULL,
-  PRIMARY KEY (`ID_Inspeccion`, `ID_Vehiculo`) USING BTREE,
-  INDEX `fk_Inspecciones_x_Vehiculo_Vehiculos_1`(`ID_Vehiculo`) USING BTREE
+  PRIMARY KEY (`ID_Inspeccion`, `ID_Vehiculo`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of inspecciones_x_vehiculo
 -- ----------------------------
-INSERT INTO `inspecciones_x_vehiculo` VALUES (5, 1);
-INSERT INTO `inspecciones_x_vehiculo` VALUES (15, 1);
-INSERT INTO `inspecciones_x_vehiculo` VALUES (3, 2);
-INSERT INTO `inspecciones_x_vehiculo` VALUES (7, 2);
-INSERT INTO `inspecciones_x_vehiculo` VALUES (13, 2);
-INSERT INTO `inspecciones_x_vehiculo` VALUES (17, 2);
 INSERT INTO `inspecciones_x_vehiculo` VALUES (1, 3);
-INSERT INTO `inspecciones_x_vehiculo` VALUES (11, 3);
 INSERT INTO `inspecciones_x_vehiculo` VALUES (2, 5);
+INSERT INTO `inspecciones_x_vehiculo` VALUES (3, 2);
 INSERT INTO `inspecciones_x_vehiculo` VALUES (4, 5);
-INSERT INTO `inspecciones_x_vehiculo` VALUES (9, 5);
-INSERT INTO `inspecciones_x_vehiculo` VALUES (12, 5);
-INSERT INTO `inspecciones_x_vehiculo` VALUES (14, 5);
-INSERT INTO `inspecciones_x_vehiculo` VALUES (19, 5);
+INSERT INTO `inspecciones_x_vehiculo` VALUES (5, 1);
 INSERT INTO `inspecciones_x_vehiculo` VALUES (6, 6);
-INSERT INTO `inspecciones_x_vehiculo` VALUES (16, 6);
-INSERT INTO `inspecciones_x_vehiculo` VALUES (10, 8);
-INSERT INTO `inspecciones_x_vehiculo` VALUES (20, 8);
+INSERT INTO `inspecciones_x_vehiculo` VALUES (7, 2);
 INSERT INTO `inspecciones_x_vehiculo` VALUES (8, 9);
+INSERT INTO `inspecciones_x_vehiculo` VALUES (9, 5);
+INSERT INTO `inspecciones_x_vehiculo` VALUES (10, 8);
+INSERT INTO `inspecciones_x_vehiculo` VALUES (11, 3);
+INSERT INTO `inspecciones_x_vehiculo` VALUES (12, 5);
+INSERT INTO `inspecciones_x_vehiculo` VALUES (13, 2);
+INSERT INTO `inspecciones_x_vehiculo` VALUES (14, 5);
+INSERT INTO `inspecciones_x_vehiculo` VALUES (15, 1);
+INSERT INTO `inspecciones_x_vehiculo` VALUES (16, 6);
+INSERT INTO `inspecciones_x_vehiculo` VALUES (17, 2);
 INSERT INTO `inspecciones_x_vehiculo` VALUES (18, 9);
+INSERT INTO `inspecciones_x_vehiculo` VALUES (19, 5);
+INSERT INTO `inspecciones_x_vehiculo` VALUES (20, 8);
 
 -- ----------------------------
 -- Table structure for inspectores
@@ -235,7 +199,7 @@ CREATE TABLE `modelos`  (
   `ID` int(0) NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`ID`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1008 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1009 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of modelos
@@ -2330,423 +2294,21 @@ DROP TABLE IF EXISTS `vehiculos_x_propietario`;
 CREATE TABLE `vehiculos_x_propietario`  (
   `ID_Vehiculo` int(0) NOT NULL,
   `DNI_Propietario` bigint(0) NOT NULL,
-  PRIMARY KEY (`ID_Vehiculo`) USING BTREE,
-  INDEX `fk_Vehiculos_x_Propietario_Propietarios_1`(`DNI_Propietario`) USING BTREE
+  PRIMARY KEY (`ID_Vehiculo`, `DNI_Propietario`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of vehiculos_x_propietario
 -- ----------------------------
-INSERT INTO `vehiculos_x_propietario` VALUES (6, 11111110);
-INSERT INTO `vehiculos_x_propietario` VALUES (8, 11111120);
+INSERT INTO `vehiculos_x_propietario` VALUES (1, 66666660);
 INSERT INTO `vehiculos_x_propietario` VALUES (2, 22222220);
 INSERT INTO `vehiculos_x_propietario` VALUES (3, 33333330);
-INSERT INTO `vehiculos_x_propietario` VALUES (5, 44444440);
 INSERT INTO `vehiculos_x_propietario` VALUES (4, 55555550);
-INSERT INTO `vehiculos_x_propietario` VALUES (1, 66666660);
+INSERT INTO `vehiculos_x_propietario` VALUES (5, 44444440);
+INSERT INTO `vehiculos_x_propietario` VALUES (6, 11111110);
 INSERT INTO `vehiculos_x_propietario` VALUES (7, 77777770);
-INSERT INTO `vehiculos_x_propietario` VALUES (10, 88888880);
+INSERT INTO `vehiculos_x_propietario` VALUES (8, 11111120);
 INSERT INTO `vehiculos_x_propietario` VALUES (9, 99999990);
-
--- ----------------------------
--- Procedure structure for SP_AgregarEstado
--- ----------------------------
-DROP PROCEDURE IF EXISTS `SP_AgregarEstado`;
-delimiter ;;
-CREATE PROCEDURE `SP_AgregarEstado`(IN IDUnico int, IN Estado VARCHAR(255))
-BEGIN
-	INSERT INTO Estados (ID, Nombre)
-	VALUES (IDUnico, Estado);
-END
-;;
-delimiter ;
-
--- ----------------------------
--- Procedure structure for SP_AgregarInspeccion
--- ----------------------------
-DROP PROCEDURE IF EXISTS `SP_AgregarInspeccion`;
-delimiter ;;
-CREATE PROCEDURE `SP_AgregarInspeccion`(IN Fecha VARCHAR(255), IN FechaVencimiento VARCHAR(255) , IN DNIInspector bigint, IN IDEstado int, IN IDVehiculo int)
-BEGIN
-	INSERT INTO Inspecciones (Fecha, FechaVencimiento, DNI_Inspector, ID_Estado, Baja)
-	VALUES (Fecha, FechaVencimiento, DNIInspector, IDEstado, 0);
-	INSERT INTO Inspecciones_x_Vehiculo (ID_Inspeccion, ID_Vehiculo)
-	VALUES (LAST_INSERT_ID(),IDVehiculo);
-END
-;;
-delimiter ;
-
--- ----------------------------
--- Procedure structure for SP_AgregarInspector
--- ----------------------------
-DROP PROCEDURE IF EXISTS `SP_AgregarInspector`;
-delimiter ;;
-CREATE PROCEDURE `SP_AgregarInspector`(IN DNI bigint, IN NombreInspector VARCHAR(255))
-BEGIN
-	INSERT INTO Inspectores (DNI, Nombre, Baja)
-	VALUES (DNI, NombreInspector, 0);
-END
-;;
-delimiter ;
-
--- ----------------------------
--- Procedure structure for SP_AgregarMarca
--- ----------------------------
-DROP PROCEDURE IF EXISTS `SP_AgregarMarca`;
-delimiter ;;
-CREATE PROCEDURE `SP_AgregarMarca`(IN IDMarca int, IN NombreMarca VARCHAR(255))
-BEGIN
-	INSERT INTO Marcas (ID, Nombre)
-	VALUES (IDMarca, NombreMarca);
-END
-;;
-delimiter ;
-
--- ----------------------------
--- Procedure structure for SP_AgregarModelo
--- ----------------------------
-DROP PROCEDURE IF EXISTS `SP_AgregarModelo`;
-delimiter ;;
-CREATE PROCEDURE `SP_AgregarModelo`(IN IDMarca int, IN IDModelo int, IN NombreModelo VARCHAR(255))
-BEGIN
-	INSERT INTO Modelos (ID, Nombre)
-	VALUES (IDModelo, NombreModelo);
-	INSERT INTO Modelos_x_Marca (ID_Marca, ID_Modelo)
-	VALUES (IDMarca, IDModelo);
-END
-;;
-delimiter ;
-
--- ----------------------------
--- Procedure structure for SP_AgregarPropietario
--- ----------------------------
-DROP PROCEDURE IF EXISTS `SP_AgregarPropietario`;
-delimiter ;;
-CREATE PROCEDURE `SP_AgregarPropietario`(IN DNI bigint, IN NombrePropietario VARCHAR(255), IN EsExento bit)
-BEGIN
-	INSERT INTO Propietarios (DNI, Nombre, Exento, Baja)
-	VALUES (DNI, NombrePropietario, EsExento, 0);
-END
-;;
-delimiter ;
-
--- ----------------------------
--- Procedure structure for SP_AgregarVehiculo
--- ----------------------------
-DROP PROCEDURE IF EXISTS `SP_AgregarVehiculo`;
-delimiter ;;
-CREATE PROCEDURE `SP_AgregarVehiculo`(IN DominioV VARCHAR(255), IN MarcaV VARCHAR(255), IN ModeloV VARCHAR(255), IN DNIPropietario bigint)
-BEGIN
-	INSERT INTO Vehiculos (Dominio,Marca,Modelo,Baja)
-	VALUES (DominioV,MarcaV,ModeloV,0);
-	INSERT INTO Vehiculos_x_Propietario (ID_Vehiculo,DNI_Propietario)
-	VALUES (LAST_INSERT_ID(),DNIPropietario);
-END
-;;
-delimiter ;
-
--- ----------------------------
--- Procedure structure for SP_BajaLogicaInspeccion
--- ----------------------------
-DROP PROCEDURE IF EXISTS `SP_BajaLogicaInspeccion`;
-delimiter ;;
-CREATE PROCEDURE `SP_BajaLogicaInspeccion`(IN ID int, IN Estado bit)
-BEGIN
-	UPDATE Inspecciones as I
-	SET Baja = Estado
-	WHERE I.ID = ID;
-END
-;;
-delimiter ;
-
--- ----------------------------
--- Procedure structure for SP_BajaLogicaInspector
--- ----------------------------
-DROP PROCEDURE IF EXISTS `SP_BajaLogicaInspector`;
-delimiter ;;
-CREATE PROCEDURE `SP_BajaLogicaInspector`(IN DNI bigint, IN Estado bit)
-BEGIN
-	UPDATE Inspectores as I
-	SET Baja = Estado
-	WHERE I.DNI = DNI;
-END
-;;
-delimiter ;
-
--- ----------------------------
--- Procedure structure for SP_BajaLogicaPropietario
--- ----------------------------
-DROP PROCEDURE IF EXISTS `SP_BajaLogicaPropietario`;
-delimiter ;;
-CREATE PROCEDURE `SP_BajaLogicaPropietario`(IN DNI bigint, IN Estado bit)
-BEGIN
-	UPDATE Propietarios as P
-	SET Baja = Estado
-	WHERE P.DNI = DNI;
-END
-;;
-delimiter ;
-
--- ----------------------------
--- Procedure structure for SP_BajaLogicaVehiculo
--- ----------------------------
-DROP PROCEDURE IF EXISTS `SP_BajaLogicaVehiculo`;
-delimiter ;;
-CREATE PROCEDURE `SP_BajaLogicaVehiculo`(IN ID int, IN Estado bit)
-BEGIN
-	UPDATE Vehiculos as V
-	SET Baja = Estado
-	WHERE V.ID = ID;
-END
-;;
-delimiter ;
-
--- ----------------------------
--- Procedure structure for SP_ListarInspecciones
--- ----------------------------
-DROP PROCEDURE IF EXISTS `SP_ListarInspecciones`;
-delimiter ;;
-CREATE PROCEDURE `SP_ListarInspecciones`()
-BEGIN
-	SELECT I.ID as NumeroInspeccion, I.Fecha, I.FechaVencimiento, I.ID_Estado as Estado, Ins.DNI as DNIInspector, Ins.Nombre as Inspector, V.Dominio, V.Marca, V.Modelo, V.ID as IDVehiculo, P.DNI as DNIPropietario, P.Nombre as NombrePropietario, P.Exento
-	FROM Vehiculos as V
-	LEFT JOIN Inspecciones_x_Vehiculo as IXV
-	ON IXV.ID_Vehiculo = V.ID
-	LEFT JOIN Inspecciones as I
-	ON I.ID = IXV.ID_Inspeccion
-	LEFT JOIN Inspectores as Ins
-	ON Ins.DNI = I.DNI_Inspector
-	LEFT JOIN Vehiculos_x_Propietario as VXP
-	ON V.ID = VXP.ID_Vehiculo
-	LEFT JOIN Propietarios as P
-	ON VXP.DNI_Propietario = P.DNI
-	WHERE I.Baja = 0;
-END
-;;
-delimiter ;
-
--- ----------------------------
--- Procedure structure for SP_ListarInspeccionesPorFecha
--- ----------------------------
-DROP PROCEDURE IF EXISTS `SP_ListarInspeccionesPorFecha`;
-delimiter ;;
-CREATE PROCEDURE `SP_ListarInspeccionesPorFecha`(IN Fecha VARCHAR(255))
-BEGIN
-	SELECT I.ID as NumeroInspeccion, I.Fecha, I.FechaVencimiento, I.ID_Estado as Estado, Ins.DNI as DNIInspector, Ins.Nombre as Inspector, V.Dominio, V.Marca, V.Modelo, V.ID as IDVehiculo, P.DNI as DNIPropietario, P.Nombre as NombrePropietario, P.Exento
-	FROM Vehiculos as V
-	LEFT JOIN Inspecciones_x_Vehiculo as IXV
-	ON IXV.ID_Vehiculo = V.ID
-	LEFT JOIN Inspecciones as I
-	ON I.ID = IXV.ID_Inspeccion
-	LEFT JOIN Inspectores as Ins
-	ON Ins.DNI = I.DNI_Inspector
-	LEFT JOIN Vehiculos_x_Propietario as VXP
-	ON V.ID = VXP.ID_Vehiculo
-	LEFT JOIN Propietarios as P
-	ON VXP.DNI_Propietario = P.DNI
-	WHERE I.Fecha = Fecha AND I.Baja = 0;
-END
-;;
-delimiter ;
-
--- ----------------------------
--- Procedure structure for SP_ListarInspeccionesPorPropietario
--- ----------------------------
-DROP PROCEDURE IF EXISTS `SP_ListarInspeccionesPorPropietario`;
-delimiter ;;
-CREATE PROCEDURE `SP_ListarInspeccionesPorPropietario`(IN DNI bigint)
-BEGIN
-	SELECT P.DNI as DNIPropietario, P.Nombre as NombrePropietario, P.Exento, V.ID as IDVehiculo, V.Dominio, V.Marca, V.Modelo, E.ID as Estado, I.ID as NumeroInspeccion, I.Fecha, I.FechaVencimiento, Ins.DNI as DNIInspector, Ins.Nombre as Inspector
-	FROM Inspecciones as I
-	LEFT JOIN Inspecciones_x_Vehiculo as IXV
-	ON I.ID = IXV.ID_Inspeccion
-	LEFT JOIN Estados as E
-	ON I.ID_Estado = E.ID
-	LEFT JOIN Vehiculos as V
-	ON IXV.ID_Vehiculo = V.ID
-	LEFT JOIN Vehiculos_x_Propietario as VXP
-	ON V.ID = VXP.ID_Vehiculo
-	LEFT JOIN Propietarios as P
-	ON P.DNI = VXP.DNI_Propietario
-	LEFT JOIN Inspectores as Ins
-	ON I.DNI_Inspector = Ins.DNI
-	WHERE P.DNI = DNI;
-END
-;;
-delimiter ;
-
--- ----------------------------
--- Procedure structure for SP_ListarInspectores
--- ----------------------------
-DROP PROCEDURE IF EXISTS `SP_ListarInspectores`;
-delimiter ;;
-CREATE PROCEDURE `SP_ListarInspectores`()
-BEGIN
-	SELECT I.DNI, I.Nombre
-	FROM Inspectores as I
-	WHERE I.Baja = 0;
-END
-;;
-delimiter ;
-
--- ----------------------------
--- Procedure structure for SP_ListarMarcas
--- ----------------------------
-DROP PROCEDURE IF EXISTS `SP_ListarMarcas`;
-delimiter ;;
-CREATE PROCEDURE `SP_ListarMarcas`()
-BEGIN
-	SELECT Marcas.ID as IDMarca, Marcas.Nombre as NombreMarca	FROM Marcas;
-END
-;;
-delimiter ;
-
--- ----------------------------
--- Procedure structure for SP_ListarModelos
--- ----------------------------
-DROP PROCEDURE IF EXISTS `SP_ListarModelos`;
-delimiter ;;
-CREATE PROCEDURE `SP_ListarModelos`(IN IDMarca int)
-BEGIN
-	SELECT M.ID as IDModelo, M.Nombre as NombreModelo
-	FROM Modelos as M
-	LEFT JOIN Modelos_x_Marca as MXM
-	ON MXM.ID_Modelo = M.ID
-	WHERE MXM.ID_Marca = IDMarca;
-END
-;;
-delimiter ;
-
--- ----------------------------
--- Procedure structure for SP_ListarPropietarios
--- ----------------------------
-DROP PROCEDURE IF EXISTS `SP_ListarPropietarios`;
-delimiter ;;
-CREATE PROCEDURE `SP_ListarPropietarios`()
-BEGIN
-	SELECT DNI, Nombre, Exento
-	FROM Propietarios;
-END
-;;
-delimiter ;
-
--- ----------------------------
--- Procedure structure for SP_ListarVehiculos
--- ----------------------------
-DROP PROCEDURE IF EXISTS `SP_ListarVehiculos`;
-delimiter ;;
-CREATE PROCEDURE `SP_ListarVehiculos`()
-BEGIN
-	SELECT V.ID as IDVehiculo, V.Dominio, V.Marca, V.Modelo, P.DNI as DNIPropietario, P.Nombre as NombrePropietario, P.Exento
-	FROM Vehiculos as V
-	LEFT JOIN Vehiculos_x_Propietario as VXP
-	ON V.ID = VXP.ID_Vehiculo
-	LEFT JOIN Propietarios as P
-	ON VXP.DNI_Propietario = P.DNI
-	WHERE V.Baja = 0;
-END
-;;
-delimiter ;
-
--- ----------------------------
--- Procedure structure for SP_ListarVehiculosPorEstado
--- ----------------------------
-DROP PROCEDURE IF EXISTS `SP_ListarVehiculosPorEstado`;
-delimiter ;;
-CREATE PROCEDURE `SP_ListarVehiculosPorEstado`(IN ID int)
-BEGIN
-	SELECT V.ID as IDVehiculo, V.Dominio, V.Marca, V.Modelo, E.ID as IDEstado, P.DNI as DNIPropietario, P.Nombre as NombrePropietario, P.Exento
-	FROM Inspecciones as I
-	LEFT JOIN Inspecciones_x_Vehiculo as IXV
-	ON I.ID = IXV.ID_Inspeccion
-	LEFT JOIN Estados as E
-	ON I.ID_Estado = E.ID
-	LEFT JOIN Vehiculos as V
-	ON IXV.ID_Vehiculo = V.ID
-	LEFT JOIN Vehiculos_x_Propietario as VXP
-	ON V.ID = VXP.ID_Vehiculo
-	LEFT JOIN Propietarios as P
-	ON VXP.DNI_Propietario = P.DNI
-	WHERE I.ID_Estado = ID;
-END
-;;
-delimiter ;
-
--- ----------------------------
--- Procedure structure for SP_ListarVehiculosPorPropietario
--- ----------------------------
-DROP PROCEDURE IF EXISTS `SP_ListarVehiculosPorPropietario`;
-delimiter ;;
-CREATE PROCEDURE `SP_ListarVehiculosPorPropietario`(IN DNIPropietario bigint)
-BEGIN
-	SELECT V.ID as IDVehiculo, V.Dominio, V.Marca, V.Modelo, P.DNI as DNIPropietario, P.Nombre as NombrePropietario, P.Exento
-	FROM Vehiculos as V
-	LEFT JOIN Vehiculos_x_Propietario as VXP
-	ON V.ID = VXP.ID_Vehiculo
-	LEFT JOIN Propietarios as P
-	ON VXP.DNI_Propietario = P.DNI
-	WHERE VXP.DNI_Propietario = DNIPropietario AND V.Baja = 0;
-END
-;;
-delimiter ;
-
--- ----------------------------
--- Procedure structure for SP_ModificarInspeccion
--- ----------------------------
-DROP PROCEDURE IF EXISTS `SP_ModificarInspeccion`;
-delimiter ;;
-CREATE PROCEDURE `SP_ModificarInspeccion`(IN ID int, IN NuevaFecha VARCHAR(255), IN NuevaFechaVencimiento VARCHAR(255), IN NuevoDNIInspector bigint, IN NuevoIDEstado int, IN NuevoIDVehiculo int)
-BEGIN
-	UPDATE Inspecciones as I
-	SET Fecha = NuevaFecha, FechaVencimiento = NuevaFechaVencimiento, DNI_Inspector = NuevoDNIInspector, ID_Estado = NuevoIDEstado
-	WHERE I.ID = ID;
-	UPDATE Inspecciones_x_Vehiculo as IXV
-	SET IXV.ID_Vehiculo = NuevoIDVehiculo
-	WHERE IXV.ID_Inspeccion = ID;
-END
-;;
-delimiter ;
-
--- ----------------------------
--- Procedure structure for SP_ModificarInspector
--- ----------------------------
-DROP PROCEDURE IF EXISTS `SP_ModificarInspector`;
-delimiter ;;
-CREATE PROCEDURE `SP_ModificarInspector`(IN DNI bigint, IN NuevoNombre VARCHAR(255))
-BEGIN
-	UPDATE Inspectores as I
-	SET Nombre = NuevoNombre
-	WHERE I.DNI = DNI;
-END
-;;
-delimiter ;
-
--- ----------------------------
--- Procedure structure for SP_ModificarPropietario
--- ----------------------------
-DROP PROCEDURE IF EXISTS `SP_ModificarPropietario`;
-delimiter ;;
-CREATE PROCEDURE `SP_ModificarPropietario`(IN DNI bigint, IN NuevoNombre VARCHAR(255), IN NuevoExento bit)
-BEGIN
-	UPDATE Propietarios as P
-	SET Nombre = NuevoNombre, Exento = NuevoExento
-	WHERE P.DNI = DNI;
-END
-;;
-delimiter ;
-
--- ----------------------------
--- Procedure structure for SP_ModificarVehiculo
--- ----------------------------
-DROP PROCEDURE IF EXISTS `SP_ModificarVehiculo`;
-delimiter ;;
-CREATE PROCEDURE `SP_ModificarVehiculo`(IN ID int, IN NuevoDominio VARCHAR(255), IN NuevaMarca VARCHAR(255), IN NuevoModelo VARCHAR(255))
-BEGIN
-	UPDATE Vehiculos as V
-	SET Dominio = NuevoDominio, Marca = NuevaMarca, Modelo = NuevoModelo
-	WHERE V.ID = ID;
-END
-;;
-delimiter ;
+INSERT INTO `vehiculos_x_propietario` VALUES (10, 88888880);
 
 SET FOREIGN_KEY_CHECKS = 1;
