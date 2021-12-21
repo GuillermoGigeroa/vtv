@@ -16,12 +16,14 @@
 					<div class="input-group mb-3">
 					  <span class="input-group-text">Nombre</span>
 					  <input type="text" class="form-control" value=""  required>
+<!-- 					  <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></span> -->
 					</div>
 				</div>
 				<div class="row">
 					<div class="input-group mb-3">
 					  <span class="input-group-text">Apellido</span>
 					  <input type="text" class="form-control"  required>
+<!-- 					  <span th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></span> -->
 					</div>
 				</div>
 				<div class="row">
