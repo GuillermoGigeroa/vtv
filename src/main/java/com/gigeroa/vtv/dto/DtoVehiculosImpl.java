@@ -62,4 +62,11 @@ public class DtoVehiculosImpl implements DtoVehiculos {
 		return null;
 	}
 
+	@Override
+	@Transactional (readOnly = true)
+	public Vehiculo buscarPorInspeccion(int inspeccion) {
+		int idVehiculo = daoVXP.findById(inspeccion).orElse(null).getId_vehiculo();
+		return dao.findById(idVehiculo).orElse(null);
+	}
+
 }

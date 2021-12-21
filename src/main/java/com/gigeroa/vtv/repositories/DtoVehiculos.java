@@ -11,4 +11,5 @@ public interface DtoVehiculos {
 	Vehiculo buscar(Vehiculo vehiculo);
 	Vehiculo buscar(int id);
 	Vehiculo buscarPorPropietario(int dni);
+	Vehiculo buscarPorInspeccion(int inspeccion);
 }
