@@ -10,4 +10,5 @@ public interface DtoPropietarios {
 	void eliminar (Propietario propietario);
 	Propietario encontrarPropietario(Propietario propietario);
 	Propietario encontrarPropietario(int dni);
+	Propietario buscarPorVehiculo(int id);
 }
