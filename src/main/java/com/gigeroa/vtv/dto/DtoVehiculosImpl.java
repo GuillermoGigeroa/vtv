@@ -1,7 +1,7 @@
 package com.gigeroa.vtv.dto;
 
 import java.util.List;
-import com.gigeroa.vtv.dao.DaoVehiculos2;
+import com.gigeroa.vtv.dao.DaoVehiculos;
 import com.gigeroa.vtv.dao.DaoVehiculos_x_Propietario;
 import com.gigeroa.vtv.entities.*;
 import com.gigeroa.vtv.repositories.DtoVehiculos;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 public class DtoVehiculosImpl implements DtoVehiculos {
 	
 	@Autowired
-	DaoVehiculos2 dao;
+	DaoVehiculos dao;
 	
 	@Autowired
 	DaoVehiculos_x_Propietario daoVXP;
