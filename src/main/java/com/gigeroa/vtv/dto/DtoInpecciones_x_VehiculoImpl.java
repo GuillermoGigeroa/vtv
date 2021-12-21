@@ -3,11 +3,13 @@ package com.gigeroa.vtv.dto;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.gigeroa.vtv.dao.DaoInspecciones_x_Vehiculo;
 import com.gigeroa.vtv.entities.Inspecciones_x_Vehiculo;
 import com.gigeroa.vtv.repositories.DtoInpecciones_x_Vehiculo;
 
+@Service
 public class DtoInpecciones_x_VehiculoImpl implements DtoInpecciones_x_Vehiculo{
 	@Autowired
 	DaoInspecciones_x_Vehiculo dao;
