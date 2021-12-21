@@ -2,6 +2,7 @@ package com.gigeroa.vtv.dto;
 
 import com.gigeroa.vtv.dao.DaoInspecciones;
 import com.gigeroa.vtv.entities.*;
+import com.gigeroa.vtv.repositories.DtoInspecciones;
 
 import java.util.ArrayList;
 import java.util.List;

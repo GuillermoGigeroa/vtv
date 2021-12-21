@@ -1,4 +1,4 @@
-package com.gigeroa.vtv.dto;
+package com.gigeroa.vtv.repositories;
 
 import java.util.ArrayList;
 import java.util.List;

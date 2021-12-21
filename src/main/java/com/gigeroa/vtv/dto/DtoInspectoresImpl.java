@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.gigeroa.vtv.dao.DaoInspectores;
 import com.gigeroa.vtv.entities.Inspector;
+import com.gigeroa.vtv.repositories.DtoInspectores;
 
 @Service
 public class DtoInspectoresImpl implements DtoInspectores{

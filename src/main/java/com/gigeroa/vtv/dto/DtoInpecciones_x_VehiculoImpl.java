@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import com.gigeroa.vtv.dao.DaoInspecciones_x_Vehiculo;
 import com.gigeroa.vtv.entities.Inspecciones_x_Vehiculo;
+import com.gigeroa.vtv.repositories.DtoInpecciones_x_Vehiculo;
 
 public class DtoInpecciones_x_VehiculoImpl implements DtoInpecciones_x_Vehiculo{
 	@Autowired

@@ -3,6 +3,8 @@ package com.gigeroa.vtv.dto;
 import com.gigeroa.vtv.dao.DaoPropietarios;
 import com.gigeroa.vtv.dao.DaoVehiculos_x_Propietario;
 import com.gigeroa.vtv.entities.*;
+import com.gigeroa.vtv.repositories.DtoPropietarios;
+
 import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;

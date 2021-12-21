@@ -1,4 +1,4 @@
-package com.gigeroa.vtv.dto;
+package com.gigeroa.vtv.repositories;
 
 import com.gigeroa.vtv.entities.Propietario;
 import java.util.List;

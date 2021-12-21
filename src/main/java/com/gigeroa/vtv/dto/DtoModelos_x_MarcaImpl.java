@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import com.gigeroa.vtv.dao.DaoModelos_x_Marca;
 import com.gigeroa.vtv.entities.Modelos_x_Marca;
+import com.gigeroa.vtv.repositories.DtoModelos_x_Marca;
 
 public class DtoModelos_x_MarcaImpl implements DtoModelos_x_Marca {
 

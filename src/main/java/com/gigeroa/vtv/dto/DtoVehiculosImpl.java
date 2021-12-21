@@ -4,6 +4,8 @@ import java.util.List;
 import com.gigeroa.vtv.dao.DaoVehiculos2;
 import com.gigeroa.vtv.dao.DaoVehiculos_x_Propietario;
 import com.gigeroa.vtv.entities.*;
+import com.gigeroa.vtv.repositories.DtoVehiculos;
+
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
