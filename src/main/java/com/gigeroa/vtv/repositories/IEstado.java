@@ -5,8 +5,8 @@ package com.gigeroa.vtv.repositories;
  */
 
 public interface IEstado {
-	final String apto = "Apto";
-	final String condicional = "Condicional";
-	final String rechazado = "Rechazado";
-	final String error = "Error";
+	public final String apto = "Apto";
+	public final String condicional = "Condicional";
+	public final String rechazado = "Rechazado";
+	public final String error = "Error";
 }

@@ -6,9 +6,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import com.gigeroa.vtv.dto.DtoInspeccionesImpl;
 import com.gigeroa.vtv.services.ControllersService;
+import com.gigeroa.vtv.entities.EnumListaEstados;
 
 @Controller
 public class InspeccionesController {
+	
 	@Autowired
 	DtoInspeccionesImpl dto;
 	
@@ -23,6 +25,7 @@ public class InspeccionesController {
 	@GetMapping("/agregarInspeccion")
 	public String agregarInspecciones (Model model) {
 		ControllersService.setTitulo(model, "Agregar inspeccion");
+		model.addAttribute("listaEstados", EnumListaEstados.NUEVO);
 		return "inspecciones/agregarInspeccion";
 	}
 }
