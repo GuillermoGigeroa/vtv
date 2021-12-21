@@ -1,7 +1,6 @@
 package com.gigeroa.vtv.entities;
 
 public enum EnumListaEstados {
-	NUEVO(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 	APTO(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 	CONDICIONAL(2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2),
 	RECHAZADO(3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3);

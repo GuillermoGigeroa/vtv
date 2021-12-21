@@ -4,8 +4,9 @@
 	<body>
 		<header th:replace="layout/estructura :: header"></header>
 		<div th:replace="layout/estructura :: titulo"></div>
-		<form class="container d-flex justify-content-center" action="/agregarInspeccion" method="GET" th:object="${listaEstados}">
+		<form class="container d-flex justify-content-center" th:action="@{/agregarInspeccion/agregar}" method="get" th:object="${listaEstados}">
 			<div class="col-md-6">
+				<h4 class="text-center" th:if="${estado != null}">Resultado de la inspeccion: [[${estado}]]</h4>
 				<div class="form-control mb-3">
 					<div class="row">
 						<b class="pb-2">Mediciones</b>
@@ -83,7 +84,7 @@
 					</div>
 				</div>
 				<div class="d-flex justify-content-center mb-2">
-					<input type="submit" class="btn btn-success" name="btnAgregarInspeccion" value="Agregar">
+					<input type="submit" class="btn btn-success" name="btnGuardarInspeccion" value="Guardar">
 				</div>
 			</div>
 		</form>
