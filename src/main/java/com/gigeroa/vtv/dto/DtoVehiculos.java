@@ -10,5 +10,5 @@ public interface DtoVehiculos {
 	void eliminar (Vehiculo vehiculo);
 	Vehiculo encontrarVehiculo(Vehiculo vehiculo);
 	Vehiculo encontrarVehiculo(int id);
-	
+	Vehiculo buscarPorPropietario(int dni);
 }
