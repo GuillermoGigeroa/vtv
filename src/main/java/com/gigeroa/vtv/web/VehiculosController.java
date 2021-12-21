@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.gigeroa.vtv.dto.*;
 import com.gigeroa.vtv.entities.*;
 import com.gigeroa.vtv.exceptions.DniInvalido;
+import com.gigeroa.vtv.services.ControllersService;
 
 @Controller
 public class VehiculosController {
-	private String titulo;
 	private final String listarVehiculos = "vehiculos/listarVehiculos";
 	private final String agregarVehiculo = "vehiculos/agregarVehiculo";
 	
@@ -30,9 +30,7 @@ public class VehiculosController {
 	
 	@GetMapping("/listarVehiculos")
 	public String listarVehiculos (Model model) {
-		titulo = "Lista de vehículos";
-		model.addAttribute("titulo",titulo);
-		
+		ControllersService.setTitulo(model, "Lista de vehículos");
 //		Se trae lista de vehiculos
 		model.addAttribute("listaVehiculos", dtoVehiculos.listar());
 		return listarVehiculos;
@@ -40,7 +38,7 @@ public class VehiculosController {
 	
 	@GetMapping("/agregarVehiculo")
 	public String agregarVehiculo (Model model) {
-		tituloAgregar(model);
+		ControllersService.setTitulo(model, "Agregar vehículo");
 		listarMarcas(model);
 		marcaNueva(model);
 		return agregarVehiculo;
@@ -64,7 +62,7 @@ public class VehiculosController {
 //	Mapeo de la sección /seleccionMarca para continuar con la selección de la marca
 	@PostMapping ("/seleccionMarca")
 	public String seleccionMarca (Model model, @RequestParam int ID) {
-		tituloAgregar(model);
+		ControllersService.setTitulo(model, "Agregar vehículo");
 		listarMarcas(model);
 		listarModelos(model, ID);
 		marcaSelecionada(model, ID);
@@ -75,34 +73,35 @@ public class VehiculosController {
 //	Mapeo de la sección /seleccionModelo para continuar con la selección del modelo
 	@PostMapping ("/seleccionModelo")
 	public String seleccion (Model model, @RequestParam int ID, @RequestParam int idMarca) throws DniInvalido {
-		tituloAgregar(model);
+		ControllersService.setTitulo(model, "Agregar vehículo");
 		listarMarcas(model);
 		listarModelos(model, idMarca);
 		listarPropietarios(model);
 		propietarioNuevo(model);
-		marcaSelecionada(model, idMarca);
-		if (modeloSeleccionado(model, idMarca, ID)) {
-			return agregarVehiculo;
+		if (!marcaSelecionada(model, idMarca)) {
+			return "redirect:/errorURL";
 		}
-		else {
-			return "redirect:/errorID";
+		if (!modeloSeleccionado(model, idMarca, ID)) {
+			return "redirect:/errorURL";
 		}
+		return agregarVehiculo;
 	}
 	
 //	Mapeo de la sección /seleccionPropietario para continuar con la selección del propietario
 	@PostMapping ("/seleccionPropietario")
 	public String seleccionPropietario (Model model, @RequestParam int idModelo, @RequestParam int idMarca, @RequestParam String nombre) {
-		tituloAgregar(model);
+		ControllersService.setTitulo(model, "Agregar vehículo");
 		listarMarcas(model);
 		listarModelos(model, idMarca);
-		marcaSelecionada(model, idMarca);
-		modeloSeleccionado(model, idMarca, idModelo);
 		listarPropietarios(model);
-		try {
-			propietarioSeleccionado(model, Integer.parseInt(nombre));
+		if (!marcaSelecionada(model, idMarca)) {
+			return "redirect:/errorURL";
 		}
-		catch (NumberFormatException e){
-			return "redirect:/errorDni";
+		if (!modeloSeleccionado(model, idMarca, idModelo)) {
+			return "redirect:/errorURL";
+		}
+		if (!propietarioSeleccionado(model, nombre)) {
+			return "redirect:/errorURL";
 		}
 		return agregarVehiculo;
 	}
@@ -115,12 +114,18 @@ public class VehiculosController {
 		model.addAttribute("propietarioSeleccionado",new Propietario());
 	}
 
-	private boolean propietarioSeleccionado (Model model, int dni) {
-		for (Propietario propietario : dtoPropietarios.listar()) {
-			if (propietario.getDni() == dni) {
-				model.addAttribute("propietarioSeleccionado",propietario);
-				return true;
-			}
+	private boolean propietarioSeleccionado (Model model, String dniString) {
+		int dni = 0;
+		try {
+			dni = (new Dni(dniString)).getNumero();
+		}
+		catch (DniInvalido e) {
+			return false;
+		}
+		Propietario propietario = dtoPropietarios.buscar(dni);
+		if (propietario != null) {
+			model.addAttribute("propietarioSeleccionado",propietario);
+			return true;
 		}
 		return false;
 	}
@@ -134,23 +139,23 @@ public class VehiculosController {
 	}
 
 	private boolean modeloSeleccionado(Model model,int IDMarca, int ID) {
-		for (ModeloVehiculo modelo : dtoModelos.listarModelosPorMarca(IDMarca)) {
-			if (modelo.getID() == ID) {
-				model.addAttribute("modeloVehiculo",modelo);
-				return true;
-			}
+		ModeloVehiculo modelo = dtoModelos.buscar(ID);
+		if (modelo != null) {
+			model.addAttribute("modeloVehiculo",modelo);
+			return true;
 		}
 		return false;
 	}
 
-	private void marcaSelecionada(Model model, int ID) {
-		model.addAttribute("marcaVehiculo",dtoMarcas.buscar(ID));
+	private boolean marcaSelecionada(Model model, int ID) {
+		MarcaVehiculo marca = dtoMarcas.buscar(ID);
+		if (marca != null) {
+			model.addAttribute("marcaVehiculo",marca);
+			return true;
+		}
+		return false;
 	}
 	
-	private void tituloAgregar(Model model) {
-		model.addAttribute("titulo", "Agregar vehículo");
-	}
-
 	private void listarMarcas(Model model) {
 		model.addAttribute("listaMarcas", dtoMarcas.listar());
 	}
