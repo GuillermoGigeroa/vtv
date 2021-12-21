@@ -8,11 +8,11 @@ import javax.persistence.*;
 @Table (name = "inspecciones_x_vehiculo")
 public class Inspecciones_x_Vehiculo {
 	@Id
-	@Column (name = "id_inspeccion")
-	int idInspeccion;
-
 	@Column (name = "id_vehiculo")
 	int idVehiculo;
+	
+	@Column (name = "id_inspeccion")
+	int idInspeccion;
 
 //	Constructores
 	public Inspecciones_x_Vehiculo() {

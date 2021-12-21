@@ -1,5 +1,6 @@
 package com.gigeroa.vtv.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,13 +32,19 @@ public class DtoInpecciones_x_VehiculoImpl implements DtoInpecciones_x_Vehiculo{
 	
 	@Override
 	@Transactional (readOnly = true)
-	public Inspecciones_x_Vehiculo encontrar(Inspecciones_x_Vehiculo ixv) {
-		return dao.findById(ixv.getIdInspeccion()).orElse(null);
+	public ArrayList<Inspecciones_x_Vehiculo> encontrar(Inspecciones_x_Vehiculo ixv) {
+		return encontrar(ixv.getIdVehiculo());
 	}
 	
 	@Override
 	@Transactional (readOnly = true)
-	public Inspecciones_x_Vehiculo encontrar(int idInspeccion) {
-		return dao.findById(idInspeccion).orElse(null);
+	public ArrayList<Inspecciones_x_Vehiculo> encontrar(int idVehiculo) {
+		ArrayList<Inspecciones_x_Vehiculo> lista = new ArrayList<Inspecciones_x_Vehiculo>();
+		for (Inspecciones_x_Vehiculo i : dao.findAll()) {
+			if (i.getIdVehiculo() == idVehiculo) {
+				lista.add(i);
+			}
+		}
+		return lista;
 	}
 }
