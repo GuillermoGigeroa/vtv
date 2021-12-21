@@ -3,6 +3,8 @@ package com.gigeroa.vtv.dto;
 import com.gigeroa.vtv.dao.DaoInspecciones;
 import com.gigeroa.vtv.entities.*;
 import com.gigeroa.vtv.repositories.DtoInspecciones;
+
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +38,18 @@ public class DtoInspeccionesImpl implements DtoInspecciones {
 	@Transactional (readOnly = true)
 	public Inspeccion encontrarInspeccion(Inspeccion inspeccion) {
 		return dao.findById(inspeccion.getNumero()).orElse(null);
+	}
+	
+	@Override
+	@Transactional (readOnly = true)
+	public ArrayList<Inspeccion> listarInspeccionesPorFecha(String fecha){
+		ArrayList<Inspeccion> listaResultado = new ArrayList<Inspeccion>();
+		for (Inspeccion inspeccion : dao.findAll()) {
+			if (inspeccion.getFecha().toString().equals(fecha)) {
+				listaResultado.add(inspeccion);
+			}
+		}
+		return listaResultado;
 	}
 
 }
