@@ -49,7 +49,7 @@
 									<input type="hidden" name="idModelo" th:value="${modeloVehiculo.getID}"/>
 									<select class="form-select" th:field="*{nombre}" required>
 										<span th:each="propietario : ${listaPropietarios}">
-											<option th:value="${propietario.getDni}">[[${propietario.getNombre}]] - DNI [[${propietario.getDni}]]</option>
+											<option th:value="${propietario.getDni}">[[${propietario.getNombre}]] [[${propietario.getApellido}]] - DNI [[${propietario.getDni}]]</option>
 										</span>
 									</select>
 									<input type="submit" class="btn btn-outline-secondary" name="seleccionarPropietario" value="Seleccionar">
@@ -57,7 +57,7 @@
 							</form>
 						</div>
 						<div class="row pt-2" th:if="${propietarioSeleccionado != null}">
-							<p th:if="${propietarioSeleccionado.getNombre != T(com.gigeroa.vtv.repositories.IPersona).sinNombre}">Propietario seleccionado: <b>[[${propietarioSeleccionado.getNombre}]] - DNI [[${propietarioSeleccionado.getDni}]]</b></p>
+							<p th:if="${propietarioSeleccionado.getNombre != T(com.gigeroa.vtv.repositories.IPersona).sinNombre}">Propietario seleccionado: <b>[[${propietarioSeleccionado.getNombre}]] [[${propietarioSeleccionado.getApellido}]] - DNI [[${propietarioSeleccionado.getDni}]]</b></p>
 						</div>
 						<div class="row pb-2 " th:if="${propietarioSeleccionado != null}">
 							<div class="col d-flex justify-content-center" th:if="${propietarioSeleccionado.getNombre != T(com.gigeroa.vtv.repositories.IPersona).sinNombre}">
