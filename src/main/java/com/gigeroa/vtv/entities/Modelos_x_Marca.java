@@ -7,11 +7,12 @@ import javax.persistence.*;
 @Table (name = "modelos_x_marca")
 public class Modelos_x_Marca {
 	@Id
+	@Column (name = "id_modelo")
+	int idModelo;
+
 	@Column (name = "id_marca")
 	int idMarca;
 
-	@Column (name = "id_modelo")
-	int idModelo;
 
 //	Constructores
 	public Modelos_x_Marca() {
