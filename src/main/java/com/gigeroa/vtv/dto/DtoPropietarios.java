@@ -5,9 +5,9 @@ import java.util.List;
 
 public interface DtoPropietarios {
 
-	public List<Propietario> listarPropietarios();
-	public void guardar (Propietario propietario);
-	public void eliminar (Propietario propietario);
-	public Propietario encontrarPropietario(Propietario propietario);
-	public Propietario encontrarPropietario(int dni);
+	List<Propietario> listarPropietarios();
+	void guardar (Propietario propietario);
+	void eliminar (Propietario propietario);
+	Propietario encontrarPropietario(Propietario propietario);
+	Propietario encontrarPropietario(int dni);
 }

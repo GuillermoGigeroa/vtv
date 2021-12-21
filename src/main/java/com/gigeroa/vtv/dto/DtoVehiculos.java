@@ -5,9 +5,10 @@ import java.util.List;
 
 public interface DtoVehiculos {
 
-	public List<Vehiculo> listarVehiculos();
-	public void guardar (Vehiculo vehiculo);
-	public void eliminar (Vehiculo vehiculo);
-	public Vehiculo encontrarVehiculo(Vehiculo vehiculo);
-	public Vehiculo encontrarVehiculo(int id);
+	List<Vehiculo> listarVehiculos();
+	void guardar (Vehiculo vehiculo);
+	void eliminar (Vehiculo vehiculo);
+	Vehiculo encontrarVehiculo(Vehiculo vehiculo);
+	Vehiculo encontrarVehiculo(int id);
+	
 }

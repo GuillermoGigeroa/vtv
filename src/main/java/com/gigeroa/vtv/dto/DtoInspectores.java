@@ -5,10 +5,10 @@ import java.util.List;
 
 public interface DtoInspectores {
 
-	public List<Inspector> listarInspectores();
-	public void guardar (Inspector inspector);
-	public void eliminar (Inspector inspector);
-	public Inspector encontrarInspector(Inspector inspector);
-	public Inspector encontrarInspectorLegajo(int legajo);
+	List<Inspector> listarInspectores();
+	void guardar (Inspector inspector);
+	void eliminar (Inspector inspector);
+	Inspector encontrarInspector(Inspector inspector);
+	Inspector encontrarInspectorLegajo(int legajo);
 	
 }
