@@ -32,13 +32,13 @@ public class DtoInpecciones_x_VehiculoImpl implements DtoInpecciones_x_Vehiculo{
 	
 	@Override
 	@Transactional (readOnly = true)
-	public ArrayList<Inspecciones_x_Vehiculo> encontrar(Inspecciones_x_Vehiculo ixv) {
-		return encontrar(ixv.getIdVehiculo());
+	public ArrayList<Inspecciones_x_Vehiculo> buscar(Inspecciones_x_Vehiculo ixv) {
+		return buscar(ixv.getIdVehiculo());
 	}
 	
 	@Override
 	@Transactional (readOnly = true)
-	public ArrayList<Inspecciones_x_Vehiculo> encontrar(int idVehiculo) {
+	public ArrayList<Inspecciones_x_Vehiculo> buscar(int idVehiculo) {
 		ArrayList<Inspecciones_x_Vehiculo> lista = new ArrayList<Inspecciones_x_Vehiculo>();
 		for (Inspecciones_x_Vehiculo i : dao.findAll()) {
 			if (i.getIdVehiculo() == idVehiculo) {

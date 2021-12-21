@@ -91,7 +91,7 @@ public abstract class MatriculasService {
 	
 //	Método que permite identificar si ya existe la matrícula en BBDD
 	public static boolean existeMatricula (IMatricula matricula) {
-		for (Vehiculo vehiculo : (new DtoVehiculosImpl()).listarVehiculos()) {
+		for (Vehiculo vehiculo : (new DtoVehiculosImpl()).listar()) {
 			if (vehiculo.getMatricula().equalsIgnoreCase(matricula.getMatricula())){
 				return true;
 			}
@@ -101,7 +101,7 @@ public abstract class MatriculasService {
 
 //	Método sobrecargado que permite identificar si ya existe la matrícula en BBDD a partir de un String
 	public static boolean existeMatricula (String matricula) {
-		for (Vehiculo vehiculo : (new DtoVehiculosImpl()).listarVehiculos()) {
+		for (Vehiculo vehiculo : (new DtoVehiculosImpl()).listar()) {
 			if (vehiculo.getMatricula().equalsIgnoreCase(matricula)){
 				return true;
 			}

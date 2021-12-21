@@ -21,7 +21,7 @@ public class DtoVehiculosImpl implements DtoVehiculos {
 	
 	@Override
 	@Transactional (readOnly = true)
-	public List<Vehiculo> listarVehiculos() {
+	public List<Vehiculo> listar() {
 		return (List<Vehiculo>) dao.findAll();
 	}
 
@@ -39,13 +39,13 @@ public class DtoVehiculosImpl implements DtoVehiculos {
 
 	@Override
 	@Transactional (readOnly = true)
-	public Vehiculo encontrarVehiculo(Vehiculo vehiculo) {
-		return dao.findById(vehiculo.getID()).orElse(null);
+	public Vehiculo buscar(Vehiculo vehiculo) {
+		return buscar(vehiculo.getID());
 	}
 
 	@Override
 	@Transactional (readOnly = true)
-	public Vehiculo encontrarVehiculo(int id) {
+	public Vehiculo buscar(int id) {
 		return dao.findById(id).orElse(null);
 	}
 

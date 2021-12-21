@@ -18,7 +18,7 @@ public class DtoInspeccionesImpl implements DtoInspecciones {
 	
 	@Override
 	@Transactional (readOnly = true)
-	public List<Inspeccion> listarInspecciones() {
+	public List<Inspeccion> listar() {
 		return (List<Inspeccion>) dao.findAll();
 	}
 
@@ -36,13 +36,13 @@ public class DtoInspeccionesImpl implements DtoInspecciones {
 
 	@Override
 	@Transactional (readOnly = true)
-	public Inspeccion encontrarInspeccion(Inspeccion inspeccion) {
+	public Inspeccion buscar(Inspeccion inspeccion) {
 		return dao.findById(inspeccion.getNumero()).orElse(null);
 	}
 	
 	@Override
 	@Transactional (readOnly = true)
-	public ArrayList<Inspeccion> listarInspeccionesPorFecha(String fecha){
+	public ArrayList<Inspeccion> listarPorFecha(String fecha){
 		ArrayList<Inspeccion> listaResultado = new ArrayList<Inspeccion>();
 		for (Inspeccion inspeccion : dao.findAll()) {
 			if (inspeccion.getFecha().toString().equals(fecha)) {
@@ -53,7 +53,7 @@ public class DtoInspeccionesImpl implements DtoInspecciones {
 	}
 
 	@Override
-	public ArrayList<Inspeccion> listarInspeccionesPorPropietario(int dni) {
+	public ArrayList<Inspeccion> listarPorPropietario(int dni) {
 		// TODO Para realizar
 		return null;
 	}

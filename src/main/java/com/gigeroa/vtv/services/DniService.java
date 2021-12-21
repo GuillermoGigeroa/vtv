@@ -26,7 +26,7 @@ public abstract class DniService {
 	
 //	Método que permite identificar en BBDD si existe un DNI de inspector
 	public static boolean existeDniInspector (IDni dni) {
-		for(Inspector inspector : (new DtoInspectoresImpl()).listarInspectores()) {
+		for(Inspector inspector : (new DtoInspectoresImpl()).listar()) {
 			if (dni.getNumero() == inspector.getDni()) {
 				return true;
 			}
@@ -36,7 +36,7 @@ public abstract class DniService {
 	
 //	Método que permite identificar en BBDD si existe un DNI de propietario
 	public static boolean existeDniPropietario (IDni dni) {
-		for(Propietario propietario : (new DtoPropietariosImpl()).listarPropietarios()) {
+		for(Propietario propietario : (new DtoPropietariosImpl()).listar()) {
 			if (dni.getNumero() == propietario.getDni()) {
 				return true;
 			}

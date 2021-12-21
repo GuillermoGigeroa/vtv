@@ -32,13 +32,13 @@ public class DtoModelos_x_MarcaImpl implements DtoModelos_x_Marca {
 
 	@Override
 	@Transactional (readOnly = true)
-	public Modelos_x_Marca encontrar(Modelos_x_Marca mxm) {
-		return dao.findById(mxm.getIdMarca()).orElse(null);
+	public Modelos_x_Marca buscar(Modelos_x_Marca mxm) {
+		return buscar(mxm.getIdMarca());
 	}
 
 	@Override
 	@Transactional (readOnly = true)
-	public Modelos_x_Marca encontrar(int idMarca) {
+	public Modelos_x_Marca buscar(int idMarca) {
 		return dao.findById(idMarca).orElse(null);
 	}
 

@@ -34,7 +34,7 @@ public class VehiculosController {
 		model.addAttribute("titulo",titulo);
 		
 //		Se trae lista de vehiculos
-		model.addAttribute("listaVehiculos", dtoVehiculos.listarVehiculos());
+		model.addAttribute("listaVehiculos", dtoVehiculos.listar());
 		return listarVehiculos;
 	}
 	
@@ -108,7 +108,7 @@ public class VehiculosController {
 	}
 	
 	private void listarPropietarios(Model model) {
-		model.addAttribute("listaPropietarios",dtoPropietarios.listarPropietarios());
+		model.addAttribute("listaPropietarios",dtoPropietarios.listar());
 	}
 	
 	private void propietarioNuevo (Model model) throws DniInvalido {
@@ -116,7 +116,7 @@ public class VehiculosController {
 	}
 
 	private boolean propietarioSeleccionado (Model model, int dni) {
-		for (Propietario propietario : dtoPropietarios.listarPropietarios()) {
+		for (Propietario propietario : dtoPropietarios.listar()) {
 			if (propietario.getDni() == dni) {
 				model.addAttribute("propietarioSeleccionado",propietario);
 				return true;
@@ -144,7 +144,7 @@ public class VehiculosController {
 	}
 
 	private void marcaSelecionada(Model model, int ID) {
-		model.addAttribute("marcaVehiculo",dtoMarcas.encontrarMarca(ID));
+		model.addAttribute("marcaVehiculo",dtoMarcas.buscar(ID));
 	}
 	
 	private void tituloAgregar(Model model) {
@@ -152,7 +152,7 @@ public class VehiculosController {
 	}
 
 	private void listarMarcas(Model model) {
-		model.addAttribute("listaMarcas", dtoMarcas.listarMarcas());
+		model.addAttribute("listaMarcas", dtoMarcas.listar());
 	}
 
 	private void listarModelos(Model model, int IDMarca) {

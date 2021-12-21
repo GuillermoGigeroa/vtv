@@ -21,7 +21,7 @@ public class DtoPropietariosImpl implements DtoPropietarios {
 	
 	@Override
 	@Transactional (readOnly = true)
-	public List<Propietario> listarPropietarios() {
+	public List<Propietario> listar() {
 		return (List<Propietario>) dao.findAll();
 	}
 
@@ -39,13 +39,13 @@ public class DtoPropietariosImpl implements DtoPropietarios {
 
 	@Override
 	@Transactional (readOnly = true)
-	public Propietario encontrarPropietario(Propietario propietario) {
-		return dao.findById(propietario.getDni()).orElse(null);
+	public Propietario buscar(Propietario propietario) {
+		return buscar(propietario.getDni());
 	}
 
 	@Override
 	@Transactional (readOnly = true)
-	public Propietario encontrarPropietario(int dni) {
+	public Propietario buscar(int dni) {
 		return dao.findById(dni).orElse(null);
 	}
 

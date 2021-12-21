@@ -19,7 +19,7 @@ public class InspectoresController {
 		model.addAttribute("titulo",titulo);
 		
 //		Se trae lista de inspectores
-		model.addAttribute("listaInspectores", dto.listarInspectores());
+		model.addAttribute("listaInspectores", dto.listar());
 		
 		return "inspectores/listarInspectores";
 	}

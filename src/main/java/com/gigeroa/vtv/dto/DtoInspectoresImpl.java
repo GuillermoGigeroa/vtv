@@ -16,7 +16,7 @@ public class DtoInspectoresImpl implements DtoInspectores{
 	
 	@Override
 	@Transactional (readOnly = true)
-	public List<Inspector> listarInspectores() {
+	public List<Inspector> listar() {
 		return (List<Inspector>) dao.findAll();
 	}
 
@@ -34,13 +34,13 @@ public class DtoInspectoresImpl implements DtoInspectores{
 
 	@Override
 	@Transactional (readOnly = true)
-	public Inspector encontrarInspector(Inspector inspector) {
-		return dao.findById(inspector.getLegajo()).orElse(null);
+	public Inspector buscar(Inspector inspector) {
+		return buscar(inspector.getLegajo());
 	}
 
 	@Override
 	@Transactional (readOnly = true)
-	public Inspector encontrarInspectorLegajo(int legajo) {
+	public Inspector buscar(int legajo) {
 		return dao.findById(legajo).orElse(null);
 	}
 }

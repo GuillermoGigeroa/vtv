@@ -16,7 +16,7 @@ public class DtoMarcasImpl implements DtoMarcas{
 	
 	@Override
 	@Transactional (readOnly = true)
-	public List<MarcaVehiculo> listarMarcas() {
+	public List<MarcaVehiculo> listar() {
 		return (List<MarcaVehiculo>) dao.findAll();
 	}
 
@@ -34,13 +34,13 @@ public class DtoMarcasImpl implements DtoMarcas{
 
 	@Override
 	@Transactional (readOnly = true)
-	public MarcaVehiculo encontrarMarca(MarcaVehiculo marca) {
-		return dao.findById(marca.getID()).orElse(null);
+	public MarcaVehiculo buscar(MarcaVehiculo marca) {
+		return buscar(marca.getID());
 	}
 
 	@Override
 	@Transactional (readOnly = true)
-	public MarcaVehiculo encontrarMarca(int IDMarca) {
+	public MarcaVehiculo buscar(int IDMarca) {
 		return dao.findById(IDMarca).orElse(null);
 	}
 

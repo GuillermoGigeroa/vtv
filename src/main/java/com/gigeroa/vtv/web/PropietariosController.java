@@ -35,6 +35,6 @@ public class PropietariosController {
 	
 //	Método para listar los propietarios
 	private void listarPropietarios(Model model) {
-		model.addAttribute("listaPropietarios", dto.listarPropietarios());
+		model.addAttribute("listaPropietarios", dto.listar());
 	}
 }

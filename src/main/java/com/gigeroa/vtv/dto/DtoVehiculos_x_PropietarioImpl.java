@@ -31,13 +31,13 @@ public class DtoVehiculos_x_PropietarioImpl implements DtoVehiculos_x_Propietari
 
 	@Override
 	@Transactional (readOnly = true)
-	public Vehiculos_x_Propietario encontrar(Vehiculos_x_Propietario vxp) {
-		return dao.findById(vxp.getDni_propietario()).orElse(null);
+	public Vehiculos_x_Propietario buscar(Vehiculos_x_Propietario vxp) {
+		return buscar(vxp.getDni_propietario());
 	}
 
 	@Override
 	@Transactional (readOnly = true)
-	public Vehiculos_x_Propietario encontrar(int dniPropietario) {
+	public Vehiculos_x_Propietario buscar(int dniPropietario) {
 		return dao.findById(dniPropietario).orElse(null);
 	}
 }
