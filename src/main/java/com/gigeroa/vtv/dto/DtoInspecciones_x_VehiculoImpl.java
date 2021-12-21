@@ -10,7 +10,7 @@ import com.gigeroa.vtv.entities.Inspecciones_x_Vehiculo;
 import com.gigeroa.vtv.repositories.DtoInpecciones_x_Vehiculo;
 
 @Service
-public class DtoInpecciones_x_VehiculoImpl implements DtoInpecciones_x_Vehiculo{
+public class DtoInspecciones_x_VehiculoImpl implements DtoInpecciones_x_Vehiculo{
 	@Autowired
 	DaoInspecciones_x_Vehiculo dao;
 	

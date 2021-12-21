@@ -9,6 +9,7 @@ public interface DtoInspecciones {
 	void guardar (Inspeccion inspeccion);
 	void eliminar (Inspeccion inspeccion);
 	Inspeccion buscar(Inspeccion inspeccion);
+	Inspeccion buscar(int numero);
 	ArrayList<Inspeccion> listarPorFecha(String fecha);
 	ArrayList<Inspeccion> listarPorPropietario(int dni);
 }

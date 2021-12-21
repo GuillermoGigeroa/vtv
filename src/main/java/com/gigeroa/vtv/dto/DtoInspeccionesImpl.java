@@ -16,6 +16,12 @@ public class DtoInspeccionesImpl implements DtoInspecciones {
 	@Autowired
 	DaoInspecciones dao;
 	
+	@Autowired
+	DtoVehiculos_x_PropietarioImpl dtoVXP;
+
+	@Autowired
+	DtoInspecciones_x_VehiculoImpl dtoIXV;
+	
 	@Override
 	@Transactional (readOnly = true)
 	public List<Inspeccion> listar() {
@@ -37,7 +43,13 @@ public class DtoInspeccionesImpl implements DtoInspecciones {
 	@Override
 	@Transactional (readOnly = true)
 	public Inspeccion buscar(Inspeccion inspeccion) {
-		return dao.findById(inspeccion.getNumero()).orElse(null);
+		return buscar(inspeccion.getNumero());
+	}
+
+	@Override
+	@Transactional (readOnly = true)
+	public Inspeccion buscar(int numero) {
+		return dao.findById(numero).orElse(null);
 	}
 	
 	@Override
@@ -54,7 +66,11 @@ public class DtoInspeccionesImpl implements DtoInspecciones {
 
 	@Override
 	public ArrayList<Inspeccion> listarPorPropietario(int dni) {
-		// TODO Para realizar
-		return null;
+		ArrayList<Inspeccion> listaResultado = new ArrayList<Inspeccion>();
+		int IDVehiculo = dtoVXP.buscar(dni).getId_vehiculo();
+		for (Inspecciones_x_Vehiculo ixv : dtoIXV.buscar(IDVehiculo)) {
+			listaResultado.add(buscar(ixv.getIdInspeccion()));
+		}
+		return listaResultado;
 	}
 }
