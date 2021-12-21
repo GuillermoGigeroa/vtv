@@ -1,4 +1,4 @@
-package com.gigeroa.vtv.repositories;
+package com.gigeroa.vtv.dto;
 
 import java.util.List;
 import com.gigeroa.vtv.entities.ModeloVehiculo;

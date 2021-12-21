@@ -1,4 +1,4 @@
-package com.gigeroa.vtv.repositories;
+package com.gigeroa.vtv.dto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,4 +10,5 @@ public interface DtoInspecciones {
 	void eliminar (Inspeccion inspeccion);
 	Inspeccion encontrarInspeccion(Inspeccion inspeccion);
 	ArrayList<Inspeccion> listarInspeccionesPorFecha(String fecha);
+	ArrayList<Inspeccion> listarInspeccionesPorPropietario(int dni);
 }
