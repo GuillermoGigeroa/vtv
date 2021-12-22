@@ -1,15 +1,22 @@
 package com.gigeroa.vtv.web;
 
+import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.gigeroa.vtv.dto.DtoInspeccion_y_Vehiculo;
 import com.gigeroa.vtv.dto.DtoInspeccionesImpl;
+import com.gigeroa.vtv.dto.DtoInspecciones_x_VehiculoImpl;
+import com.gigeroa.vtv.dto.DtoVehiculosImpl;
 import com.gigeroa.vtv.services.ControllersService;
 import com.gigeroa.vtv.services.EstadosService;
+import com.gigeroa.vtv.entities.Inspeccion_y_Vehiculo;
 import com.gigeroa.vtv.entities.EnumListaEstados;
 import com.gigeroa.vtv.entities.Estado;
+import com.gigeroa.vtv.entities.Inspecciones_x_Vehiculo;
 import com.gigeroa.vtv.entities.Medicion;
 import com.gigeroa.vtv.entities.Observacion;
 
@@ -17,13 +24,16 @@ import com.gigeroa.vtv.entities.Observacion;
 public class InspeccionesController {
 	
 	@Autowired
-	DtoInspeccionesImpl dto;
+	DtoInspeccionesImpl dtoInspecciones;
+
+	@Autowired
+	DtoInspeccion_y_Vehiculo dtoIyV;
 	
 	@GetMapping ("/listarInspecciones")
 	public String listarInspecciones (Model model) {
 		ControllersService.setTitulo(model, "Lista de inspecciones");
-//		Se trae lista de inspecciones
-		model.addAttribute("listaInspecciones", dto.listar());
+//		Se trae lista de objeto que contiene inspeccion y vehiculo
+		model.addAttribute("listaInspecciones",dtoIyV.listar());
 		return "inspecciones/listarInspecciones";
 	}
 	

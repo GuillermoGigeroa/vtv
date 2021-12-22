@@ -28,15 +28,15 @@
 						</thead>
 						<tbody>
 							<div th:if="${listaInspecciones != null or listaInspecciones.isEmpty}">
-								<tr th:each="inspeccion : ${listaInspecciones}">
-									<td th:text="${inspeccion.getNumero}">[Número]</td>
-									<td th:text="${inspeccion.getFecha}">[Fecha de realización]</td>
-									<td th:text="${inspeccion.getFechaVencimiento}">[Fecha de vencimiento]</td>
-									<td th:text="${inspeccion.getLegajoInspector}">[Inspector]</td>
-									<td>Marca [en desarrollo]</td>
-									<td>Modelo [en desarrollo]</td>
-									<td>Matricula [en desarrollo]</td>
-									<td class="columnaEstado" th:text="${T(com.gigeroa.vtv.services.EstadosService).numeroToEstado(inspeccion.getEstado)}">[Estado]</td>
+								<tr th:each="IyV : ${listaInspecciones}">
+									<td th:text="${IyV.getInspeccion.getNumero}">[Número]</td>
+									<td th:text="${IyV.getInspeccion.getFecha}">[Fecha de realización]</td>
+									<td th:text="${IyV.getInspeccion.getFechaVencimiento}">[Fecha de vencimiento]</td>
+									<td th:text="${IyV.getInspeccion.getLegajoInspector}">[Inspector]</td>
+									<td th:text="${IyV.getVehiculo.getMarca}">Marca [en desarrollo]</td>
+									<td th:text="${IyV.getVehiculo.getModelo}">Modelo [en desarrollo]</td>
+									<td th:text="${IyV.getVehiculo.getMatricula}">Matricula [en desarrollo]</td>
+									<td class="columnaEstado" th:text="${T(com.gigeroa.vtv.services.EstadosService).numeroToEstado(IyV.getInspeccion.getEstado)}">[Estado]</td>
 									<td>
 										<a class="btn btn-warning p-1"><i class="bi bi-pencil-square" title="Editar"></i></a>
 										<a class="btn btn-danger p-1"><i class="bi bi-trash" title="Borrar"></i></a>
