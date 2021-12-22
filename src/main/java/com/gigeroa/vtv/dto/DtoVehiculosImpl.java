@@ -54,7 +54,7 @@ public class DtoVehiculosImpl implements DtoVehiculos {
 	public Vehiculo buscarPorPropietario(int dni) {
 		for (Vehiculos_x_Propietario vxp : daoVXP.findAll()) {
 			for (Vehiculo vehiculo : dao.findAll()) {
-				if (vehiculo.getID() == vxp.getId_vehiculo()) {
+				if (vehiculo.getID() == vxp.getId_vehiculo() && vxp.getDni_propietario() == dni) {
 					return vehiculo;
 				}
 			}
