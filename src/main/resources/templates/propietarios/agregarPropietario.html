@@ -5,23 +5,23 @@
 		<header th:replace="layout/estructura :: header"></header>
 		<div th:replace="layout/estructura :: titulo"></div>
 		<div class="container d-flex justify-content-center">
-			<form method="get" action="#" class="col-md-6">
+			<form method="get" th:action="@{/altaPropietario}" class="col-md-6" th:object="${propietario}">
 				<div class="row">
 					<div class="input-group mb-3">
 					  <span class="input-group-text">Nombre</span>
-					  <input type="text" class="form-control" value="" required>
+					  <input type="text" class="form-control" th:value="*{nombre}" placeholder="Ingrese el nombre" required>
 					</div>
 				</div>
 				<div class="row">
 					<div class="input-group mb-3">
 					  <span class="input-group-text">Apellido</span>
-					  <input type="text" class="form-control"  required>
+					  <input type="text" class="form-control" th:value="*{apellido}" placeholder="Ingrese el apellido" required>
 					</div>
 				</div>
 				<div class="row">
 					<div class="input-group mb-3">
 					  <span class="input-group-text">DNI</span>
-					  <input type="number" min="11111111" max="99999999" class="form-control" required>
+					  <input type="number" min="11111111" max="99999999" class="form-control" th:value="*{dni}" placeholder="Ingrese el dni" required>
 					</div>
 				</div>
 				<div class="row">

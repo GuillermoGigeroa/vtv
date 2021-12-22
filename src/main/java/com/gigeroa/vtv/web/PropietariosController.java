@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.gigeroa.vtv.dto.DtoPropietario_y_Vehiculo;
 import com.gigeroa.vtv.dto.DtoPropietariosImpl;
+import com.gigeroa.vtv.entities.Propietario;
+import com.gigeroa.vtv.exceptions.DniInvalido;
 import com.gigeroa.vtv.services.ControllersService;
 
 @Controller
@@ -29,7 +31,14 @@ public class PropietariosController {
 	}
 	
 	@GetMapping("/agregarPropietario")
-	public String agregarPropietarios (Model model) {
+	public String agregarPropietarios (Model model) throws DniInvalido {
+		ControllersService.setTitulo(model, "Agregar propietario");
+		model.addAttribute("propietario",new Propietario());
+		return agregarPropietario;
+	}
+
+	@GetMapping("/altaPropietario")
+	public String altaPropietarios (Model model, Propietario propietario) {
 		ControllersService.setTitulo(model, "Agregar propietario");
 		return agregarPropietario;
 	}
