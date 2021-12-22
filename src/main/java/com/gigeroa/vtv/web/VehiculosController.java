@@ -175,16 +175,4 @@ public class VehiculosController {
 	private void listarModelos(Model model, int IDMarca) {
 		model.addAttribute("listaModelos", dtoModelos.listarModelosPorMarca(IDMarca));
 	}
-	
-	@GetMapping("/editarVehiculo/{idVehiculo}")
-	public String editar (Model model, @PathVariable int idVehiculo) {
-		ControllersService.setTitulo(model,"En desarrollo - ID Vehiculo: "+idVehiculo);
-		return "home/index";
-	}
-
-	@GetMapping("/eliminarVehiculo/{idVehiculo}")
-	public String eliminar (Model model, @PathVariable int idVehiculo) {
-		ControllersService.setTitulo(model,"En desarrollo - ID Vehiculo: "+idVehiculo);
-		return "home/index";
-	}
 }

@@ -4,8 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-
 import com.gigeroa.vtv.dto.DtoInspectoresImpl;
 import com.gigeroa.vtv.entities.Inspector;
 import com.gigeroa.vtv.services.ControllersService;
@@ -35,17 +33,5 @@ public class InspectoresController {
 	public String agregarInspector2 (Model model, Inspector inspector) {
 		ControllersService.setTitulo(model, "Alta de inspector");
 		return "inspectores/agregarInspector";
-	}
-	
-	@GetMapping("/editarInspector/{legajo}")
-	public String editar (Model model, @PathVariable int legajo) {
-		ControllersService.setTitulo(model,"En desarrollo - Legajo: "+legajo);
-		return "home/index";
-	}
-
-	@GetMapping("/eliminarInspector/{legajo}")
-	public String eliminar (Model model, @PathVariable int legajo) {
-		ControllersService.setTitulo(model,"En desarrollo - Legajo: "+legajo);
-		return "home/index";
 	}
 }

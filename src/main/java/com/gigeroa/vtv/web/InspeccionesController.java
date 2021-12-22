@@ -196,16 +196,4 @@ public class InspeccionesController {
 		dtoInspecciones.guardar(inspeccion, idVehiculo);
 		return "home/index";
 	}
-	
-	@GetMapping("/editarInspeccion/{idInspeccion}")
-	public String editar (Model model, @PathVariable int idInspeccion) {
-		ControllersService.setTitulo(model,"En desarrollo - ID Inspeccion: "+idInspeccion);
-		return "home/index";
-	}
-
-	@GetMapping("/eliminarInspeccion/{idInspeccion}")
-	public String eliminar (Model model, @PathVariable int idInspeccion) {
-		ControllersService.setTitulo(model,"En desarrollo - ID Inspeccion: "+idInspeccion);
-		return "home/index";
-	}
 }
