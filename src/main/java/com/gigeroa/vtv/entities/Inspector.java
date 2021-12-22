@@ -31,20 +31,36 @@ public class Inspector implements IPersona {
 	public Inspector() {
 		this.legajo = IDni.sinNumero;
 		this.dni = IDni.sinNumero;
-		this.nombre = sinNombre;
-		this.apellido = sinApellido;
+		this.nombre = "";
+		this.apellido = "";
 	}
 	
-	public Inspector(int legajo, String dni, String nombre) throws DniInvalido {
+	public Inspector(String dni, String nombre, String apellido) throws DniInvalido {
+		this.legajo = IDni.sinNumero;
+		setDni(dni);
+		this.nombre = nombre;
+		this.apellido = apellido;
+	}
+	
+	public Inspector(int legajo, String dni, String nombre, String apellido) throws DniInvalido {
 		this.legajo = legajo;
 		setDni(dni);
 		this.nombre = nombre;
+		this.apellido = apellido;
 	}
 
-	public Inspector(int legajo, int dni, String nombre) throws DniInvalido {
+	public Inspector(int dni, String nombre, String apellido) throws DniInvalido {
+		this.legajo = IDni.sinNumero;
+		this.dni = (new Dni(dni)).getNumero();
+		this.nombre = nombre;
+		this.apellido = apellido;
+	}
+
+	public Inspector(int legajo, int dni, String nombre, String apellido) throws DniInvalido {
 		this.legajo = legajo;
 		this.dni = (new Dni(dni)).getNumero();
 		this.nombre = nombre;
+		this.apellido = apellido;
 	}
 
 	public int getLegajo() {

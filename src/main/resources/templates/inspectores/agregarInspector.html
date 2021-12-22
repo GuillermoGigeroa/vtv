@@ -5,31 +5,24 @@
 		<header th:replace="layout/estructura :: header"></header>
 		<div th:replace="layout/estructura :: titulo"></div>
 		<div class="container d-flex justify-content-center">
-			<form method="get" action="#" class="col-md-6">
-				<div class="row">
-					<div class="input-group mb-3">
-					  <span class="input-group-text">Legajo</span>
-					  <input type="text" disabled value="[en desarrollo] 77598" class="form-control">
-					</div>
-				</div>
+			<form method="get" th:action="@{/altaInspector}" class="col-md-6" th:object="${inspector}">
 				<div class="row">
 					<div class="input-group mb-3">
 					  <span class="input-group-text">Nombre</span>
-					  <input type="text" class="form-control" value=""  required>
-<!-- 					  <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></span> -->
+					  <input type="text" class="form-control" th:value="*{nombre}" placeholder="Ingrese el nombre" required>
 					</div>
 				</div>
 				<div class="row">
 					<div class="input-group mb-3">
 					  <span class="input-group-text">Apellido</span>
-					  <input type="text" class="form-control"  required>
+					  <input type="text" class="form-control" th:value="*{apellido}" placeholder="Ingrese el apellido" required>
 <!-- 					  <span th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></span> -->
 					</div>
 				</div>
 				<div class="row">
 					<div class="input-group mb-3">
 					  <span class="input-group-text">DNI</span>
-					  <input type="number" min="11111111" max="99999999" class="form-control"  required>
+					  <input type="number" min="11111111" max="99999999" class="form-control" th:value="*{dni}" placeholder="Ingrese el dni" required>
 					</div>
 				</div>
 				<div class="row">
