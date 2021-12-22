@@ -29,9 +29,24 @@ public class Inspeccion {
 	public Inspeccion()
 	{
 		this.numero = -1;
+		this.legajoInspector = -1;
 		this.fecha = LocalDate.now();
 		this.fechaVencimiento = LocalDate.now();
 		this.estado = 3;
+	}
+	
+	public Inspeccion(
+			LocalDate fecha,
+			Inspector inspector,
+			Vehiculo vehiculo,
+			int estado
+			)
+	{
+		this.numero = -1;
+		this.legajoInspector = inspector.getLegajo();
+		this.fecha = fecha;
+		this.fechaVencimiento = fecha.plusYears(1);
+		this.estado = estado;
 	}
 	
 	public Inspeccion(
@@ -43,6 +58,7 @@ public class Inspeccion {
 			)
 	{
 		this.numero = numero;
+		this.legajoInspector = inspector.getLegajo();
 		this.fecha = fecha;
 		this.fechaVencimiento = fecha.plusYears(1);
 		this.estado = estado;

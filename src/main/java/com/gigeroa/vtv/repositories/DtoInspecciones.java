@@ -6,7 +6,7 @@ import com.gigeroa.vtv.entities.Inspeccion;
 
 public interface DtoInspecciones {
 	List<Inspeccion> listar();
-	void guardar (Inspeccion inspeccion);
+	void guardar(Inspeccion inspeccion, int idVehiculo);
 	void eliminar (Inspeccion inspeccion);
 	Inspeccion buscar(Inspeccion inspeccion);
 	Inspeccion buscar(int numero);

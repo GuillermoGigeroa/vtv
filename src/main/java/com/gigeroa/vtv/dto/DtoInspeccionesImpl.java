@@ -30,8 +30,8 @@ public class DtoInspeccionesImpl implements DtoInspecciones {
 
 	@Override
 	@Transactional
-	public void guardar(Inspeccion inspeccion) {
-		dao.save(inspeccion);
+	public void guardar(Inspeccion inspeccion, int idVehiculo) {
+		dtoIXV.guardar(new Inspecciones_x_Vehiculo(dao.save(inspeccion).getNumero(), idVehiculo));
 	}
 
 	@Override
