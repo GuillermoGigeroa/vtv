@@ -35,12 +35,14 @@ public class Inspector implements IPersona {
 		this.apellido = sinApellido;
 	}
 	
-	public Inspector(String dni, String nombre) throws DniInvalido {
+	public Inspector(int legajo, String dni, String nombre) throws DniInvalido {
+		this.legajo = legajo;
 		setDni(dni);
 		this.nombre = nombre;
 	}
 
-	public Inspector(int dni, String nombre) throws DniInvalido {
+	public Inspector(int legajo, int dni, String nombre) throws DniInvalido {
+		this.legajo = legajo;
 		this.dni = (new Dni(dni)).getNumero();
 		this.nombre = nombre;
 	}
