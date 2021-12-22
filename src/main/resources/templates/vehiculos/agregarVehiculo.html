@@ -60,6 +60,9 @@
 							<p th:if="${propietarioSeleccionado.getNombre != T(com.gigeroa.vtv.repositories.IPersona).sinNombre}">Propietario seleccionado: <b>[[${propietarioSeleccionado.getNombre}]] [[${propietarioSeleccionado.getApellido}]] - DNI [[${propietarioSeleccionado.getDni}]]</b></p>
 						</div>
 						<div class="row pb-2 " th:if="${propietarioSeleccionado != null}">
+							<div class="alert alert-danger mt-3" th:if="${propietarioSeleccionado.getNombre != T(com.gigeroa.vtv.repositories.IPersona).sinNombre}">
+								<span>Falta insertar la matrícula del vehiculo con validación de matrícula.</span>
+							</div>
 							<div class="col d-flex justify-content-center" th:if="${propietarioSeleccionado.getNombre != T(com.gigeroa.vtv.repositories.IPersona).sinNombre}">
 								<input type="submit" class="btn btn-success" name="btnAgregar" value="Agregar">
 							</div>
