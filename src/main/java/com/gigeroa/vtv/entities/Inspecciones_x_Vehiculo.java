@@ -7,10 +7,10 @@ import javax.persistence.*;
 @Entity
 @Table (name = "inspecciones_x_vehiculo")
 public class Inspecciones_x_Vehiculo {
-	@Id
 	@Column (name = "id_vehiculo")
 	int idVehiculo;
 	
+	@Id
 	@Column (name = "id_inspeccion")
 	int idInspeccion;
 
