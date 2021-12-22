@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.gigeroa.vtv.dto.DtoInspeccion_y_Vehiculo;
 import com.gigeroa.vtv.dto.DtoInspeccionesImpl;
@@ -53,20 +54,26 @@ public class InspeccionesController {
 		return "inspecciones/agregarInspeccion";
 	}
 
-	@GetMapping("/agregarInspeccion/agregar")
+	@PostMapping("/agregarInspeccion/agregar")
 	public String agregarInspeccionesPost (Model model,
-			@RequestParam int suspension,
-			@RequestParam int direccion,
-			@RequestParam int frenos,
-			@RequestParam int contaminacion,
-			@RequestParam int luces,
-			@RequestParam int patente,
-			@RequestParam int espejos,
-			@RequestParam int chasis,
-			@RequestParam int vidrios,
-			@RequestParam int seguridad,
-			@RequestParam int emergencia) {
+			@RequestParam (required = false) Integer suspension,
+			@RequestParam (required = false) Integer direccion,
+			@RequestParam (required = false) Integer frenos,
+			@RequestParam (required = false) Integer contaminacion,
+			@RequestParam (required = false) Integer luces,
+			@RequestParam (required = false) Integer patente,
+			@RequestParam (required = false) Integer espejos,
+			@RequestParam (required = false) Integer chasis,
+			@RequestParam (required = false) Integer vidrios,
+			@RequestParam (required = false) Integer seguridad,
+			@RequestParam (required = false) Integer emergencia) {
 		ControllersService.setTitulo(model, "Agregar inspeccion");
+		Integer [] lista = {suspension,direccion,frenos,contaminacion,luces,patente,espejos,chasis,vidrios,seguridad,emergencia};
+		for (Integer i : lista) {
+			if (i == null) {
+				return "redirect:/errorURL";
+			}
+		}
 		EnumListaEstados resultado = EnumListaEstados.RECHAZADO;
 		resultado.setSuspension(suspension);
 		resultado.setDireccion(direccion);

@@ -4,7 +4,7 @@
 	<body>
 		<header th:replace="layout/estructura :: header"></header>
 		<div th:replace="layout/estructura :: titulo"></div>
-		<form class="container d-flex justify-content-center" th:action="@{/agregarInspeccion/agregar}" method="get" th:object="${listaEstados}">
+		<form class="container d-flex justify-content-center" th:action="@{/agregarInspeccion/agregar}" method="post" th:object="${listaEstados}">
 			<div class="col-md-6">
 				<h4 class="text-center" th:if="${estado != null}">Resultado de la inspeccion: [[${estado}]]</h4>
 				<div class="form-control mb-3">
@@ -12,25 +12,25 @@
 						<b class="pb-2">Mediciones</b>
 						<div class="input-group mb-3">
 							<label class="input-group-text" for="estadoSuspension" style="width:40%;">Estado de suspensión</label>
-							<select class="form-select" id="estadoSuspension" th:field="*{suspension}" required>
+							<select class="form-select" id="estadoSuspension" th:field="*{suspension}" th:disabled="${estado != null}">
 								<div th:replace="layout/estructura :: estados"></div>
 							</select>
 						</div>
 						<div class="input-group mb-3">
 							<label class="input-group-text" for="estadoDireccion" style="width:40%;">Estado de dirección</label>
-							<select class="form-select" id="estadoDireccion" th:field="*{direccion}" required>
+							<select class="form-select" id="estadoDireccion" th:field="*{direccion}" th:disabled="${estado != null}">
 								<div th:replace="layout/estructura :: estados"></div>
 							</select>
 						</div>
 						<div class="input-group mb-3">
 							<label class="input-group-text" for="estadoFrenos" style="width:40%;">Estado de frenos</label>
-							<select class="form-select" id="estadoFrenos" th:field="*{frenos}" required>
+							<select class="form-select" id="estadoFrenos" th:field="*{frenos}" th:disabled="${estado != null}">
 								<div th:replace="layout/estructura :: estados"></div>
 							</select>
 						</div>
 						<div class="input-group mb-3">
 							<label class="input-group-text" for="estadoContaminacion" style="width:40%;">Estado de contaminación</label>
-							<select class="form-select" id="estadoContaminacion" th:field="*{contaminacion}"  required>
+							<select class="form-select" id="estadoContaminacion" th:field="*{contaminacion}" th:disabled="${estado != null}">
 								<div th:replace="layout/estructura :: estados"></div>
 							</select>
 						</div>
@@ -41,43 +41,43 @@
 						<b class="pb-2">Observaciones</b>
 						<div class="input-group mb-3">
 							<label class="input-group-text" for="estadoLuces" style="width:40%;">Estado de luces</label>
-							<select class="form-select" id="estadoLuces" th:field="*{luces}" required>
+							<select class="form-select" id="estadoLuces" th:field="*{luces}" th:disabled="${estado != null}">
 								<div th:replace="layout/estructura :: estados"></div>
 							</select>
 						</div>
 						<div class="input-group mb-3">
 							<label class="input-group-text" for="estadoPatente" style="width:40%;">Estado de patente</label>
-							<select class="form-select" id="estadoPatente" th:field="*{patente}" required>
+							<select class="form-select" id="estadoPatente" th:field="*{patente}" th:disabled="${estado != null}">
 								<div th:replace="layout/estructura :: estados"></div>
 							</select>
 						</div>
 						<div class="input-group mb-3">
 							<label class="input-group-text" for="estadoEspejos" style="width:40%;">Estado de espejos</label>
-							<select class="form-select" id="estadoEspejos" th:field="*{espejos}" required>
+							<select class="form-select" id="estadoEspejos" th:field="*{espejos}" th:disabled="${estado != null}">
 								<div th:replace="layout/estructura :: estados"></div>
 							</select>
 						</div>
 						<div class="input-group mb-3">
 							<label class="input-group-text" for="estadoChasis" style="width:40%;">Estado de chasis</label>
-							<select class="form-select" id="estadoChasis" th:field="*{chasis}" required>
+							<select class="form-select" id="estadoChasis" th:field="*{chasis}" th:disabled="${estado != null}">
 								<div th:replace="layout/estructura :: estados"></div>
 							</select>
 						</div>
 						<div class="input-group mb-3">
 							<label class="input-group-text" for="estadoVidrios" style="width:40%;">Estado de vidrios</label>
-							<select class="form-select" id="estadoVidrios" th:field="*{vidrios}" required>
+							<select class="form-select" id="estadoVidrios" th:field="*{vidrios}" th:disabled="${estado != null}">
 								<div th:replace="layout/estructura :: estados"></div>
 							</select>
 						</div>
 						<div class="input-group mb-3">
 							<label class="input-group-text" for="estadoSeguridad" style="width:40%;">Estado de seguridad</label>
-							<select class="form-select" id="estadoSeguridad" th:field="*{seguridad}" required>
+							<select class="form-select" id="estadoSeguridad" th:field="*{seguridad}" th:disabled="${estado != null}">
 								<div th:replace="layout/estructura :: estados"></div>
 							</select>
 						</div>
 						<div class="input-group mb-3">
 							<label class="input-group-text" for="estadoEmergencia" style="width:40%;">Estado de emergencia</label>
-							<select class="form-select" id="estadoEmergencia" th:field="*{emergencia}" required>
+							<select class="form-select" id="estadoEmergencia" th:field="*{emergencia}" th:disabled="${estado != null}">
 								<div th:replace="layout/estructura :: estados"></div>
 							</select>
 						</div>
