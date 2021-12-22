@@ -14,6 +14,7 @@ import com.gigeroa.vtv.services.ControllersService;
 import com.gigeroa.vtv.services.EstadosService;
 import com.gigeroa.vtv.entities.EnumListaEstados;
 import com.gigeroa.vtv.entities.Estado;
+import com.gigeroa.vtv.entities.Inspeccion;
 import com.gigeroa.vtv.entities.Medicion;
 import com.gigeroa.vtv.entities.Observacion;
 import com.gigeroa.vtv.entities.Vehiculo;
@@ -32,7 +33,9 @@ public class InspeccionesController {
 	
 	@GetMapping ("/listarInspecciones")
 	public String listarInspecciones (Model model) {
+//		Se agrega un título
 		ControllersService.setTitulo(model, "Lista de inspecciones");
+
 //		Se trae lista de objeto que contiene inspeccion y vehiculo
 		model.addAttribute("listaInspecciones",dtoIyV.listar());
 		return "inspecciones/listarInspecciones";
@@ -40,16 +43,23 @@ public class InspeccionesController {
 	
 	@GetMapping("/agregarInspeccion")
 	public String agregarInspecciones (Model model) {
+//		Se redirige al usuario a la lista de vehículos con un mensaje orientativo
 		return "redirect:/listarVehiculos/1";
 	}
 
 	@GetMapping("/agregarInspeccion/{idVehiculo}")
 	public String agregarInspecciones (Model model, @PathVariable int idVehiculo) {
+//		Se recibe un id de vehiculo por PathVariable para trabajar con el vehiculo
 		Vehiculo vehiculo = dtoVehiculos.buscar(idVehiculo);
 		model.addAttribute("vehiculoActual", vehiculo);
+
+//		Se agrega título personalizado con la matrícula del vehículo
 		ControllersService.setTitulo(model, "Agregar inspeccion - " + vehiculo.getMatricula());
 
+//		Se vuelve a enviar el idVehiculo para poder seguir trabajando
 		model.addAttribute("idVehiculo", idVehiculo);
+		
+//		Se envía un objeto del tipo EnumListaEstados para trabajar con los datos ingresados
 		model.addAttribute("listaEstados", EnumListaEstados.CONDICIONAL);
 		return "inspecciones/agregarInspeccion";
 	}
@@ -68,14 +78,23 @@ public class InspeccionesController {
 			@RequestParam (required = false) Integer vidrios,
 			@RequestParam (required = false) Integer seguridad,
 			@RequestParam (required = false) Integer emergencia) {
+//		Se reciben por parámetros en POST todos los valores para ser analizados
+		
+//		Se personaliza el título con la matrícula del vehículo
 		ControllersService.setTitulo(model, "Agregar inspeccion - "+dtoVehiculos.buscar(idVehiculo).getMatricula());
+		
+//		Se vuelve a enviar el idVehiculo para seguir trabajando
 		model.addAttribute("idVehiculo",idVehiculo);
+		
+//		Se comprueba que no se haya forzado el intento de modificación de algún parámetro
 		Integer [] lista = {suspension,direccion,frenos,contaminacion,luces,patente,espejos,chasis,vidrios,seguridad,emergencia};
 		for (Integer i : lista) {
 			if (i == null) {
-				return "redirect:/errorURL";
+				return "redirect:/index";
 			}
 		}
+		
+//		Se cargan los datos en el EnumListaEstados para poder ser analizados
 		EnumListaEstados resultado = EnumListaEstados.RECHAZADO;
 		resultado.setSuspension(suspension);
 		resultado.setDireccion(direccion);
@@ -88,11 +107,15 @@ public class InspeccionesController {
 		resultado.setVidrios(vidrios);
 		resultado.setSeguridad(seguridad);
 		resultado.setEmergencia(emergencia);
+		
+//		Se genera un objeto medicion para continuar con el análisis de lo ingresado
 		Medicion medicion = new Medicion(
 				new Estado(suspension),
 				new Estado(direccion),
 				new Estado(frenos),
 				new Estado(contaminacion));
+		
+//		Se genera un objeto observación para continuar con el análisis de lo ingresado
 		Observacion observacion = new Observacion(
 				new Estado(luces),
 				new Estado(patente),
@@ -101,9 +124,33 @@ public class InspeccionesController {
 				new Estado(vidrios),
 				new Estado(seguridad),
 				new Estado(emergencia));
+		
+//		Se genera un objeto estado para procesar los datos ingresados
 		Estado estado = new Estado(EstadosService.getEstado(observacion, medicion));
+
+//		Se envía nuevamente los datos ingresados para ser corroborados
 		model.addAttribute("listaEstados", resultado);
+		
+//		Se envía el estado, luego de ser procesado
 		model.addAttribute("estado",estado);
+		
 		return "inspecciones/agregarInspeccion";
+	}
+
+	@GetMapping("/guardarInspeccion")
+	public String guardarInspeccion (
+			Model model,
+			@RequestParam (required = false) Integer idVehiculo,
+			@RequestParam (required = false) String estado) {
+		if (idVehiculo == null | estado == null) {
+			return "redirect:/index";
+		}
+		
+		//TODO generar inspeccion antes de enviar a guardar. Ver ID
+		Inspeccion inspeccion = new Inspeccion();
+		
+//		Se envía dato de confirmación para mostrar mensaje en front
+		model.addAttribute("guardar",true);
+		return "redirect:/listarInspecciones";
 	}
 }
