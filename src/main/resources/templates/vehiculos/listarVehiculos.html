@@ -25,12 +25,12 @@
 						</thead>
 						<tbody>
 							<div th:if="${listaVehiculos != null or listaVehiculos.isEmpty}">
-								<tr class="text-center" th:each="vehiculo : ${listaVehiculos}">
-									<td th:text="${vehiculo.getMatricula}">[Matricula]</td>
-									<td th:text="${vehiculo.getMarca}">[Marca]</td>
-									<td th:text="${vehiculo.getModelo}">[Modelo]</td>
-									<td>Nombre [en desarrollo]</td>
-									<td>Apellido [en desarrollo]</td>
+								<tr class="text-center" th:each="PyV : ${listaVehiculos}">
+									<td th:text="${PyV.getVehiculo.getMatricula}">[Matricula]</td>
+									<td th:text="${PyV.getVehiculo.getMarca}">[Marca]</td>
+									<td th:text="${PyV.getVehiculo.getModelo}">[Modelo]</td>
+									<td th:text="${PyV.getPropietario.getNombre}">[Nombre]</td>
+									<td th:text="${PyV.getPropietario.getApellido}">[Apellido]</td>
 									<td>
 										<a class="btn btn-warning p-1"><i class="bi bi-pencil-square" title="Editar"></i></a>
 										<a class="btn btn-danger p-1"><i class="bi bi-trash" title="Borrar"></i></a>

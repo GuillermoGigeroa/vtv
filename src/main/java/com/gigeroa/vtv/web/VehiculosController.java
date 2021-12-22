@@ -17,11 +17,11 @@ public class VehiculosController {
 	private final String agregarVehiculo = "vehiculos/agregarVehiculo";
 	
 	@Autowired
+	private DtoPropietario_y_Vehiculo dtoPyV;
+	
+	@Autowired
 	private DtoPropietariosImpl dtoPropietarios;
 
-	@Autowired
-	private DtoVehiculosImpl dtoVehiculos;
-	
 	@Autowired
 	private DtoMarcasImpl dtoMarcas;
 
@@ -32,7 +32,7 @@ public class VehiculosController {
 	public String listarVehiculos (Model model) {
 		ControllersService.setTitulo(model, "Lista de vehículos");
 //		Se trae lista de vehiculos
-		model.addAttribute("listaVehiculos", dtoVehiculos.listar());
+		model.addAttribute("listaVehiculos", dtoPyV.listar());
 		return listarVehiculos;
 	}
 	

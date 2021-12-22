@@ -20,18 +20,18 @@
 								<th>Nombre</th>
 								<th>Apellido</th>
 								<th>Es excento</th>
-								<th>Vehiculo</th>
+								<th>Vehiculo: Matricula</th>
 								<th>Acción</th>
 							</tr>
 						</thead>
 						<tbody>
 							<div th:if="${listaPropietarios != null or listaPropietarios.isEmpty}">
-								<tr th:each="propietario : ${listaPropietarios}">
-									<td th:text="${propietario.getDni}">[DNI]</td>
-									<td th:text="${propietario.getNombre}">[Nombre]</td>
-									<td th:text="${propietario.getApellido}">[Apellido]</td>
-									<td th:text="${propietario.esExento}">[EsExento]</td>
-									<td>Vehiculo [en desarrollo]</td>
+								<tr th:each="PyV : ${listaPropietarios}">
+									<td th:text="${PyV.getPropietario.getDni}">[DNI]</td>
+									<td th:text="${PyV.getPropietario.getNombre}">[Nombre]</td>
+									<td th:text="${PyV.getPropietario.getApellido}">[Apellido]</td>
+									<td th:text="${PyV.getPropietario.esExento}">[EsExento]</td>
+									<td th:text="${PyV.getVehiculo.getMatricula}">[Vehiculo]</td>
 									<td>
 										<a class="btn btn-warning p-1"><i class="bi bi-pencil-square" title="Editar"></i></a>
 										<a class="btn btn-danger p-1"><i class="bi bi-trash" title="Borrar"></i></a>
