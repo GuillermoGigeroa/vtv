@@ -1,7 +1,6 @@
 package com.gigeroa.vtv.dto;
 
 import java.util.ArrayList;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.gigeroa.vtv.entities.Inspeccion_y_Vehiculo;
