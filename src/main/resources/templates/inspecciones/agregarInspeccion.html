@@ -5,24 +5,65 @@
 		<header th:replace="layout/estructura :: header"></header>
 		<div th:replace="layout/estructura :: titulo"></div>
 		<div class="container">
-			<form th:action="@{/guardarInspeccion}" class="form-control mb-3 pt-2 d-flex justify-content-center" th:if="${estado != null}">
+			<form method="get" th:action="@{/guardarInspeccion}" class="form-control mb-3 pt-2 d-flex justify-content-center" th:if="${estado != null}">
 				<div class="col-md-6">
 					<input type="hidden" th:value="${estado}" name="estado">
-					<input type="hidden" th:value="${idVehiculo}" name="idVehiculo">
-					<div class="row">
-						<h4 class="text-center">Resultado de la inspeccion: [[${estado}]]</h4>
+					<input type="hidden" th:value="${vehiculo.getID}" name="idVehiculo">
+					<div class="row text-center">
+						<h4>Resultado de la inspeccion: [[${estado}]]</h4>
+						<h5>Fecha de realización: [[${fecha}]]</h5>
+						<br>
+						<p>
+							Datos del vehículo:
+							<br>
+							Matrícula - [[${vehiculo.getMatricula}]]
+							<br>
+							Marca - [[${vehiculo.getMarca}]]
+							<br>
+							Modelo - [[${vehiculo.getMarca}]]
+							<br>
+							<br>
+							Datos del propietario:
+							<br>
+							DNI - [[${propietario.getDni}]]
+							<br>
+							Nombre - [[${propietario.getNombre}]]
+							<br>
+							Apellido - [[${propietario.getApellido}]]
+							<br>
+						</p>
 					</div>
 					<div class="row">
 						<div class="d-flex justify-content-center mb-2">
-							<input type="submit" class="btn btn-success" name="btnConfirmar" value="Confirmar datos">
-							<a class="btn btn-danger ms-2" th:href="@{/agregarInspeccion/} + ${idVehiculo}">Cancelar</a>
+							<input type="submit" class="btn btn-success" name="btnConfirmar" value="Confirmar">
+							<a class="btn btn-danger ms-2" th:href="@{/agregarInspeccion}">Salir</a>
 						</div>
 					</div>
 				</div>
 			</form>
+			<form method="post" th:action="@{/seleccionarInspector}" class="mb-3 pb-2 pt-2 d-flex justify-content-center" th:object="${inspectorActual}" th:if="${inspectorActual != null}">
+				<input type="hidden" th:value="${idVehiculo}" name="idVehiculo">
+				<div class="col-md-6">
+					<div class="row text-center">
+						<span th:if="${inspectorActual.getLegajo == -1}">
+						<h4>Seleccione el inspector</h4>
+						<div class="input-group">
+							<select th:field="*{legajo}" class="form-control">
+								<span th:each="inspector : ${listaInspectores}">
+									<option th:value="${inspector.getLegajo}">[[${inspector.getLegajo}]] - [[${inspector.getApellido}]], [[${inspector.getNombre}]]</option>
+								</span>
+							</select>
+							<input type="submit" class="btn btn-outline-secondary" name="btnSeleccionar" value="Seleccionar">
+						</div>
+						</span>
+						<span th:if="${inspectorActual.getLegajo != -1}">Inspector seleccionado: <b>[[${inspectorActual.getLegajo}]] - [[${inspectorActual.getApellido}]], [[${inspectorActual.getNombre}]]</b></span>
+					</div>
+				</div>
+			</form>
 		</div>
-		<div class="container d-flex justify-content-center">
-			<form class="col-md-6" th:action="@{/agregarInspeccion/agregar}" method="post" th:object="${listaEstados}">
+		<div class="container d-flex justify-content-center" th:if="${inspectorActual != null}">
+			<form class="col-md-6" th:action="@{/agregarInspeccion/agregar}" method="post" th:object="${listaEstados}" th:if="${inspectorActual.getLegajo != -1}">
+				<input type="hidden" th:value="${inspectorActual.getLegajo}" name="legajo">
 				<input type="hidden" th:value="${idVehiculo}" name="idVehiculo">
 				<div class="form-control mb-3">
 					<div class="row">

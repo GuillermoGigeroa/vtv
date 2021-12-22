@@ -11,24 +11,32 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.gigeroa.vtv.dto.DtoInspeccion_y_Vehiculo;
 import com.gigeroa.vtv.dto.DtoInspeccionesImpl;
+import com.gigeroa.vtv.dto.DtoInspectoresImpl;
+import com.gigeroa.vtv.dto.DtoPropietariosImpl;
 import com.gigeroa.vtv.dto.DtoVehiculosImpl;
 import com.gigeroa.vtv.services.ControllersService;
 import com.gigeroa.vtv.services.EstadosService;
 import com.gigeroa.vtv.entities.EnumListaEstados;
 import com.gigeroa.vtv.entities.Estado;
 import com.gigeroa.vtv.entities.Inspeccion;
+import com.gigeroa.vtv.entities.Inspector;
 import com.gigeroa.vtv.entities.Medicion;
 import com.gigeroa.vtv.entities.Observacion;
-import com.gigeroa.vtv.entities.Vehiculo;
 
 @Controller
 public class InspeccionesController {
+	
+	@Autowired
+	DtoInspectoresImpl dtoInspectores;
 	
 	@Autowired
 	DtoInspeccionesImpl dtoInspecciones;
 
 	@Autowired
 	DtoVehiculosImpl dtoVehiculos;
+
+	@Autowired
+	DtoPropietariosImpl dtoPropietarios;
 
 	@Autowired
 	DtoInspeccion_y_Vehiculo dtoIyV;
@@ -51,24 +59,49 @@ public class InspeccionesController {
 
 	@GetMapping("/agregarInspeccion/{idVehiculo}")
 	public String agregarInspecciones (Model model, @PathVariable int idVehiculo) {
-//		Se recibe un id de vehiculo por PathVariable para trabajar con el vehiculo
-		Vehiculo vehiculo = dtoVehiculos.buscar(idVehiculo);
-		model.addAttribute("vehiculoActual", vehiculo);
-
 //		Se agrega título personalizado con la matrícula del vehículo
-		ControllersService.setTitulo(model, "Agregar inspeccion - " + vehiculo.getMatricula());
+		ControllersService.setTitulo(model, "Agregar inspeccion - " + dtoVehiculos.buscar(idVehiculo).getMatricula());
 
 //		Se vuelve a enviar el idVehiculo para poder seguir trabajando
 		model.addAttribute("idVehiculo", idVehiculo);
 		
+//		Se agrega lista de inspectores para seleccionar
+		model.addAttribute("listaInspectores",dtoInspectores.listar());
+
+//		Se agrega inspector nuevo para poder trabajar
+		model.addAttribute("inspectorActual",new Inspector());
+		
 //		Se envía un objeto del tipo EnumListaEstados para trabajar con los datos ingresados
 		model.addAttribute("listaEstados", EnumListaEstados.CONDICIONAL);
+		return "inspecciones/agregarInspeccion";
+	}
+	
+	@PostMapping("/seleccionarInspector")
+	public String seleccionarInspector (Model model, @RequestParam (required = false) Integer legajo, @RequestParam (required = false) Integer idVehiculo) {
+//		Se agrega título personalizado con la matrícula del vehículo
+		ControllersService.setTitulo(model, "Agregar inspeccion - " + dtoVehiculos.buscar(idVehiculo).getMatricula());
+		
+//		Se comprueba que los parámetros ingresados no sean nulos
+		if (legajo == null | idVehiculo == null) {
+			return "redirect:/index";
+		}
+		
+//		Se vuelve a enviar el idVehiculo para poder seguir trabajando
+		model.addAttribute("idVehiculo", idVehiculo);
+		
+//		Se recibe un legajo de inspector por PathVariable para trabajar con el vehiculo
+		model.addAttribute("inspectorActual",dtoInspectores.buscar(legajo));
+		
+//		Se envía un objeto del tipo EnumListaEstados para trabajar con los datos ingresados
+		model.addAttribute("listaEstados", EnumListaEstados.CONDICIONAL);
+		
 		return "inspecciones/agregarInspeccion";
 	}
 
 	@PostMapping("/agregarInspeccion/agregar")
 	public String agregarInspeccionesPost (Model model,
 			@RequestParam (required = true) Integer idVehiculo,
+			@RequestParam (required = true) Integer legajo,
 			@RequestParam (required = false) Integer suspension,
 			@RequestParam (required = false) Integer direccion,
 			@RequestParam (required = false) Integer frenos,
@@ -85,8 +118,17 @@ public class InspeccionesController {
 //		Se personaliza el título con la matrícula del vehículo
 		ControllersService.setTitulo(model, "Agregar inspeccion - "+dtoVehiculos.buscar(idVehiculo).getMatricula());
 		
-//		Se vuelve a enviar el idVehiculo para seguir trabajando
-		model.addAttribute("idVehiculo",idVehiculo);
+//		Se envía el inspector para seguir trabajando
+		model.addAttribute("inspectorActual",dtoInspectores.buscar(legajo));
+		
+//		Se envia el vehículo para seguir trabajando
+		model.addAttribute("vehiculo",dtoVehiculos.buscar(idVehiculo));
+
+//		Se envía el propietario para seguir trabajando
+		model.addAttribute("propietario",dtoPropietarios.buscarPorVehiculo(idVehiculo));
+
+//		Se envía fecha actual
+		model.addAttribute("fecha",LocalDate.now().toString());
 		
 //		Se comprueba que no se haya forzado el intento de modificación de algún parámetro
 		Integer [] lista = {suspension,direccion,frenos,contaminacion,luces,patente,espejos,chasis,vidrios,seguridad,emergencia};
@@ -144,15 +186,13 @@ public class InspeccionesController {
 			Model model,
 			@RequestParam (required = false) Integer idVehiculo,
 			@RequestParam (required = false) String estado) {
-		if (idVehiculo == null | estado == null) {
-			return "redirect:/index";
-		}
+//		if (idVehiculo == null | estado == null) {
+//			return "redirect:/index";
+//		}
+		ControllersService.setTitulo(model, "Guardar inspeccion - IDVehiculo: "+idVehiculo+" - Estado: "+estado);
 		
-		//TODO Falta inspector!!
-		Inspeccion inspeccion = new Inspeccion();
+//		TODO Se tiene que generar una inspección y luego en enviar la información de confirmación
 		
-//		Se envía dato de confirmación para mostrar mensaje en front
-		model.addAttribute("guardar",true);
-		return "redirect:/listarInspecciones";
+		return "home/index";
 	}
 }

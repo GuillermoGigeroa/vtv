@@ -29,6 +29,7 @@ public class Inspector implements IPersona {
 	
 //	Constructores
 	public Inspector() {
+		this.legajo = IDni.sinNumero;
 		this.dni = IDni.sinNumero;
 		this.nombre = sinNombre;
 		this.apellido = sinApellido;
