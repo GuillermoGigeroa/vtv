@@ -1,7 +1,6 @@
 package com.gigeroa.vtv.web;
 
 import java.time.LocalDate;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +17,6 @@ import com.gigeroa.vtv.services.ControllersService;
 import com.gigeroa.vtv.services.EstadosService;
 import com.gigeroa.vtv.entities.EnumListaEstados;
 import com.gigeroa.vtv.entities.Estado;
-import com.gigeroa.vtv.entities.Inspeccion;
 import com.gigeroa.vtv.entities.Inspector;
 import com.gigeroa.vtv.entities.Medicion;
 import com.gigeroa.vtv.entities.Observacion;
