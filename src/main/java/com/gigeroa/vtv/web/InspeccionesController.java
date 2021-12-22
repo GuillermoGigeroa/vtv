@@ -47,15 +47,16 @@ public class InspeccionesController {
 	public String agregarInspecciones (Model model, @PathVariable int idVehiculo) {
 		Vehiculo vehiculo = dtoVehiculos.buscar(idVehiculo);
 		model.addAttribute("vehiculoActual", vehiculo);
-		
 		ControllersService.setTitulo(model, "Agregar inspeccion - " + vehiculo.getMatricula());
 
+		model.addAttribute("idVehiculo", idVehiculo);
 		model.addAttribute("listaEstados", EnumListaEstados.CONDICIONAL);
 		return "inspecciones/agregarInspeccion";
 	}
 
 	@PostMapping("/agregarInspeccion/agregar")
 	public String agregarInspeccionesPost (Model model,
+			@RequestParam (required = true) Integer idVehiculo,
 			@RequestParam (required = false) Integer suspension,
 			@RequestParam (required = false) Integer direccion,
 			@RequestParam (required = false) Integer frenos,
@@ -67,7 +68,8 @@ public class InspeccionesController {
 			@RequestParam (required = false) Integer vidrios,
 			@RequestParam (required = false) Integer seguridad,
 			@RequestParam (required = false) Integer emergencia) {
-		ControllersService.setTitulo(model, "Agregar inspeccion");
+		ControllersService.setTitulo(model, "Agregar inspeccion - "+dtoVehiculos.buscar(idVehiculo).getMatricula());
+		model.addAttribute("idVehiculo",idVehiculo);
 		Integer [] lista = {suspension,direccion,frenos,contaminacion,luces,patente,espejos,chasis,vidrios,seguridad,emergencia};
 		for (Integer i : lista) {
 			if (i == null) {
