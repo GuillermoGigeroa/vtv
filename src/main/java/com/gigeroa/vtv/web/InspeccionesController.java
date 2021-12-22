@@ -4,21 +4,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.gigeroa.vtv.dto.DtoInspeccion_y_Vehiculo;
 import com.gigeroa.vtv.dto.DtoInspeccionesImpl;
+import com.gigeroa.vtv.dto.DtoVehiculosImpl;
 import com.gigeroa.vtv.services.ControllersService;
 import com.gigeroa.vtv.services.EstadosService;
 import com.gigeroa.vtv.entities.EnumListaEstados;
 import com.gigeroa.vtv.entities.Estado;
 import com.gigeroa.vtv.entities.Medicion;
 import com.gigeroa.vtv.entities.Observacion;
+import com.gigeroa.vtv.entities.Vehiculo;
 
 @Controller
 public class InspeccionesController {
 	
 	@Autowired
 	DtoInspeccionesImpl dtoInspecciones;
+
+	@Autowired
+	DtoVehiculosImpl dtoVehiculos;
 
 	@Autowired
 	DtoInspeccion_y_Vehiculo dtoIyV;
@@ -33,7 +39,16 @@ public class InspeccionesController {
 	
 	@GetMapping("/agregarInspeccion")
 	public String agregarInspecciones (Model model) {
-		ControllersService.setTitulo(model, "Agregar inspeccion");
+		return "redirect:/listarVehiculos/1";
+	}
+
+	@GetMapping("/agregarInspeccion/{idVehiculo}")
+	public String agregarInspecciones (Model model, @PathVariable int idVehiculo) {
+		Vehiculo vehiculo = dtoVehiculos.buscar(idVehiculo);
+		model.addAttribute("vehiculoActual", vehiculo);
+		
+		ControllersService.setTitulo(model, "Agregar inspeccion - " + vehiculo.getMatricula());
+
 		model.addAttribute("listaEstados", EnumListaEstados.CONDICIONAL);
 		return "inspecciones/agregarInspeccion";
 	}

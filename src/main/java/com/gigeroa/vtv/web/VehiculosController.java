@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.gigeroa.vtv.dto.*;
@@ -35,7 +36,18 @@ public class VehiculosController {
 		model.addAttribute("listaVehiculos", dtoPyV.listar());
 		return listarVehiculos;
 	}
-	
+
+	@GetMapping("/listarVehiculos/{agregar}")
+	public String listarVehiculos2 (Model model, @PathVariable int agregar) {
+		if (agregar != 0) {
+			model.addAttribute("mensaje", "Para agregar una inspección debe presionar este botón en el vehiculo");
+		}
+		ControllersService.setTitulo(model, "Lista de vehículos");
+//		Se trae lista de vehiculos
+		model.addAttribute("listaVehiculos", dtoPyV.listar());
+		return listarVehiculos;
+	}
+
 	@GetMapping("/agregarVehiculo")
 	public String agregarVehiculo (Model model) {
 		ControllersService.setTitulo(model, "Agregar vehículo");
