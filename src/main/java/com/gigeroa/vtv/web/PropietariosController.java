@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.gigeroa.vtv.dto.DtoPropietario_y_Vehiculo;
 import com.gigeroa.vtv.dto.DtoPropietariosImpl;
@@ -46,5 +47,17 @@ public class PropietariosController {
 //	Método para listar los propietarios
 	private void listarPropietarios(Model model) {
 		model.addAttribute("listaPropietarios", dtoPyV.listar());
+	}
+	
+	@GetMapping("/editarPropietario/{dni}")
+	public String editar (Model model, @PathVariable int dni) {
+		ControllersService.setTitulo(model,"En desarrollo - DNI: "+dni);
+		return "home/index";
+	}
+
+	@GetMapping("/eliminarPropietario/{dni}")
+	public String eliminar (Model model, @PathVariable int dni) {
+		ControllersService.setTitulo(model,"En desarrollo - DNI: "+dni);
+		return "home/index";
 	}
 }
