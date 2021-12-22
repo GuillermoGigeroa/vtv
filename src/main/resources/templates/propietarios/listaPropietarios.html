@@ -33,8 +33,8 @@
 									<td th:text="${PyV.getPropietario.esExento}">[EsExento]</td>
 									<td th:text="${PyV.getVehiculo.getMatricula}">[Vehiculo]</td>
 									<td>
-										<a class="btn btn-warning p-1"><i class="bi bi-pencil-square" title="Editar"></i></a>
-										<a class="btn btn-danger p-1"><i class="bi bi-trash" title="Borrar"></i></a>
+										<a class="btn btn-warning p-1" th:href="@{/editarPropietario/} + ${PyV.getPropietario.getDni}"><i class="bi bi-pencil-square" title="Editar"></i></a>
+										<a class="btn btn-danger p-1" th:href="@{/eliminarPropietario/} + ${PyV.getPropietario.getDni}"><i class="bi bi-trash" title="Borrar"></i></a>
 									</td>
 								</tr>
 							</div>

@@ -32,8 +32,8 @@
 									<td th:text="${PyV.getPropietario.getNombre}">[Nombre]</td>
 									<td th:text="${PyV.getPropietario.getApellido}">[Apellido]</td>
 									<td>
-										<a class="btn btn-warning p-1"><i class="bi bi-pencil-square" title="Editar"></i></a>
-										<a class="btn btn-danger p-1"><i class="bi bi-trash" title="Borrar"></i></a>
+										<a class="btn btn-warning p-1" th:href="@{/editarVehiculo/} + ${PyV.getVehiculo.getID}"><i class="bi bi-pencil-square" title="Editar"></i></a>
+										<a class="btn btn-danger p-1" th:href="@{/eliminarVehiculo/} + ${PyV.getVehiculo.getID}"><i class="bi bi-trash" title="Borrar"></i></a>
 									</td>
 								</tr>
 							</div>

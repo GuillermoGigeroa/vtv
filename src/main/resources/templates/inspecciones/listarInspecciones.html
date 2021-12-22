@@ -38,8 +38,8 @@
 									<td th:text="${IyV.getVehiculo.getMatricula}">Matricula [en desarrollo]</td>
 									<td class="columnaEstado" th:text="${T(com.gigeroa.vtv.services.EstadosService).numeroToEstado(IyV.getInspeccion.getEstado)}">[Estado]</td>
 									<td>
-										<a class="btn btn-warning p-1"><i class="bi bi-pencil-square" title="Editar"></i></a>
-										<a class="btn btn-danger p-1"><i class="bi bi-trash" title="Borrar"></i></a>
+										<a class="btn btn-warning p-1" th:href="@{/editarInspeccion/} + ${IyV.getInspeccion.getNumero}"><i class="bi bi-pencil-square" title="Editar"></i></a>
+										<a class="btn btn-danger p-1" th:href="@{/eliminarInspeccion/} + ${IyV.getInspeccion.getNumero}"><i class="bi bi-trash" title="Borrar"></i></a>
 									</td>
 								</tr>
 							</div>
