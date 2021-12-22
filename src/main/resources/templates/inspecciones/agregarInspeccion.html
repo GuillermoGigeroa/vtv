@@ -40,7 +40,7 @@
 				<input type="hidden" th:value="${idVehiculo}" name="idVehiculo">
 				<div class="col-md-6">
 					<div class="row text-center">
-						<span th:if="${inspectorActual.getLegajo == -1}">
+						<span th:if="${inspectorActual.getLegajo == 0}">
 						<h4>Seleccione el inspector</h4>
 						<div class="input-group">
 							<select th:field="*{legajo}" class="form-control">
@@ -51,7 +51,7 @@
 							<input type="submit" class="btn btn-outline-secondary" name="btnSeleccionar" value="Seleccionar">
 						</div>
 						</span>
-						<span th:if="${inspectorActual.getLegajo != -1}">Inspector seleccionado: <b>[[${inspectorActual.getLegajo}]] - [[${inspectorActual.getApellido}]], [[${inspectorActual.getNombre}]]</b></span>
+						<span th:if="${inspectorActual.getLegajo != 0}">Inspector seleccionado: <b>[[${inspectorActual.getLegajo}]] - [[${inspectorActual.getApellido}]], [[${inspectorActual.getNombre}]]</b></span>
 					</div>
 				</div>
 			</form>
