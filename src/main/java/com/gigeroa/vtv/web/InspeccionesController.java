@@ -1,5 +1,7 @@
 package com.gigeroa.vtv.web;
 
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -146,7 +148,7 @@ public class InspeccionesController {
 			return "redirect:/index";
 		}
 		
-		//TODO generar inspeccion antes de enviar a guardar. Ver ID
+		//TODO Falta inspector!!
 		Inspeccion inspeccion = new Inspeccion();
 		
 //		Se envía dato de confirmación para mostrar mensaje en front

@@ -11,7 +11,7 @@ public class Inspeccion {
 	@Id
 	@Column (name = "numero")
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	private int numero;
+	private Integer numero;
 	
 	@Column (name = "fecha")
 	private LocalDate fecha;
@@ -35,7 +35,7 @@ public class Inspeccion {
 	}
 	
 	public Inspeccion(
-			int numero,
+			Integer numero,
 			LocalDate fecha,
 			Inspector inspector,
 			Vehiculo vehiculo,
