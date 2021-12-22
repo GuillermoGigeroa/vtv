@@ -17,6 +17,7 @@ import com.gigeroa.vtv.services.ControllersService;
 import com.gigeroa.vtv.services.EstadosService;
 import com.gigeroa.vtv.entities.EnumListaEstados;
 import com.gigeroa.vtv.entities.Estado;
+import com.gigeroa.vtv.entities.Inspeccion;
 import com.gigeroa.vtv.entities.Inspector;
 import com.gigeroa.vtv.entities.Medicion;
 import com.gigeroa.vtv.entities.Observacion;
@@ -183,13 +184,16 @@ public class InspeccionesController {
 	public String guardarInspeccion (
 			Model model,
 			@RequestParam (required = false) Integer idVehiculo,
+			@RequestParam (required = false) Integer legajo,
 			@RequestParam (required = false) String estado) {
 //		if (idVehiculo == null | estado == null) {
 //			return "redirect:/index";
 //		}
-		ControllersService.setTitulo(model, "Guardar inspeccion - IDVehiculo: "+idVehiculo+" - Estado: "+estado+ " [falta guardar en BBDD]");
-			
-//		TODO Se tiene que generar una inspección y luego en enviar la información de confirmación
+		ControllersService.setTitulo(model, "Guardar inspeccion - IDVehiculo: " + idVehiculo + " - Estado: " + estado + " - Legajo: "+legajo);
+		
+//		Se crea la inspección y se guarda en BBDD
+		Inspeccion inspeccion = new Inspeccion(null,LocalDate.now(),dtoInspectores.buscar(legajo),dtoVehiculos.buscar(idVehiculo),EstadosService.estadoToNumero(estado));
+		dtoInspecciones.guardar(inspeccion);
 		
 		return "home/index";
 	}

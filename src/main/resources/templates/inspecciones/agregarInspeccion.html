@@ -4,32 +4,27 @@
 	<body>
 		<header th:replace="layout/estructura :: header"></header>
 		<div th:replace="layout/estructura :: titulo"></div>
-		<div class="container">
+		<div class="container text-center pt-3 mb-3">
 			<form method="post" th:action="@{/guardarInspeccion}" class="form-control mb-3 pt-2 d-flex justify-content-center" th:if="${estado != null}">
+				<input type="hidden" th:value="${estado}" name="estado">
+				<input type="hidden" th:value="${vehiculo.getID}" name="idVehiculo">
+				<span th:if="${inspectorActual != null}">
+					<input type="hidden" th:value="${inspectorActual.getLegajo}" name="legajo">
+				</span>
 				<div class="col-md-6">
-					<input type="hidden" th:value="${estado}" name="estado">
-					<input type="hidden" th:value="${vehiculo.getID}" name="idVehiculo">
-					<div class="row text-center">
-						<h4>Resultado de la inspeccion: [[${estado}]]</h4>
+					<div class="row">
+						<h4>Resultado de la inspeccion: <b>[[${estado}]]</b></h4>
 						<h5>Fecha de realización: [[${fecha}]]</h5>
 						<br>
 						<p>
 							Datos del vehículo:
 							<br>
-							Matrícula - [[${vehiculo.getMatricula}]]
-							<br>
-							Marca - [[${vehiculo.getMarca}]]
-							<br>
-							Modelo - [[${vehiculo.getMarca}]]
+							[[${vehiculo.getMarca}]] [[${vehiculo.getModelo}]], Matrícula [[${vehiculo.getMatricula}]]
 							<br>
 							<br>
 							Datos del propietario:
 							<br>
-							DNI - [[${propietario.getDni}]]
-							<br>
-							Nombre - [[${propietario.getNombre}]]
-							<br>
-							Apellido - [[${propietario.getApellido}]]
+							[[${propietario.getApellido}]] [[${propietario.getNombre}]], DNI - [[${propietario.getDni}]]
 							<br>
 						</p>
 					</div>
@@ -142,7 +137,9 @@
 					</div>
 				</div>
 				<div class="d-flex justify-content-center mb-2">
-					<input type="submit" class="btn btn-success" name="btnGuardarInspeccion" value="Guardar" th:disabled="${estado != null}">
+					<span th:if="${estado == null}">
+						<input type="submit" class="btn btn-success" name="btnGuardarInspeccion" value="Guardar" th:disabled="${estado != null}">
+					</span>
 				</div>
 			</form>
 		</div>
