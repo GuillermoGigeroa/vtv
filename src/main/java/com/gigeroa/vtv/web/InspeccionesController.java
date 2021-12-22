@@ -179,7 +179,7 @@ public class InspeccionesController {
 		return "inspecciones/agregarInspeccion";
 	}
 
-	@GetMapping("/guardarInspeccion")
+	@PostMapping("/guardarInspeccion")
 	public String guardarInspeccion (
 			Model model,
 			@RequestParam (required = false) Integer idVehiculo,
@@ -187,8 +187,8 @@ public class InspeccionesController {
 //		if (idVehiculo == null | estado == null) {
 //			return "redirect:/index";
 //		}
-		ControllersService.setTitulo(model, "Guardar inspeccion - IDVehiculo: "+idVehiculo+" - Estado: "+estado);
-		
+		ControllersService.setTitulo(model, "Guardar inspeccion - IDVehiculo: "+idVehiculo+" - Estado: "+estado+ " [falta guardar en BBDD]");
+			
 //		TODO Se tiene que generar una inspección y luego en enviar la información de confirmación
 		
 		return "home/index";
