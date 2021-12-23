@@ -20,73 +20,37 @@ public class VTVApplicationTests_ControlService {
 	
 	@Test
 	public void controlService_MedicionApto() {
-		//Escenario
-		medicion = new Medicion(1);
-		
-		//Situación
-		int resultado = ControlService.getEstado(medicion).compareTo(IEstado.apto);
-		
-		//Resultado esperado
-		assertEquals(0, resultado);
+		medicion = new Medicion(IEstado.aptoNumero);
+		assertEquals(0, ControlService.getEstado(medicion).compareTo(IEstado.apto));
 	}
 
 	@Test
 	public void controlService_MedicionCondicional() {
-		//Escenario
-		medicion = new Medicion(2);
-		
-		//Situación
-		int resultado = ControlService.getEstado(medicion).compareTo(IEstado.condicional);
-		
-		//Resultado esperado
-		assertEquals(0, resultado);
+		medicion = new Medicion(IEstado.condicionalNumero);
+		assertEquals(0, ControlService.getEstado(medicion).compareTo(IEstado.condicional));
 	}
 
 	@Test
 	public void controlService_MedicionRechazado() {
-		//Escenario
-		medicion = new Medicion(3);
-		
-		//Situación
-		int resultado = ControlService.getEstado(medicion).compareTo(IEstado.rechazado);
-		
-		//Resultado esperado
-		assertEquals(0, resultado);
+		medicion = new Medicion(IEstado.rechazadoNumero);
+		assertEquals(0, ControlService.getEstado(medicion).compareTo(IEstado.rechazado));
 	}
 
 	@Test
 	public void controlService_ObservacionApto() {
-		//Escenario
-		observacion = new Observacion(1);
-		
-		//Situación
-		int resultado = ControlService.getEstado(observacion).compareTo(IEstado.apto);
-		
-		//Resultado esperado
-		assertEquals(0, resultado);
+		observacion = new Observacion(IEstado.aptoNumero);
+		assertEquals(0, ControlService.getEstado(observacion).compareTo(IEstado.apto));
 	}
 
 	@Test
 	public void controlService_ObservacionCondicional() {
-		//Escenario
-		observacion = new Observacion(2);
-		
-		//Situación
-		int resultado = ControlService.getEstado(observacion).compareTo(IEstado.condicional);
-		
-		//Resultado esperado
-		assertEquals(0, resultado);
+		observacion = new Observacion(IEstado.condicionalNumero);
+		assertEquals(0, ControlService.getEstado(observacion).compareTo(IEstado.condicional));
 	}
 
 	@Test
 	public void controlService_ObservacionRechazado() {
-		//Escenario
-		observacion = new Observacion(3);
-		
-		//Situación
-		int resultado = ControlService.getEstado(observacion).compareTo(IEstado.rechazado);
-		
-		//Resultado esperado
-		assertEquals(0, resultado);
+		observacion = new Observacion(IEstado.rechazadoNumero);
+		assertEquals(0, ControlService.getEstado(observacion).compareTo(IEstado.rechazado));
 	}
 }

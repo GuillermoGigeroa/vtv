@@ -9,4 +9,8 @@ public interface IEstado {
 	public final String condicional = "Condicional";
 	public final String rechazado = "Rechazado";
 	public final String error = "Error";
+	public final int aptoNumero = 1;
+	public final int condicionalNumero = 2;
+	public final int rechazadoNumero = 3;
+	public final int errorNumero = 4;
 }
