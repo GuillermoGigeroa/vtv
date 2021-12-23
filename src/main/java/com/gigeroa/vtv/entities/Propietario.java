@@ -30,6 +30,13 @@ public class Propietario implements IPersona{
 		this.exento = false;
 	}
 	
+	public Propietario(int dni, String nombre, String apellido, boolean exento) throws DniInvalido {
+		this.dni = dni;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.exento = exento;
+	}
+	
 	public Propietario(String dni, String nombre, String apellido, boolean exento) throws DniInvalido {
 		this.dni = (new Dni(dni)).getNumero();
 		this.nombre = nombre;
