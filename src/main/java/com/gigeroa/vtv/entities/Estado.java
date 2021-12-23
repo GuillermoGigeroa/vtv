@@ -7,7 +7,7 @@ public class Estado implements IEstado {
 
 //	Constructor
 	public Estado() {
-		this.tipoEstado = 3;
+		this.tipoEstado = rechazadoNumero;
 	}
 	
 	public Estado(int tipoEstado) {
@@ -37,8 +37,4 @@ public class Estado implements IEstado {
 		}
 	}
 
-	public String formatoExportacion() {
-		return this.toString();
-	}
-	
 }
