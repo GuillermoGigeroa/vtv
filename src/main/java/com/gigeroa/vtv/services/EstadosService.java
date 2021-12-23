@@ -7,13 +7,13 @@ public abstract class EstadosService implements IEstado {
 //	Método que compara un String con los estados y retorna un int con el tipo de estado
 	public static int estadoToNumero(String estado) {
 		if (estado.equalsIgnoreCase(apto)) {
-			return 1;
+			return aptoNumero;
 		} else if (estado.equalsIgnoreCase(condicional)) {
-			return 2;
+			return condicionalNumero;
 		} else if (estado.equalsIgnoreCase(rechazado)) {
-			return 3;
+			return rechazadoNumero;
 		} else {
-			return 0;
+			return errorNumero;
 		}
 	}
 	
@@ -33,15 +33,15 @@ public abstract class EstadosService implements IEstado {
 //	Método para verificar el resultado de dos controles, pueden ser observacion, medicion o biceversa
 	public static int getEstado(IControl observacion, IControl medicion) {
 		if (observacion.toString().equalsIgnoreCase(apto) && medicion.toString().equalsIgnoreCase(apto)) {
-			return estadoToNumero(apto);
+			return aptoNumero;
 		}
 		if (observacion.toString().equalsIgnoreCase(rechazado) || medicion.toString().equalsIgnoreCase(rechazado)) {
-			return estadoToNumero(rechazado);
+			return rechazadoNumero;
 		}
 		if (observacion.toString().equalsIgnoreCase(condicional) || medicion.toString().equalsIgnoreCase(condicional)) {
-			return estadoToNumero(condicional);
+			return condicionalNumero;
 		}
-		return estadoToNumero(error);
+		return errorNumero;
 	}
 
 }
