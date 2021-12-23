@@ -57,7 +57,7 @@
 			</form>
 		</div>
 		<div class="container d-flex justify-content-center" th:if="${inspectorActual != null}">
-			<form class="col-md-6" th:action="@{/agregarInspeccion/agregar}" method="post" th:object="${listaEstados}" th:if="${inspectorActual.getLegajo != -1}">
+			<form class="col-md-6" th:action="@{/agregarInspeccion/agregar}" method="post" th:object="${listaEstados}" th:if="${inspectorActual.getLegajo != 0}">
 				<input type="hidden" th:value="${inspectorActual.getLegajo}" name="legajo">
 				<input type="hidden" th:value="${idVehiculo}" name="idVehiculo">
 				<div class="form-control mb-3">
