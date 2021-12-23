@@ -1,12 +1,18 @@
 package com.gigeroa.vtv.tests.java;
 
+import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 import com.gigeroa.vtv.services.DniService;
-import junit.framework.TestCase;
 
-public class TestDniService extends TestCase{
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class VTVApplicationTests_DniService {
+	
 	private String dni;
 	
-//	Se crean varios escenarios posibles en el caso de ingreso de DNI
 	public void escenarioDniValido1 () {
 		dni = "93300412";
 	}
@@ -23,28 +29,28 @@ public class TestDniService extends TestCase{
 		dni = "hola12345";
 	}
 	
-//	Prueba sobre un caso válido
-	public void testVerificar_Valido1 () {
+	@Test
+	public void DniService_valido1() {
 		escenarioDniValido1();
 		assertTrue(DniService.verificarDniInvalido(dni));
 	}
 
-//	Prueba sobre un caso válido
-	public void testVerificar_Valido2 () {
+	@Test
+	public void DniService_valido2() {
 		escenarioDniValido2();
 		assertTrue(DniService.verificarDniInvalido(dni));
 	}
-	
-//	Prueba sobre un caso inválido
-	public void testVerificar_Invalido1 () {
+
+	@Test
+	public void DniService_invalido1() {
 		escenarioDniInvalido1();
 		assertFalse(DniService.verificarDniInvalido(dni));
 	}
-
-//	Prueba sobre un caso inválido
-	public void testVerificar_Invalido2 () {
+	
+	@Test
+	public void DniService_invalido2() {
 		escenarioDniInvalido2();
 		assertFalse(DniService.verificarDniInvalido(dni));
 	}
-	
+
 }

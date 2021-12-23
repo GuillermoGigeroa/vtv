@@ -1,48 +1,62 @@
 package com.gigeroa.vtv.tests.java;
 
+import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 import com.gigeroa.vtv.services.MatriculasService;
-import junit.framework.TestCase;
 
-public class TestMatriculasService extends TestCase {
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class VTVApplicationTests_MatriculasService {
+	
 	String patenteNueva;
 	String patenteAntigua;
-//	Se generan escenarios previos a la ejecución de la prueba del servicio
+
 	public void escenario() {
 		patenteNueva = "AA123AA";
 		patenteAntigua = "AAA123";
 	}
 	
-	public void testEsNueva_Nueva () {
+	@Test
+	public void matriculaService_Nueva_Nueva () {
 		escenario();
 		assertTrue(MatriculasService.esNueva(patenteNueva));
 	}
 	
-	public void testEsNueva_Antigua () {
+	@Test
+	public void matriculaService_Nueva_Antigua () {
 		escenario();
 		assertFalse(MatriculasService.esNueva(patenteAntigua));
 	}
 	
-	public void testEsAntigua_Antigua () {
+	@Test
+	public void matriculaService_Antigua_Antigua () {
 		escenario();
 		assertTrue(MatriculasService.esAntigua(patenteAntigua));
 	}
 
-	public void testEsAntigua_Nueva () {
+	@Test
+	public void matriculaService_Antigua_Nueva () {
 		escenario();
 		assertFalse(MatriculasService.esAntigua(patenteNueva));
 	}
 	
-	public void testProcesarMatricula_Nueva () {
+	@Test
+	public void matriculaService_ProcesarMatricula_Nueva () {
 		escenario();
 		assertNotNull(MatriculasService.procesarMatricula(patenteNueva));
 	}
 
-	public void testProcesarMatricula_Antigua () {
+	@Test
+	public void matriculaService_ProcesarMatricula_Antigua () {
 		escenario();
 		assertNotNull(MatriculasService.procesarMatricula(patenteAntigua));
 	}
 	
-	public void testProcesarMatricula_Errores () {
+	@Test
+	public void matriculaService_ProcesarMatricula_Errores () {
 		escenario();
 		assertNull(MatriculasService.procesarMatricula("AAA"));
 		assertNull(MatriculasService.procesarMatricula("123"));
@@ -53,16 +67,19 @@ public class TestMatriculasService extends TestCase {
 		assertNull(MatriculasService.procesarMatricula("A123AAA"));
 	}
 	
-	public void testEsTexto_Antigua () {
+	@Test
+	public void matriculaService_EsTexto_Antigua () {
 		escenario();
 		// Formato AAA123
 		assertTrue(MatriculasService.esTexto(patenteAntigua.substring(0,3)));
 	}
 	
-	public void testEsTexto_Nueva () {
+	@Test
+	public void matriculaService_EsTexto_Nueva () {
 		escenario();
 		// Formato AA123AA
 		assertTrue(MatriculasService.esTexto(patenteNueva.substring(0,2)));
 		assertTrue(MatriculasService.esTexto(patenteNueva.substring(5)));
 	}
+
 }
