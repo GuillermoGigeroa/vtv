@@ -80,7 +80,9 @@ public class InspeccionesController {
 	}
 	
 	@RequestMapping (value = {"/seleccionarInspector", "/seleccionarInspector/"}, method = {RequestMethod.GET, RequestMethod.POST})
-	public String seleccionarInspector (Model model, @RequestParam (required = false) Integer legajo, @RequestParam (required = false) Integer idVehiculo) {
+	public String seleccionarInspector (Model model,
+			@RequestParam (required = false) Integer legajo,
+			@RequestParam (required = false) Integer idVehiculo) {
 //		Se comprueba que los parámetros ingresados no sean nulos
 		if (legajo == null | idVehiculo == null) {
 			return "redirect:/index";
