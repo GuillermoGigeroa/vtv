@@ -15,10 +15,10 @@ import com.gigeroa.vtv.dto.DtoPropietariosImpl;
 import com.gigeroa.vtv.dto.DtoVehiculosImpl;
 import com.gigeroa.vtv.services.ControllersService;
 import com.gigeroa.vtv.services.EstadosService;
-import com.gigeroa.vtv.entities.EnumListaEstados;
 import com.gigeroa.vtv.entities.Estado;
 import com.gigeroa.vtv.entities.Inspeccion;
 import com.gigeroa.vtv.entities.Inspector;
+import com.gigeroa.vtv.entities.ListaEstados;
 import com.gigeroa.vtv.entities.Medicion;
 import com.gigeroa.vtv.entities.Observacion;
 
@@ -57,7 +57,9 @@ public class InspeccionesController {
 	}
 
 	@RequestMapping (value = "/agregarInspeccion/{idVehiculo}", method = {RequestMethod.GET, RequestMethod.POST})
-	public String agregarInspecciones (Model model, @PathVariable (required = false) Integer idVehiculo) {
+	public String agregarInspecciones (Model model,
+			@PathVariable (required = false) Integer idVehiculo,
+			ListaEstados listaEstados) {
 		if(idVehiculo == null) {
 			return "redirect:/listarVehiculos/1";
 		}
@@ -74,15 +76,14 @@ public class InspeccionesController {
 //		Se agrega inspector nuevo para poder trabajar
 		model.addAttribute("inspectorActual",new Inspector());
 		
-//		Se envía un objeto del tipo EnumListaEstados para trabajar con los datos ingresados
-		model.addAttribute("listaEstados", EnumListaEstados.CONDICIONAL);
 		return "inspecciones/agregarInspeccion";
 	}
 	
 	@RequestMapping (value = {"/seleccionarInspector", "/seleccionarInspector/"}, method = {RequestMethod.GET, RequestMethod.POST})
 	public String seleccionarInspector (Model model,
 			@RequestParam (required = false) Integer legajo,
-			@RequestParam (required = false) Integer idVehiculo) {
+			@RequestParam (required = false) Integer idVehiculo,
+			ListaEstados listaEstados) {
 //		Se comprueba que los parámetros ingresados no sean nulos
 		if (legajo == null | idVehiculo == null) {
 			return "redirect:/index";
@@ -97,36 +98,14 @@ public class InspeccionesController {
 //		Se recibe un legajo de inspector por PathVariable para trabajar con el vehiculo
 		model.addAttribute("inspectorActual",dtoInspectores.buscar(legajo));
 		
-//		Se envía un objeto del tipo EnumListaEstados para trabajar con los datos ingresados
-		model.addAttribute("listaEstados", EnumListaEstados.CONDICIONAL);
-		
 		return "inspecciones/agregarInspeccion";
 	}
 
-	@RequestMapping (value = "/agregarInspeccion/agregar", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping (value = {"/agregarInspeccion/agregar", "/agregarInspeccion/agregar/"}, method = {RequestMethod.GET, RequestMethod.POST})
 	public String agregarInspecciones (Model model,
 			@RequestParam (required = false) Integer idVehiculo,
 			@RequestParam (required = false) Integer legajo,
-			@RequestParam (required = false) Integer suspension,
-			@RequestParam (required = false) Integer direccion,
-			@RequestParam (required = false) Integer frenos,
-			@RequestParam (required = false) Integer contaminacion,
-			@RequestParam (required = false) Integer luces,
-			@RequestParam (required = false) Integer patente,
-			@RequestParam (required = false) Integer espejos,
-			@RequestParam (required = false) Integer chasis,
-			@RequestParam (required = false) Integer vidrios,
-			@RequestParam (required = false) Integer seguridad,
-			@RequestParam (required = false) Integer emergencia) {
-//		Se reciben por parámetros en POST todos los valores para ser analizados
-//		Se comprueba que sean únicamente los parámetros solicitados
-		Integer [] lista = {idVehiculo, legajo, suspension, direccion, frenos, contaminacion, luces, patente, espejos, chasis, vidrios, seguridad, emergencia};
-		for (Integer i : lista) {
-			if (i == null) {
-				return "redirect:/index";
-			}
-		}
-		
+			ListaEstados listaEstados) {
 //		Se personaliza el título con la matrícula del vehículo
 		ControllersService.setTitulo(model, "Agregar inspeccion - "+dtoVehiculos.buscar(idVehiculo).getMatricula());
 		
@@ -142,58 +121,42 @@ public class InspeccionesController {
 //		Se envía fecha actual
 		model.addAttribute("fecha",LocalDate.now().toString());
 		
-//		Se cargan los datos en el EnumListaEstados para poder ser analizados
-		EnumListaEstados resultado = EnumListaEstados.RECHAZADO;
-		resultado.setSuspension(suspension);
-		resultado.setDireccion(direccion);
-		resultado.setFrenos(frenos);
-		resultado.setContaminacion(contaminacion);
-		resultado.setLuces(luces);
-		resultado.setPatente(patente);
-		resultado.setEspejos(espejos);
-		resultado.setChasis(chasis);
-		resultado.setVidrios(vidrios);
-		resultado.setSeguridad(seguridad);
-		resultado.setEmergencia(emergencia);
-		
 //		Se genera un objeto medicion para continuar con el análisis de lo ingresado
 		Medicion medicion = new Medicion(
-				new Estado(suspension),
-				new Estado(direccion),
-				new Estado(frenos),
-				new Estado(contaminacion));
+				new Estado(listaEstados.getSuspension()),
+				new Estado(listaEstados.getDireccion()),
+				new Estado(listaEstados.getFrenos()),
+				new Estado(listaEstados.getContaminacion()));
 		
 //		Se genera un objeto observación para continuar con el análisis de lo ingresado
 		Observacion observacion = new Observacion(
-				new Estado(luces),
-				new Estado(patente),
-				new Estado(espejos),
-				new Estado(chasis),
-				new Estado(vidrios),
-				new Estado(seguridad),
-				new Estado(emergencia));
+				new Estado(listaEstados.getLuces()),
+				new Estado(listaEstados.getPatente()),
+				new Estado(listaEstados.getEspejos()),
+				new Estado(listaEstados.getChasis()),
+				new Estado(listaEstados.getVidrios()),
+				new Estado(listaEstados.getSeguridad()),
+				new Estado(listaEstados.getEmergencia()));
 		
 //		Se genera un objeto estado para procesar los datos ingresados
 		Estado estado = new Estado(EstadosService.getEstado(observacion, medicion));
 
-//		Se envía nuevamente los datos ingresados para ser corroborados
-		model.addAttribute("listaEstados", resultado);
-		
 //		Se envía el estado, luego de ser procesado
 		model.addAttribute("estado",estado);
 		
 		return "inspecciones/agregarInspeccion";
 	}
 
-	@RequestMapping (value = "/guardarInspeccion", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping (value = {"/guardarInspeccion", "/guardarInspeccion/"}, method = {RequestMethod.GET, RequestMethod.POST})
 	public String guardarInspeccion (
 			Model model,
 			@RequestParam (required = false) Integer idVehiculo,
 			@RequestParam (required = false) Integer legajo,
 			@RequestParam (required = false) String estado) {
-//		if (idVehiculo == null | estado == null) {
-//			return "redirect:/index";
-//		}
+		if (idVehiculo == null | legajo == null | estado == null) {
+			return "redirect:/index";
+		}
+		
 		ControllersService.setTitulo(model, "Guardar inspeccion - IDVehiculo: " + idVehiculo + " - Estado: " + estado + " - Legajo: "+legajo);
 		
 //		Se crea la inspección y se guarda en BBDD
@@ -203,14 +166,20 @@ public class InspeccionesController {
 	}
 	
 	
-	@RequestMapping(value = "/editarInspeccion/{idInspeccion}", method = {RequestMethod.GET, RequestMethod.POST})
-	public String editar (Model model, @PathVariable int idInspeccion) {
+	@RequestMapping(value = {"/editarInspeccion", "/editarInspeccion/{idInspeccion}"}, method = {RequestMethod.GET, RequestMethod.POST})
+	public String editar (Model model, @PathVariable (required = false) Integer idInspeccion) {
+		if (idInspeccion == null) {
+			return "redirect:/listarInspecciones";
+		}
 		ControllersService.setTitulo(model,"En desarrollo - ID Inspeccion: "+idInspeccion);
 		return "home/index";
 	}
 
-	@RequestMapping(value = "/eliminarInspeccion/{idInspeccion}", method = {RequestMethod.GET, RequestMethod.POST})
-	public String eliminar (Model model, @PathVariable int idInspeccion) {
+	@RequestMapping(value = {"/eliminarInspeccion", "/eliminarInspeccion/{idInspeccion}"}, method = {RequestMethod.GET, RequestMethod.POST})
+	public String eliminar (Model model, @PathVariable (required = false) Integer idInspeccion) {
+		if (idInspeccion == null) {
+			return "redirect:/listarInspecciones";
+		}
 		ControllersService.setTitulo(model,"En desarrollo - ID Inspeccion: "+idInspeccion);
 		return "home/index";
 	}
