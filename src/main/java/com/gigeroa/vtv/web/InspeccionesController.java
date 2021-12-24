@@ -4,9 +4,9 @@ import java.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.gigeroa.vtv.dto.DtoInspeccion_y_Vehiculo;
 import com.gigeroa.vtv.dto.DtoInspeccionesImpl;
@@ -40,7 +40,7 @@ public class InspeccionesController {
 	@Autowired
 	DtoInspeccion_y_Vehiculo dtoIyV;
 	
-	@GetMapping ("/listarInspecciones")
+	@RequestMapping (value = {"/listarInspecciones", "/listarInspecciones/"}, method = {RequestMethod.GET, RequestMethod.POST})
 	public String listarInspecciones (Model model) {
 //		Se agrega un título
 		ControllersService.setTitulo(model, "Lista de inspecciones");
@@ -50,14 +50,18 @@ public class InspeccionesController {
 		return "inspecciones/listarInspecciones";
 	}
 	
-	@GetMapping("/agregarInspeccion")
+	@RequestMapping (value = {"/agregarInspeccion"}, method = {RequestMethod.GET, RequestMethod.POST})
 	public String agregarInspecciones (Model model) {
 //		Se redirige al usuario a la lista de vehículos con un mensaje orientativo
 		return "redirect:/listarVehiculos/1";
 	}
 
-	@GetMapping("/agregarInspeccion/{idVehiculo}")
-	public String agregarInspecciones (Model model, @PathVariable int idVehiculo) {
+	@RequestMapping (value = "/agregarInspeccion/{idVehiculo}", method = {RequestMethod.GET, RequestMethod.POST})
+	public String agregarInspecciones (Model model, @PathVariable (required = false) Integer idVehiculo) {
+		if(idVehiculo == null) {
+			return "redirect:/listarVehiculos/1";
+		}
+		
 //		Se agrega título personalizado con la matrícula del vehículo
 		ControllersService.setTitulo(model, "Agregar inspeccion - " + dtoVehiculos.buscar(idVehiculo).getMatricula());
 
@@ -75,15 +79,15 @@ public class InspeccionesController {
 		return "inspecciones/agregarInspeccion";
 	}
 	
-	@PostMapping("/seleccionarInspector")
+	@RequestMapping (value = {"/seleccionarInspector", "/seleccionarInspector/"}, method = {RequestMethod.GET, RequestMethod.POST})
 	public String seleccionarInspector (Model model, @RequestParam (required = false) Integer legajo, @RequestParam (required = false) Integer idVehiculo) {
-//		Se agrega título personalizado con la matrícula del vehículo
-		ControllersService.setTitulo(model, "Agregar inspeccion - " + dtoVehiculos.buscar(idVehiculo).getMatricula());
-		
 //		Se comprueba que los parámetros ingresados no sean nulos
 		if (legajo == null | idVehiculo == null) {
 			return "redirect:/index";
 		}
+
+//		Se agrega título personalizado con la matrícula del vehículo
+		ControllersService.setTitulo(model, "Agregar inspeccion - " + dtoVehiculos.buscar(idVehiculo).getMatricula());
 		
 //		Se vuelve a enviar el idVehiculo para poder seguir trabajando
 		model.addAttribute("idVehiculo", idVehiculo);
@@ -97,10 +101,10 @@ public class InspeccionesController {
 		return "inspecciones/agregarInspeccion";
 	}
 
-	@PostMapping("/agregarInspeccion/agregar")
-	public String agregarInspeccionesPost (Model model,
-			@RequestParam (required = true) Integer idVehiculo,
-			@RequestParam (required = true) Integer legajo,
+	@RequestMapping (value = "/agregarInspeccion/agregar", method = {RequestMethod.GET, RequestMethod.POST})
+	public String agregarInspecciones (Model model,
+			@RequestParam (required = false) Integer idVehiculo,
+			@RequestParam (required = false) Integer legajo,
 			@RequestParam (required = false) Integer suspension,
 			@RequestParam (required = false) Integer direccion,
 			@RequestParam (required = false) Integer frenos,
@@ -113,6 +117,13 @@ public class InspeccionesController {
 			@RequestParam (required = false) Integer seguridad,
 			@RequestParam (required = false) Integer emergencia) {
 //		Se reciben por parámetros en POST todos los valores para ser analizados
+//		Se comprueba que sean únicamente los parámetros solicitados
+		Integer [] lista = {idVehiculo, legajo, suspension, direccion, frenos, contaminacion, luces, patente, espejos, chasis, vidrios, seguridad, emergencia};
+		for (Integer i : lista) {
+			if (i == null) {
+				return "redirect:/index";
+			}
+		}
 		
 //		Se personaliza el título con la matrícula del vehículo
 		ControllersService.setTitulo(model, "Agregar inspeccion - "+dtoVehiculos.buscar(idVehiculo).getMatricula());
@@ -128,14 +139,6 @@ public class InspeccionesController {
 
 //		Se envía fecha actual
 		model.addAttribute("fecha",LocalDate.now().toString());
-		
-//		Se comprueba que no se haya forzado el intento de modificación de algún parámetro
-		Integer [] lista = {suspension,direccion,frenos,contaminacion,luces,patente,espejos,chasis,vidrios,seguridad,emergencia};
-		for (Integer i : lista) {
-			if (i == null) {
-				return "redirect:/index";
-			}
-		}
 		
 //		Se cargan los datos en el EnumListaEstados para poder ser analizados
 		EnumListaEstados resultado = EnumListaEstados.RECHAZADO;
@@ -180,7 +183,7 @@ public class InspeccionesController {
 		return "inspecciones/agregarInspeccion";
 	}
 
-	@PostMapping("/guardarInspeccion")
+	@RequestMapping (value = "/guardarInspeccion", method = {RequestMethod.GET, RequestMethod.POST})
 	public String guardarInspeccion (
 			Model model,
 			@RequestParam (required = false) Integer idVehiculo,
@@ -197,13 +200,14 @@ public class InspeccionesController {
 		return "home/index";
 	}
 	
-	@GetMapping("/editarInspeccion/{idInspeccion}")
+	
+	@RequestMapping(value = "/editarInspeccion/{idInspeccion}", method = {RequestMethod.GET, RequestMethod.POST})
 	public String editar (Model model, @PathVariable int idInspeccion) {
 		ControllersService.setTitulo(model,"En desarrollo - ID Inspeccion: "+idInspeccion);
 		return "home/index";
 	}
 
-	@GetMapping("/eliminarInspeccion/{idInspeccion}")
+	@RequestMapping(value = "/eliminarInspeccion/{idInspeccion}", method = {RequestMethod.GET, RequestMethod.POST})
 	public String eliminar (Model model, @PathVariable int idInspeccion) {
 		ControllersService.setTitulo(model,"En desarrollo - ID Inspeccion: "+idInspeccion);
 		return "home/index";
