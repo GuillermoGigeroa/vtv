@@ -24,13 +24,12 @@ public class InspectoresController {
 	}
 	
 	@RequestMapping (value = {"/agregarInspector", "/agregarInspector/"}, method = {RequestMethod.GET, RequestMethod.POST})
-	public String agregarInspector (Model model) {
+	public String agregarInspector (Model model, Inspector inspector) {
 		ControllersService.setTitulo(model, "Alta de inspector");
-		model.addAttribute("inspector",new Inspector());
 		return "inspectores/agregarInspector";
 	}
 
-	@RequestMapping (value = {"/altaInspector","/altaInspector/"}, method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping (value = {"inspectores/alta","inspector/alta/"}, method = {RequestMethod.GET, RequestMethod.POST})
 	public String agregarInspector2 (Model model, Inspector inspector) {
 		ControllersService.setTitulo(model, "Alta de inspector");
 		return "inspectores/agregarInspector";
