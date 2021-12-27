@@ -31,6 +31,12 @@ public class DtoInspectoresImpl implements DtoInspectores{
 	public void eliminar(Inspector inspector) {
 		dao.delete(inspector);
 	}
+	
+	@Override
+	@Transactional
+	public void eliminar(Integer legajo) {
+		dao.deleteById(legajo);
+	}
 
 	@Override
 	@Transactional (readOnly = true)
