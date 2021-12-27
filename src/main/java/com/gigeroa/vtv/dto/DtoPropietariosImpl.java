@@ -36,6 +36,12 @@ public class DtoPropietariosImpl implements DtoPropietarios {
 	public void eliminar(Propietario propietario) {
 		dao.delete(propietario);
 	}
+	
+	@Override
+	@Transactional
+	public void eliminar(Integer dni) {
+		dao.deleteById(dni);;
+	}
 
 	@Override
 	@Transactional (readOnly = true)
