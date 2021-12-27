@@ -26,4 +26,15 @@ public class DtoInspeccion_y_Vehiculo {
 		}
 		return lista;
 	}
+	
+	public Inspeccion_y_Vehiculo buscar(Integer idInspeccion){
+		for (Inspecciones_x_Vehiculo ixv : dtoIXV.listar()) {
+			if (ixv.getIdInspeccion() == idInspeccion) {
+				return new Inspeccion_y_Vehiculo(
+						dtoInspecciones.buscar(ixv.getIdInspeccion()), 
+						dtoVehiculos.buscar(ixv.getIdVehiculo()));
+			}
+		}
+		return null;
+	}
 }

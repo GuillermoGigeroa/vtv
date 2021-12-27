@@ -41,6 +41,12 @@ public class DtoInspeccionesImpl implements DtoInspecciones {
 	}
 
 	@Override
+	@Transactional
+	public void eliminar(Integer idInspeccion) {
+		dao.deleteById(idInspeccion);
+	}
+
+	@Override
 	@Transactional (readOnly = true)
 	public Inspeccion buscar(Inspeccion inspeccion) {
 		return buscar(inspeccion.getNumero());
