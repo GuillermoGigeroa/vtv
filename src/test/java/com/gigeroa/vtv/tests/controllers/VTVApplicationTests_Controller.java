@@ -1,6 +1,8 @@
 package com.gigeroa.vtv.tests.controllers;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -22,7 +24,10 @@ public class VTVApplicationTests_Controller {
 		RequestBuilder request = MockMvcRequestBuilders
 				.get("/hello-world")
 				.accept(MediaType.APPLICATION_JSON);
-		MvcResult result = mockMvc.perform(request).andReturn();
+		MvcResult result = mockMvc.perform(request)
+				.andExpect(status().isOk())
+				.andExpect(content().string("Hello world"))
+				.andReturn();
 		
 		//Verificar "Hello world"
 		assertEquals("Hello world", result.getResponse().getContentAsString());
