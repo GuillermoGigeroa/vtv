@@ -9,9 +9,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import com.gigeroa.vtv.rest.InspeccionesRest;
+import com.gigeroa.vtv.rest.PruebasRest;
 
-@WebMvcTest (InspeccionesRest.class)
+@WebMvcTest (PruebasRest.class)
 public class VTVApplicationTests_Controller {
 	@Autowired
 	private MockMvc mockMvc;
@@ -25,6 +25,6 @@ public class VTVApplicationTests_Controller {
 		MvcResult result = mockMvc.perform(request).andReturn();
 		
 		//Verificar "Hello world"
-		assertEquals("Hello world", result.getResponse().toString());
+		assertEquals("Hello world", result.getResponse().getContentAsString());
 	}
 }
