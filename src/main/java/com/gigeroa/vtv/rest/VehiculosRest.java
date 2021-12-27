@@ -11,7 +11,7 @@ import com.gigeroa.vtv.dto.DtoVehiculosImpl;
 import com.gigeroa.vtv.entities.Vehiculo;
 
 @RestController
-@RequestMapping ("/vehiculos")
+@RequestMapping ("/api/vehiculos")
 public class VehiculosRest {
 	@Autowired
 	DtoVehiculosImpl dtoVehiculos;

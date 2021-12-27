@@ -22,7 +22,7 @@ public class VTVApplicationTests_Controller {
 	public void helloWorld_basic() throws Exception {
 		//Call GET /hello-world application/json
 		RequestBuilder request = MockMvcRequestBuilders
-				.get("/hello-world")
+				.get("/api/hello-world")
 				.accept(MediaType.APPLICATION_JSON);
 		MvcResult result = mockMvc.perform(request)
 				.andExpect(status().isOk())

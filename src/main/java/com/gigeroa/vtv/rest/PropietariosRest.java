@@ -11,7 +11,7 @@ import com.gigeroa.vtv.dto.DtoPropietariosImpl;
 import com.gigeroa.vtv.entities.Propietario;
 
 @RestController
-@RequestMapping ("/propietarios")
+@RequestMapping ("/api/propietarios")
 public class PropietariosRest {
 	@Autowired
 	DtoPropietariosImpl dtoPropietarios;

@@ -12,7 +12,7 @@ import com.gigeroa.vtv.dto.DtoInspeccionesImpl;
 import com.gigeroa.vtv.entities.Inspeccion_y_Vehiculo;
 
 @RestController
-@RequestMapping ("/inspecciones")
+@RequestMapping ("/api/inspecciones")
 public class InspeccionesRest {
 	
 	@Autowired
