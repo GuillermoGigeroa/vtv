@@ -50,6 +50,7 @@ public class DtoPropietariosImpl implements DtoPropietarios {
 	}
 
 	@Override
+	@Transactional (readOnly = true)
 	public Propietario buscarPorVehiculo(int id) {
 		for (Vehiculos_x_Propietario vxp : daoVXP.findAll()) {
 			for (Propietario propietario : dao.findAll()) {

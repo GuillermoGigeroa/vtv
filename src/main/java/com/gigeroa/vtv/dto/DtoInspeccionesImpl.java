@@ -71,6 +71,7 @@ public class DtoInspeccionesImpl implements DtoInspecciones {
 	}
 
 	@Override
+	@Transactional (readOnly = true)
 	public ArrayList<Inspeccion> listarPorPropietario(int dni) {
 		ArrayList<Inspeccion> listaResultado = new ArrayList<Inspeccion>();
 		int IDVehiculo = dtoVXP.buscar(dni).getId_vehiculo();

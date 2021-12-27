@@ -30,11 +30,17 @@ public class DtoVehiculosImpl implements DtoVehiculos {
 	public void guardar(Vehiculo vehiculo) {
 		dao.save(vehiculo);
 	}
-
+	
 	@Override
 	@Transactional
 	public void eliminar(Vehiculo vehiculo) {
 		dao.delete(vehiculo);
+	}
+	
+	@Override
+	@Transactional
+	public void eliminar(Integer idVehiculo) {
+		dao.deleteById(idVehiculo);
 	}
 
 	@Override

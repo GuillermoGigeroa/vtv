@@ -8,6 +8,7 @@ public interface DtoVehiculos {
 	List<Vehiculo> listar();
 	void guardar (Vehiculo vehiculo);
 	void eliminar (Vehiculo vehiculo);
+	void eliminar(Integer idVehiculo);
 	Vehiculo buscar(Vehiculo vehiculo);
 	Vehiculo buscar(int id);
 	Vehiculo buscarPorPropietario(int dni);

@@ -3,6 +3,8 @@ package com.gigeroa.vtv.dto;
 import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.gigeroa.vtv.entities.Propietario_y_Vehiculo;
 import com.gigeroa.vtv.entities.Vehiculos_x_Propietario;
 
@@ -17,6 +19,7 @@ public class DtoPropietario_y_Vehiculo {
 	@Autowired
 	DtoVehiculos_x_PropietarioImpl dtoVXP;
 	
+	@Transactional (readOnly = true)
 	public ArrayList<Propietario_y_Vehiculo> listar(){
 		ArrayList<Propietario_y_Vehiculo> lista = new ArrayList<Propietario_y_Vehiculo>();
 		for (Vehiculos_x_Propietario vxp: dtoVXP.listar()) {
