@@ -1,13 +1,10 @@
-package com.gigeroa.vtv.tests.java;
+package com.gigeroa.vtv.tests.services;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 import com.gigeroa.vtv.services.MatriculasService;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
 public class VTVApplicationTests_MatriculasService {
 	

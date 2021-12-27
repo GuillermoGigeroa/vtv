@@ -21,6 +21,11 @@ public class InspeccionesRest {
 	@Autowired
 	DtoInspeccionesImpl dtoInspecciones;
 	
+	@GetMapping ("/hello-world")
+	public String helloWorld (){
+		return "Hello world";
+	}
+	
 	@GetMapping
 	public List<Inspeccion_y_Vehiculo> listar (){
 		return dtoIyV.listar();

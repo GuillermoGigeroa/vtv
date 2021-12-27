@@ -1,12 +1,11 @@
-package com.gigeroa.vtv.tests.java;
+package com.gigeroa.vtv.tests.services;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 import com.gigeroa.vtv.dto.DtoInspectoresImpl;
 import com.gigeroa.vtv.dto.DtoPropietariosImpl;
 import com.gigeroa.vtv.entities.Inspector;
@@ -14,7 +13,6 @@ import com.gigeroa.vtv.entities.Propietario;
 import com.gigeroa.vtv.exceptions.DniInvalido;
 import com.gigeroa.vtv.services.DniService;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
 public class VTVApplicationTests_DniService {
 	
