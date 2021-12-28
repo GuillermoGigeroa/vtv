@@ -5,26 +5,27 @@
 		<header th:replace="layout/estructura :: header"></header>
 		<div th:replace="layout/estructura :: titulo"></div>
 		<div class="container d-flex justify-content-center">
-			<form method="get" th:action="@{/inspectores/alta}" class="col-md-6" th:object="${inspector}">
+			<form method="get" th:action="@{/inspectores/alta}" class="col-md-6 text-center" th:object="${inspector}">
+				<h4 class="mb-3" th:if="${confirmar != null}" th:text="${confirmar}"></h4>
 				<input type="hidden" name="legajo" th:value="*{legajo}">
 				<div class="row d-flex justify-content-center">
 					<div class="input-group mb-3">
 					  <span class="input-group-text">Nombre</span>
-					  <input type="text" class="form-control" name="nombre" th:value="*{nombre}" placeholder="Ingrese el nombre">
+					  <input type="text" class="form-control" name="nombre" th:value="*{nombre}" placeholder="Ingrese el nombre" th:disabled="${esValido}">
 					</div>
 					<span class="alert alert-danger p-1" style="width:auto;" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></span>
 				</div>
 				<div class="row d-flex justify-content-center">
 					<div class="input-group mb-3">
 					  <span class="input-group-text">Apellido</span>
-					  <input type="text" class="form-control" name="apellido" th:value="*{apellido}" placeholder="Ingrese el apellido">
+					  <input type="text" class="form-control" name="apellido" th:value="*{apellido}" placeholder="Ingrese el apellido" th:disabled="${esValido}">
 					</div>
 					<span class="alert alert-danger p-1" style="width:auto;" th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></span>
 				</div>
 				<div class="row d-flex justify-content-center">
 					<div class="input-group mb-3">
 					  <span class="input-group-text">DNI</span>
-					  <input type="number" name="dni" class="form-control" th:value="*{dni}" placeholder="Ingrese el dni">
+					  <input type="number" min=1111111 max=99999999 name="dni" class="form-control" th:value="*{dni}" placeholder="Ingrese el dni" th:disabled="${esValido}">
 					</div>
 					<span class="alert alert-danger p-1" style="width:auto;" th:if="${dni_existe != null}" th:text="${dni_existe}"></span>
 					<span class="alert alert-danger p-1" style="width:auto;" th:if="${dni_invalido != null}" th:text="${dni_invalido}"></span>
@@ -36,7 +37,6 @@
 				</div>
 			</form>
 		</div>
-		<div th:replace="layout/estructura :: desarrollo"></div>
 	</body>
 	<script	th:replace="layout/estructura :: scripts"></script>
 </html>

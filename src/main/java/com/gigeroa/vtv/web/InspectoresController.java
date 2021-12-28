@@ -33,14 +33,15 @@ public class InspectoresController {
 		ControllersService.setTitulo(model, "Alta de inspector");
 		return "inspectores/agregarInspector";
 	}
-
+	
 	@RequestMapping (value = {"inspectores/alta","inspector/alta/"}, method = {RequestMethod.GET, RequestMethod.POST})
 	public String agregarInspector2 (Model model,
 			@Valid Inspector inspector,
 			Errors errores,
-			@RequestParam Integer dni) {
+			@RequestParam (required = false) Integer dni,
+			@RequestParam (required = false) String btnConfirmar,
+			@RequestParam (required = false) String btnSalir) {
 		ControllersService.setTitulo(model, "Alta de inspector");
-		System.out.println("dni: "+Integer.toString(dni));
 		if (!DniService.verificarDniInvalido(Integer.toString(dni))) {
 			model.addAttribute("dni_invalido","El dni ingresado es inválido.");
 			return "inspectores/agregarInspector";
@@ -52,7 +53,8 @@ public class InspectoresController {
 		if (errores.hasErrors()) {
 			return "inspectores/agregarInspector";
 		}
-		return "inspectores/agregarInspector?todoBien";
+		dto.guardar(inspector);
+		return "redirect:/listarInspectores?nuevoInspector";
 	}
 	
 	@RequestMapping (value = {"/editarInspector","/editarInspector/{legajo}"}, method = {RequestMethod.GET, RequestMethod.POST})
