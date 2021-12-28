@@ -1,3 +1,19 @@
+/*
+ Navicat Premium Data Transfer
+
+ Source Server         : MySQL80
+ Source Server Type    : MySQL
+ Source Server Version : 80026
+ Source Host           : localhost:3306
+ Source Schema         : vtv
+
+ Target Server Type    : MySQL
+ Target Server Version : 80026
+ File Encoding         : 65001
+
+ Date: 28/12/2021 15:09:13
+*/
+
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
@@ -12,7 +28,7 @@ CREATE TABLE `inspecciones`  (
   `Estado` int(0) NOT NULL,
   `FechaVencimiento` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`Numero`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 28 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of inspecciones
@@ -37,6 +53,13 @@ INSERT INTO `inspecciones` VALUES (17, '2021-10-15', 1010, 2, '2022-10-15');
 INSERT INTO `inspecciones` VALUES (18, '2021-08-24', 1001, 1, '2022-08-24');
 INSERT INTO `inspecciones` VALUES (19, '2021-07-08', 1007, 3, '2022-07-08');
 INSERT INTO `inspecciones` VALUES (20, '2021-05-22', 1009, 2, '2022-05-22');
+INSERT INTO `inspecciones` VALUES (21, '2021-12-22', 1004, 1, '2022-12-22');
+INSERT INTO `inspecciones` VALUES (22, '2021-12-22', 1001, 2, '2022-12-22');
+INSERT INTO `inspecciones` VALUES (23, '2021-12-22', 1004, 1, '2022-12-22');
+INSERT INTO `inspecciones` VALUES (24, '2021-12-24', 1004, 1, '2022-12-24');
+INSERT INTO `inspecciones` VALUES (25, '2021-12-24', 1003, 2, '2022-12-24');
+INSERT INTO `inspecciones` VALUES (26, '2021-12-27', 1006, 1, '2022-12-27');
+INSERT INTO `inspecciones` VALUES (27, '2021-12-27', 1008, 1, '2022-12-27');
 
 -- ----------------------------
 -- Table structure for inspecciones_x_vehiculo
@@ -71,6 +94,13 @@ INSERT INTO `inspecciones_x_vehiculo` VALUES (17, 2);
 INSERT INTO `inspecciones_x_vehiculo` VALUES (18, 9);
 INSERT INTO `inspecciones_x_vehiculo` VALUES (19, 5);
 INSERT INTO `inspecciones_x_vehiculo` VALUES (20, 8);
+INSERT INTO `inspecciones_x_vehiculo` VALUES (21, 10);
+INSERT INTO `inspecciones_x_vehiculo` VALUES (22, 4);
+INSERT INTO `inspecciones_x_vehiculo` VALUES (23, 10);
+INSERT INTO `inspecciones_x_vehiculo` VALUES (24, 1);
+INSERT INTO `inspecciones_x_vehiculo` VALUES (25, 6);
+INSERT INTO `inspecciones_x_vehiculo` VALUES (26, 3);
+INSERT INTO `inspecciones_x_vehiculo` VALUES (27, 5);
 
 -- ----------------------------
 -- Table structure for inspectores
@@ -78,7 +108,7 @@ INSERT INTO `inspecciones_x_vehiculo` VALUES (20, 8);
 DROP TABLE IF EXISTS `inspectores`;
 CREATE TABLE `inspectores`  (
   `DNI` bigint(0) NOT NULL,
-  `Legajo` bigint(0) NOT NULL,
+  `Legajo` bigint(0) NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `Apellido` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`Legajo`, `DNI`) USING BTREE
@@ -97,6 +127,7 @@ INSERT INTO `inspectores` VALUES (66666666, 1007, 'Maximiliano', 'Fernandez');
 INSERT INTO `inspectores` VALUES (77777777, 1008, 'Lucas', 'Lopez');
 INSERT INTO `inspectores` VALUES (88888888, 1009, 'Damian', 'Basualdo');
 INSERT INTO `inspectores` VALUES (99999999, 1010, 'Nicolas', 'Vega');
+INSERT INTO `inspectores` VALUES (1111124, 1011, 'Nicolás', 'Gigeroa');
 
 -- ----------------------------
 -- Table structure for marcas
