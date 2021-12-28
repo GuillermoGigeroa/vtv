@@ -156,12 +156,10 @@ public class InspeccionesController {
 			return "redirect:/index";
 		}
 		
-		ControllersService.setTitulo(model, "Guardar inspeccion - IDVehiculo: " + idVehiculo + " - Estado: " + estado + " - Legajo: "+legajo);
-		
 //		Se crea la inspección y se guarda en BBDD
 		Inspeccion inspeccion = new Inspeccion(LocalDate.now(),dtoInspectores.buscar(legajo),dtoVehiculos.buscar(idVehiculo),EstadosService.estadoToNumero(estado));
 		dtoInspecciones.guardar(inspeccion, idVehiculo);
-		return "home/index";
+		return "redirect:/listarInspecciones?nuevaInspeccion";
 	}
 	
 	

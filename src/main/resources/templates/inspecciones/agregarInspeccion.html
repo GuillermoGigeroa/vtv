@@ -51,7 +51,7 @@
 							<input type="submit" class="btn btn-outline-secondary" name="btnSeleccionar" value="Seleccionar">
 						</div>
 						</span>
-						<span th:if="${inspectorActual.getLegajo != 0}">Inspector seleccionado: <b>[[${inspectorActual.getLegajo}]] - [[${inspectorActual.getApellido}]], [[${inspectorActual.getNombre}]]</b></span>
+						<span th:if="${inspectorActual.getLegajo != 0}">Inspector: <b>[[${inspectorActual.getApellido}]], [[${inspectorActual.getNombre}]]</b> - Legajo <b>[[${inspectorActual.getLegajo}]]</b></span>
 					</div>
 				</div>
 			</form>
