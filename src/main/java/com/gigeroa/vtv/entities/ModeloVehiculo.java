@@ -8,13 +8,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import com.gigeroa.vtv.repositories.IContieneID;
 import com.gigeroa.vtv.repositories.IModelo_Marca;
 
 @Entity
 @Table (name = "modelos")
-public class ModeloVehiculo implements IContieneID, IModelo_Marca{
+public class ModeloVehiculo implements IModelo_Marca{
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
@@ -35,13 +33,11 @@ public class ModeloVehiculo implements IContieneID, IModelo_Marca{
 		this.nombre = nombre;
 	}
 
-	@Override
-	public int getID() {
+	public int getIdModelo() {
 		return idModelo;
 	}
 
-	@Override
-	public void setID(int id) {
+	public void setIdModelo(int id) {
 		this.idModelo = id;
 	}
 

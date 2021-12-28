@@ -41,7 +41,7 @@ public class DtoModelosImpl implements DtoModelos{
 	@Override
 	@Transactional (readOnly = true)
 	public ModeloVehiculo buscar(ModeloVehiculo modelo) {
-		return buscar(modelo.getID());
+		return buscar(modelo.getIdModelo());
 	}
 
 	@Override

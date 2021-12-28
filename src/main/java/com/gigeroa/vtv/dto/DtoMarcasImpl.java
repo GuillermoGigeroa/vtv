@@ -35,7 +35,7 @@ public class DtoMarcasImpl implements DtoMarcas{
 	@Override
 	@Transactional (readOnly = true)
 	public MarcaVehiculo buscar(MarcaVehiculo marca) {
-		return buscar(marca.getID());
+		return buscar(marca.getIdMarca());
 	}
 
 	@Override

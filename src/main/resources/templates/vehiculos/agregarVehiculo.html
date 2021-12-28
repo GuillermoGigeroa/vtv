@@ -10,11 +10,11 @@
 					<div class="col-md-8 form-control">
 						<div class="row" th:if="${marcaVehiculo != null}">
 							<h5><i><b>Seleccione una marca</b></i></h5>
-							<form method="post" th:action="@{/seleccionMarca}" th:object="${marcaVehiculo}">
+							<form method="get" th:action="@{/seleccionMarca}" th:object="${marcaVehiculo}">
 								<div class="input-group">
-									<select class="form-select" name="ID" th:field="*{ID}" required>
+									<select class="form-select" name="idMarca" th:field="*{idMarca}" required>
 										<span th:each="marca : ${listaMarcas}">
-											<option th:value="${marca.getID}" th:text="${marca.getNombre}"></option>
+											<option th:value="${marca.getIdMarca}" th:text="${marca.getNombre}"></option>
 										</span>
 									</select>
 									<input type="submit" class="btn btn-outline-secondary" name="seleccionarMarca" value="Seleccionar">
@@ -22,16 +22,16 @@
 							</form>
 						</div>
 						<div class="row pt-2" th:if="${marcaVehiculo != null}">
-							<p th:if="${marcaVehiculo.getID != -1}">Marca seleccionada: <b>[[${marcaVehiculo.getNombre}]]</b></p>
+							<p th:if="${marcaVehiculo.getIdMarca != -1}">Marca seleccionada: <b>[[${marcaVehiculo.getNombre}]]</b></p>
 						</div>
 						<div class="row" th:if="${modeloVehiculo != null and listaModelos != null}">
 							<h5><i><b>Seleccione un modelo</b></i></h5>
-							<form method="post" th:action="@{/seleccionModelo}" th:object="${modeloVehiculo}">
+							<form method="get" th:action="@{/seleccionModelo}" th:object="${modeloVehiculo}">
 								<div class="input-group">
-									<input type="hidden" name="idMarca" th:value="${marcaVehiculo.getID}"/>
-									<select class="form-select" th:field="*{ID}" required>
+									<input type="hidden" name="idMarca" th:value="${marcaVehiculo.getIdMarca}">
+									<select class="form-select" name="idModelo" th:field="*{idModelo}" required>
 										<span th:each="modelo : ${listaModelos}">
-											<option th:value="${modelo.getID}" th:text="${modelo.getNombre}"></option>
+											<option th:value="${modelo.getIdModelo}" th:text="${modelo.getNombre}"></option>
 										</span>
 									</select>
 									<input type="submit" class="btn btn-outline-secondary" name="seleccionarModelo" value="Seleccionar">
@@ -39,14 +39,14 @@
 							</form>
 						</div>
 						<div class="row pt-2" th:if="${modeloVehiculo != null}">
-							<p th:if="${modeloVehiculo.getID != -1}">Modelo seleccionado: <b>[[${modeloVehiculo.getNombre}]]</b></p>
+							<p th:if="${modeloVehiculo.getIdModelo != -1}">Modelo seleccionado: <b>[[${modeloVehiculo.getNombre}]]</b></p>
 						</div>
 						<div th:if="${listaPropietarios != null and propietarioSeleccionado != null}">
 							<h5><i><b>Seleccione el propietario</b></i></h5>
-							<form method="post" th:action="@{/seleccionPropietario}" th:object="${propietarioSeleccionado}">
+							<form method="get" th:action="@{/seleccionPropietario}" th:object="${propietarioSeleccionado}">
 								<div class="input-group">
-									<input type="hidden" name="idMarca" th:value="${marcaVehiculo.getID}"/>
-									<input type="hidden" name="idModelo" th:value="${modeloVehiculo.getID}"/>
+									<input type="hidden" name="idMarca" th:value="${marcaVehiculo.getIdMarca}">
+									<input type="hidden" name="idModelo" th:value="${modeloVehiculo.getIdModelo}">
 									<select class="form-select" th:name="nombre" th:field="*{nombre}" required>
 										<span th:each="propietario : ${listaPropietarios}">
 											<option th:value="${propietario.getDni}">[[${propietario.getNombre}]] [[${propietario.getApellido}]] - DNI [[${propietario.getDni}]]</option>
@@ -60,10 +60,10 @@
 							<p th:if="${propietarioSeleccionado.getDni != 0}">Propietario seleccionado: <b>[[${propietarioSeleccionado.getNombre}]] [[${propietarioSeleccionado.getApellido}]] - DNI [[${propietarioSeleccionado.getDni}]]</b></p>
 						</div>
 						<div class="row pb-2 " th:if="${propietarioSeleccionado != null}">
-							<div class="alert alert-danger mt-3" th:if="${propietarioSeleccionado.getNombre != T(com.gigeroa.vtv.repositories.IPersona).sinNombre}">
+							<div class="alert alert-danger mt-3" th:if="${propietarioSeleccionado.getDni != 0}">
 								<span>Falta insertar la matrícula del vehiculo con validación de matrícula.</span>
 							</div>
-							<div class="col d-flex justify-content-center" th:if="${propietarioSeleccionado.getNombre != T(com.gigeroa.vtv.repositories.IPersona).sinNombre}">
+							<div class="col d-flex justify-content-center" th:if="${propietarioSeleccionado.getDni != 0}">
 								<input type="submit" class="btn btn-success" name="btnAgregar" value="Agregar">
 							</div>
 						</div>

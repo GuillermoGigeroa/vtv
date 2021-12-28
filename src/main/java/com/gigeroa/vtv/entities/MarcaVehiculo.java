@@ -3,12 +3,11 @@ package com.gigeroa.vtv.entities;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.*;
-import com.gigeroa.vtv.repositories.IContieneID;
 import com.gigeroa.vtv.repositories.IModelo_Marca;
 
 @Entity
 @Table (name = "marcas")
-public class MarcaVehiculo implements IContieneID, IModelo_Marca, Serializable {
+public class MarcaVehiculo implements IModelo_Marca, Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -30,13 +29,11 @@ public class MarcaVehiculo implements IContieneID, IModelo_Marca, Serializable {
 		this.nombre = nombre;
 	}
 
-	@Override
-	public int getID() {
+	public int getIdMarca() {
 		return idMarca;
 	}
 
-	@Override
-	public void setID(int id) {
+	public void setIdMarca(int id) {
 		this.idMarca = id;
 	}
 
