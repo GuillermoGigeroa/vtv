@@ -22,7 +22,7 @@
 							</form>
 						</div>
 						<div class="row pt-2" th:if="${marcaVehiculo != null}">
-							<p th:if="${marcaVehiculo.getIdMarca != -1}">Marca seleccionada: <b>[[${marcaVehiculo.getNombre}]]</b></p>
+							<p th:if="${marcaVehiculo.getIdMarca != T(com.gigeroa.vtv.repositories.IModelo_Marca).idDefault}">Marca seleccionada: <b>[[${marcaVehiculo.getNombre}]]</b></p>
 						</div>
 						<div class="row" th:if="${modeloVehiculo != null and listaModelos != null}">
 							<h5><i><b>Seleccione un modelo</b></i></h5>
@@ -39,7 +39,7 @@
 							</form>
 						</div>
 						<div class="row pt-2" th:if="${modeloVehiculo != null}">
-							<p th:if="${modeloVehiculo.getIdModelo != -1}">Modelo seleccionado: <b>[[${modeloVehiculo.getNombre}]]</b></p>
+							<p th:if="${modeloVehiculo.getIdModelo != T(com.gigeroa.vtv.repositories.IModelo_Marca).idDefault}">Modelo seleccionado: <b>[[${modeloVehiculo.getNombre}]]</b></p>
 						</div>
 						<div th:if="${listaPropietarios != null and propietarioSeleccionado != null}">
 							<h5><i><b>Seleccione el propietario</b></i></h5>
