@@ -59,11 +59,12 @@ public class InspeccionesController {
 	@RequestMapping (value = "/agregarInspeccion/{idVehiculo}", method = {RequestMethod.GET, RequestMethod.POST})
 	public String agregarInspecciones (Model model,
 			@PathVariable (required = false) Integer idVehiculo,
-			ListaEstados listaEstados,
-			Inspector inspectorActual) {
+			ListaEstados listaEstados) {
 		if(idVehiculo == null) {
 			return "redirect:/listarVehiculos/1";
 		}
+		
+		model.addAttribute("inspectorActual",new Inspector());
 		
 //		Se agrega título personalizado con la matrícula del vehículo
 		ControllersService.setTitulo(model, "Agregar inspeccion - " + dtoVehiculos.buscar(idVehiculo).getMatricula());
