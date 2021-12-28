@@ -24,7 +24,7 @@
 				<div class="row d-flex justify-content-center">
 					<div class="input-group mb-3">
 					  <span class="input-group-text">DNI</span>
-					  <input type="number" min=1111111 max=99999999 name="dni" class="form-control" th:value="*{dni}" placeholder="Ingrese el dni" th:disabled="${esValido}">
+					  <input type="number" min=1000000 max=99999999 name="dni" class="form-control" th:value="*{dni}" placeholder="Ingrese el dni" th:disabled="${esValido}">
 					</div>
 					<span class="alert alert-danger p-1" style="width:auto;" th:if="${dni_existe != null}" th:text="${dni_existe}"></span>
 					<span class="alert alert-danger p-1" style="width:auto;" th:if="${dni_invalido != null}" th:text="${dni_invalido}"></span>

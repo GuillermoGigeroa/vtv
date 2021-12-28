@@ -2,6 +2,8 @@ package com.gigeroa.vtv.entities;
 
 import java.util.Objects;
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+
 import com.gigeroa.vtv.exceptions.DniInvalido;
 import com.gigeroa.vtv.repositories.*;
 
@@ -13,9 +15,11 @@ public class Propietario implements IPersona{
 	@Column (name = "dni")
 	private int dni;
 	
+	@NotEmpty (message = "El campo nombre no puede estar vacío.")
 	@Column (name = "nombre")
 	private String nombre;
 
+	@NotEmpty (message = "El campo apellido no puede estar vacío.")
 	@Column (name = "apellido")
 	private String apellido;
 	

@@ -11,7 +11,7 @@
  Target Server Version : 80026
  File Encoding         : 65001
 
- Date: 28/12/2021 15:09:13
+ Date: 28/12/2021 17:12:29
 */
 
 SET NAMES utf8mb4;
@@ -127,7 +127,6 @@ INSERT INTO `inspectores` VALUES (66666666, 1007, 'Maximiliano', 'Fernandez');
 INSERT INTO `inspectores` VALUES (77777777, 1008, 'Lucas', 'Lopez');
 INSERT INTO `inspectores` VALUES (88888888, 1009, 'Damian', 'Basualdo');
 INSERT INTO `inspectores` VALUES (99999999, 1010, 'Nicolas', 'Vega');
-INSERT INTO `inspectores` VALUES (1111124, 1011, 'Nicolás', 'Gigeroa');
 
 -- ----------------------------
 -- Table structure for marcas

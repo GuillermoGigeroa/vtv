@@ -6,30 +6,34 @@
 		<div th:replace="layout/estructura :: titulo"></div>
 		<div class="container d-flex justify-content-center">
 			<form method="get" th:action="@{/altaPropietario}" class="col-md-6" th:object="${propietario}">
-				<div class="row">
+				<div class="row d-flex justify-content-center">
 					<div class="input-group mb-3">
-					  <span class="input-group-text">Nombre</span>
-					  <input type="text" class="form-control" name="nombre" th:value="*{nombre}" placeholder="Ingrese el nombre" required>
+					 	<span class="input-group-text">Nombre</span>
+					 	<input type="text" class="form-control" name="nombre" th:value="*{nombre}" placeholder="Ingrese el nombre">
 					</div>
+					<span class="alert alert-danger p-1" style="width:auto;" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></span>
 				</div>
-				<div class="row">
+				<div class="row d-flex justify-content-center">
 					<div class="input-group mb-3">
-					  <span class="input-group-text">Apellido</span>
-					  <input type="text" class="form-control" name="apellido" th:value="*{apellido}" placeholder="Ingrese el apellido" required>
+					 	<span class="input-group-text">Apellido</span>
+					 	<input type="text" class="form-control" name="apellido" th:value="*{apellido}" placeholder="Ingrese el apellido">
 					</div>
+				 	<span class="alert alert-danger p-1" style="width:auto;" th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></span>
 				</div>
-				<div class="row">
+				<div class="row d-flex justify-content-center">
 					<div class="input-group mb-3">
-					  <span class="input-group-text">DNI</span>
-					  <input type="number" min="11111111" max="99999999" name="dni" class="form-control" th:value="*{dni}" placeholder="Ingrese el dni" required>
+					 	<span class="input-group-text">DNI</span>
+					 	<input type="number" min="10000000" max="99999999" name="dni" class="form-control" th:value="*{dni}" placeholder="Ingrese el dni" required>
 					</div>
+				 	<span class="alert alert-danger p-1" style="width:auto;" th:if="${dni_invalido != null}" th:text=${dni_invalido}></span>
+				 	<span class="alert alert-danger p-1" style="width:auto;" th:if="${dni_existe != null}" th:text="${dni_existe}"></span>
 				</div>
 				<div class="row">
 					<div class="input-group mb-3">
 						<label class="input-group-text" for="selectExento">Exento</label>
 						<select class="form-control" name="exento" th:value="*{exento}">
-							<option th:value="true" th:text="Si"></option>
 							<option th:value="false" th:text="No"></option>
+							<option th:value="true" th:text="Si"></option>
 						</select>
 					</div>
 				</div>
