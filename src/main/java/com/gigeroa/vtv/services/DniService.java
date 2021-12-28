@@ -2,6 +2,7 @@ package com.gigeroa.vtv.services;
 
 import com.gigeroa.vtv.dto.DtoInspectoresImpl;
 import com.gigeroa.vtv.dto.DtoPropietariosImpl;
+import com.gigeroa.vtv.entities.Inspector;
 
 public abstract class DniService {
 	
@@ -23,8 +24,10 @@ public abstract class DniService {
 	
 //	Método que permite identificar en BBDD si existe un DNI de inspector
 	public static boolean existeDniInspector (int dni, DtoInspectoresImpl dto) {
-		if (dto.buscar(dni) != null) {
-			return true;
+		for (Inspector inspector : dto.listar()) {
+			if (inspector.getDni() == dni) {
+				return true;
+			}
 		}
 		return false;
 	}
@@ -36,5 +39,4 @@ public abstract class DniService {
 		}
 		return false;
 	}
-	
 }

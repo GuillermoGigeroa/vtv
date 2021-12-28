@@ -7,23 +7,27 @@
 		<div class="container d-flex justify-content-center">
 			<form method="get" th:action="@{/inspectores/alta}" class="col-md-6" th:object="${inspector}">
 				<input type="hidden" name="legajo" th:value="*{legajo}">
-				<div class="row">
+				<div class="row d-flex justify-content-center">
 					<div class="input-group mb-3">
 					  <span class="input-group-text">Nombre</span>
-					  <input type="text" class="form-control" name="nombre" th:value="*{nombre}" placeholder="Ingrese el nombre" required>
+					  <input type="text" class="form-control" name="nombre" th:value="*{nombre}" placeholder="Ingrese el nombre">
 					</div>
+					<span class="alert alert-danger p-1" style="width:auto;" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></span>
 				</div>
-				<div class="row">
+				<div class="row d-flex justify-content-center">
 					<div class="input-group mb-3">
 					  <span class="input-group-text">Apellido</span>
-					  <input type="text" class="form-control" name="apellido" th:value="*{apellido}" placeholder="Ingrese el apellido" required>
+					  <input type="text" class="form-control" name="apellido" th:value="*{apellido}" placeholder="Ingrese el apellido">
 					</div>
+					<span class="alert alert-danger p-1" style="width:auto;" th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></span>
 				</div>
-				<div class="row">
+				<div class="row d-flex justify-content-center">
 					<div class="input-group mb-3">
 					  <span class="input-group-text">DNI</span>
-					  <input type="number" min="11111111" name="dni" max="99999999" class="form-control" th:value="*{dni}" placeholder="Ingrese el dni" required>
+					  <input type="number" name="dni" class="form-control" th:value="*{dni}" placeholder="Ingrese el dni">
 					</div>
+					<span class="alert alert-danger p-1" style="width:auto;" th:if="${dni_existe != null}" th:text="${dni_existe}"></span>
+					<span class="alert alert-danger p-1" style="width:auto;" th:if="${dni_invalido != null}" th:text="${dni_invalido}"></span>
 				</div>
 				<div class="row">
 					<div class="col d-flex justify-content-center">
