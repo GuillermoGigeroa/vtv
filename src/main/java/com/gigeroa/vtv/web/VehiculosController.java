@@ -89,12 +89,8 @@ public class VehiculosController {
 		listarModelos(model, marcaVehiculo.getIdMarca());
 		listarPropietarios(model);
 		model.addAttribute("propietarioSeleccionado",new Propietario());
-		if (!marcaSelecionada(model, marcaVehiculo.getIdMarca())) {
-			return "redirect:/agregarVehiculo?marcaInvalida";
-		}
-		if (!modeloSeleccionado(model, marcaVehiculo.getIdMarca(), modeloVehiculo.getIdModelo())) {
-			return "redirect:/agregarVehiculo?modeloInvalido";
-		}
+		marcaSelecionada(model, marcaVehiculo.getIdMarca());
+		modeloSeleccionado(model, marcaVehiculo.getIdMarca(), modeloVehiculo.getIdModelo());
 		return agregarVehiculo;
 	}
 	
@@ -111,15 +107,9 @@ public class VehiculosController {
 		listarMarcas(model);
 		listarModelos(model, marcaVehiculo.getIdMarca());
 		listarPropietarios(model);
-		if (!marcaSelecionada(model, marcaVehiculo.getIdMarca())) {
-			return "redirect:/agregarVehiculo?marcaInvalida";
-		}
-		if (!modeloSeleccionado(model, marcaVehiculo.getIdMarca(), modeloVehiculo.getIdModelo())) {
-			return "redirect:/agregarVehiculo?modeloInvalido";
-		}
-		if (!propietarioSeleccionado(model, nombre)) {
-			return "redirect:/agregarVehiculo?propietarioInvalido";
-		}
+		marcaSelecionada(model, marcaVehiculo.getIdMarca());
+		modeloSeleccionado(model, marcaVehiculo.getIdMarca(), modeloVehiculo.getIdModelo());
+		propietarioSeleccionado(model, nombre);
 		return agregarVehiculo;
 	}
 	
@@ -183,7 +173,7 @@ public class VehiculosController {
 		model.addAttribute("listaMarcas", dtoMarcas.listar());
 	}
 
-	private void listarModelos(Model model, int IDMarca) {
-		model.addAttribute("listaModelos", dtoModelos.listarModelosPorMarca(IDMarca));
+	private void listarModelos(Model model, int idMarca) {
+		model.addAttribute("listaModelos", dtoModelos.listarModelosPorMarca(idMarca));
 	}
 }
