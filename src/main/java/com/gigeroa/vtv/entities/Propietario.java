@@ -25,8 +25,8 @@ public class Propietario implements IPersona{
 //	Constructores
 	public Propietario() throws DniInvalido {
 		setDni(sinDni);
-		this.nombre = sinNombre;
-		this.apellido = sinApellido;
+		this.nombre = "";
+		this.apellido = "";
 		this.exento = false;
 	}
 	

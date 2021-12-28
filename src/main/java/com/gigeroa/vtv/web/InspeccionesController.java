@@ -59,7 +59,8 @@ public class InspeccionesController {
 	@RequestMapping (value = "/agregarInspeccion/{idVehiculo}", method = {RequestMethod.GET, RequestMethod.POST})
 	public String agregarInspecciones (Model model,
 			@PathVariable (required = false) Integer idVehiculo,
-			ListaEstados listaEstados) {
+			ListaEstados listaEstados,
+			Inspector inspectorActual) {
 		if(idVehiculo == null) {
 			return "redirect:/listarVehiculos/1";
 		}
@@ -73,9 +74,6 @@ public class InspeccionesController {
 //		Se agrega lista de inspectores para seleccionar
 		model.addAttribute("listaInspectores",dtoInspectores.listar());
 
-//		Se agrega inspector nuevo para poder trabajar
-		model.addAttribute("inspectorActual",new Inspector());
-		
 		return "inspecciones/agregarInspeccion";
 	}
 	

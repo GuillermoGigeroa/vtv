@@ -3,7 +3,6 @@ package com.gigeroa.vtv.web;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -55,21 +54,17 @@ public class VehiculosController {
 	}
 
 	@RequestMapping(value = {"/agregarVehiculo", "/agregarVehiculo/"}, method = {RequestMethod.GET, RequestMethod.POST})
-	public String agregarVehiculo (Model model) {
+	public String agregarVehiculo (Model model, MarcaVehiculo marcaVehiculo) {
 		ControllersService.setTitulo(model, "Agregar vehículo");
 		listarMarcas(model);
-		marcaNueva(model);
 		return agregarVehiculo;
-	}
-	
-	@GetMapping("/seleccionPropietario")
-	public String propietario (Model model) {
-		return agregarVehiculo(model);
 	}
 
 //	Mapeo de la sección /seleccionMarca para continuar con la selección de la marca
 	@RequestMapping(value = {"/seleccionMarca", "/seleccionMarca/"}, method = {RequestMethod.GET, RequestMethod.POST})
-	public String seleccionMarca (Model model, @RequestParam (required = false) Integer ID) {
+	public String seleccionMarca (Model model,
+			@RequestParam (required = false) Integer ID,
+			ModeloVehiculo modeloVehiculo) {
 		if (ID == null) {
 			return "redirect:/agregarVehiculo";
 		}
@@ -77,13 +72,14 @@ public class VehiculosController {
 		listarMarcas(model);
 		listarModelos(model, ID);
 		marcaSelecionada(model, ID);
-		modeloNuevo(model);
 		return agregarVehiculo;
 	}
-
+	
 //	Mapeo de la sección /seleccionModelo para continuar con la selección del modelo
 	@RequestMapping(value = {"/seleccionModelo", "/seleccionModelo/"}, method = {RequestMethod.GET, RequestMethod.POST})
-	public String seleccion (Model model, @RequestParam (required = false) Integer ID, @RequestParam (required = false) Integer idMarca) throws DniInvalido {
+	public String seleccion (Model model,
+			@RequestParam (required = false) Integer ID,
+			@RequestParam (required = false) Integer idMarca) throws DniInvalido {
 		if (ID == null | idMarca == null) {
 			return "redirect:/agregarVehiculo";
 		}
@@ -91,7 +87,7 @@ public class VehiculosController {
 		listarMarcas(model);
 		listarModelos(model, idMarca);
 		listarPropietarios(model);
-		propietarioNuevo(model);
+		model.addAttribute("propietarioSeleccionado",new Propietario());
 		if (!marcaSelecionada(model, idMarca)) {
 			return "redirect:/agregarVehiculo?marcaInvalida";
 		}
@@ -147,10 +143,6 @@ public class VehiculosController {
 	private void listarPropietarios(Model model) {
 		model.addAttribute("listaPropietarios",dtoPropietarios.listar());
 	}
-	
-	private void propietarioNuevo (Model model) throws DniInvalido {
-		model.addAttribute("propietarioSeleccionado",new Propietario());
-	}
 
 	private boolean propietarioSeleccionado (Model model, String dniString) {
 		int dni = 0;
@@ -168,14 +160,6 @@ public class VehiculosController {
 		return false;
 	}
 	
-	private void marcaNueva(Model model) {
-		model.addAttribute("marcaVehiculo",new MarcaVehiculo());
-	}
-
-	private void modeloNuevo(Model model) {
-		model.addAttribute("modeloVehiculo",new ModeloVehiculo());
-	}
-
 	private boolean modeloSeleccionado(Model model,int IDMarca, int ID) {
 		ModeloVehiculo modelo = dtoModelos.buscar(ID);
 		if (modelo != null) {

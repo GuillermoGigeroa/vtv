@@ -9,19 +9,28 @@
 				<div class="row">
 					<div class="input-group mb-3">
 					  <span class="input-group-text">Nombre</span>
-					  <input type="text" class="form-control" th:value="*{nombre}" placeholder="Ingrese el nombre" required>
+					  <input type="text" class="form-control" name="nombre" th:value="*{nombre}" placeholder="Ingrese el nombre" required>
 					</div>
 				</div>
 				<div class="row">
 					<div class="input-group mb-3">
 					  <span class="input-group-text">Apellido</span>
-					  <input type="text" class="form-control" th:value="*{apellido}" placeholder="Ingrese el apellido" required>
+					  <input type="text" class="form-control" name="apellido" th:value="*{apellido}" placeholder="Ingrese el apellido" required>
 					</div>
 				</div>
 				<div class="row">
 					<div class="input-group mb-3">
 					  <span class="input-group-text">DNI</span>
-					  <input type="number" min="11111111" max="99999999" class="form-control" th:value="*{dni}" placeholder="Ingrese el dni" required>
+					  <input type="number" min="11111111" max="99999999" name="dni" class="form-control" th:value="*{dni}" placeholder="Ingrese el dni" required>
+					</div>
+				</div>
+				<div class="row">
+					<div class="input-group mb-3">
+						<label class="input-group-text" for="selectExento">Exento</label>
+						<select class="form-control" name="exento" th:value="*{exento}">
+							<option th:value="true" th:text="Si"></option>
+							<option th:value="false" th:text="No"></option>
+						</select>
 					</div>
 				</div>
 				<div class="row">
